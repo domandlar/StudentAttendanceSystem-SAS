@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "179094150926",
+    "firebase_url": "https://studentattendancesystem-5d78e.firebaseio.com",
+    "project_id": "studentattendancesystem-5d78e",
+    "storage_bucket": "studentattendancesystem-5d78e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179094150926:android:c421327782225812",
+        "android_client_info": {
+          "package_name": "com.foi.air.studentattendancesystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179094150926-mn5t612mh7o0c21vg2lgsoef2a3h22c6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQoFsz6rwE-OFzBii7ClRcGZ9zqixX00U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
