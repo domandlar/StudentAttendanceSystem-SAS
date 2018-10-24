@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
 
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adapters.ListOfSeminarsAdapter;
@@ -50,6 +51,27 @@ public class ListOfSeminars extends AppCompatActivity {
                 new Seminars(
                         1,
                         "Operacijski sustavi",
+                        "Utorak",
+                        "10:00-14:00",
+                        "D7"));
+        seminarsList.add(
+                new Seminars(
+                        1,
+                        "Diskretne strukture s teorijom grafova",
+                        "Utorak",
+                        "10:00-14:00",
+                        "D7"));
+        seminarsList.add(
+                new Seminars(
+                        1,
+                        "Sigurnost informacijskih sustava",
+                        "Utorak",
+                        "10:00-14:00",
+                        "D7"));
+        seminarsList.add(
+                new Seminars(
+                        1,
+                        "Računalom posredovana komunikacija",
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
