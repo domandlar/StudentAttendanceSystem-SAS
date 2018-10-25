@@ -1,9 +1,15 @@
 package com.foi.air.studentattendancesystem.ui;
 
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.Window;
 
 import com.foi.air.studentattendancesystem.R;
@@ -15,6 +21,10 @@ import java.util.List;
 
 public class ListOfSeminars extends AppCompatActivity {
 
+    private Toolbar toolBar;
+
+    private DrawerLayout drawer;
+
     RecyclerView recyclerView;
     ListOfSeminarsAdapter adapter;
 
@@ -24,6 +34,14 @@ public class ListOfSeminars extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_seminars);
+
+        toolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         seminarsList = new ArrayList<>();
 
@@ -78,5 +96,23 @@ public class ListOfSeminars extends AppCompatActivity {
 
         adapter=new ListOfSeminarsAdapter(this, seminarsList);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.app_bar_menu,menu);
+
+        return true;
+    }
+
+    //drawer
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
     }
 }
