@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.ui;
+package com.foi.air.studentattendancesystem.ui_prof;
 
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,11 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.Window;
 
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adapters.ListOfSeminarsAdapter;
-import com.foi.air.studentattendancesystem.adapters.Seminars;
+import com.foi.air.studentattendancesystem.adapters_prof.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adapters_prof.Seminars;
 
 import java.util.ArrayList;
 import java.util.List;
