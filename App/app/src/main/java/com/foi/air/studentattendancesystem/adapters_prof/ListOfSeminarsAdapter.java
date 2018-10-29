@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.adapters;
+package com.foi.air.studentattendancesystem.adapters_prof;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.ui.ListOfSeminars;
 
 import java.util.List;
 
