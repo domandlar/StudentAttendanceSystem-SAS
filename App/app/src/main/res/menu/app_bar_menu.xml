@@ -11,8 +11,8 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_settings"
-        android:title="Settings"
+        android:id="@+id/action_dodaj_seminar"
+        android:title="Dodaj seminar"
         app:showAsAction="never" />
 
 
