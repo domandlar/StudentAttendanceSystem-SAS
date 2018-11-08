@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.adapters_prof;
+package com.foi.air.studentattendancesystem.adaptersprofesor;
 
 public class Seminars {
     private int id;

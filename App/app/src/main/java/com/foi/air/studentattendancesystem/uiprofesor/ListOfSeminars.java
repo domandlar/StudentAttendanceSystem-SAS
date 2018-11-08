@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.ui_prof;
+package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,8 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adapters_prof.ListOfSeminarsAdapter;
-import com.foi.air.studentattendancesystem.adapters_prof.Seminars;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.Seminars;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.adapters_prof;
+package com.foi.air.studentattendancesystem.adaptersprofesor;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
