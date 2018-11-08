@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.ui_prof;
+package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,22 +12,21 @@ import android.view.MenuItem;
 
 import com.foi.air.studentattendancesystem.R;
 
-public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AddLab extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_seminar);
+        setContentView(R.layout.activity_add_lab);
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
         drawer = findViewById(R.id.drawer_layout);
 
-        //osluskivanje gumba "Moji seminari"
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -36,12 +35,18 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         toggle.syncState();
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(AddSeminar.this, ListOfSeminars.class);
+                Intent intent = new Intent(AddLab.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(AddLab.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }
