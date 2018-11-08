@@ -1,14 +1,15 @@
 package com.foi.air.studentattendancesystem.adapters_prof;
 
-public class    Seminars {
+public class Courses {
     private int id;
-    private String title, day, time, classroom;
+    private String title, day, startTime, endTime,  classroom;
 
-    public Seminars(int id, String title, String day, String time, String classroom) {
+    public Courses (int id, String title, String day, String startTime, String endTime, String classroom) {
         this.id = id;
         this.title = title;
         this.day = day;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.classroom = classroom;
     }
 
@@ -24,11 +25,15 @@ public class    Seminars {
         return day;
     }
 
-    public String getTime() {
-        return time;
-    }
-
     public String getClassroom() {
         return classroom;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
     }
 }

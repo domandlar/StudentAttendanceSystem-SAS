@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ui_prof.AddSeminar"></activity>
+        <activity android:name=".ui_prof.ListOfCourses"/>
+        <activity android:name=".ui_prof.AddSeminar" ></activity>
     </application>
 
 </manifest>
