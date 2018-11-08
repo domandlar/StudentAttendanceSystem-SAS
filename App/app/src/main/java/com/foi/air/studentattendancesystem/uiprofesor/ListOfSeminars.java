@@ -110,6 +110,11 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
             case R.id.nav_seminars:
                 Intent intent = new Intent(ListOfSeminars.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(ListOfSeminars.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }
