@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.foi.air.studentattendancesystem.R;
 
@@ -16,6 +18,7 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
+    private Button btnAddSeminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,13 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
+        btnAddSeminar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+            }
+        });
     }
 
     @Override

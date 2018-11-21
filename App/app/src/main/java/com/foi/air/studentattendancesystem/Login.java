@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.uiprofesor;
+package com.foi.air.studentattendancesystem;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,14 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 public class Login extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 

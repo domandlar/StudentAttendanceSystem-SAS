@@ -15,9 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.foi.air.core.entities.Seminars;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
-import com.foi.air.studentattendancesystem.adaptersprofesor.Seminars;
 
 import java.util.ArrayList;
 import java.util.List;
