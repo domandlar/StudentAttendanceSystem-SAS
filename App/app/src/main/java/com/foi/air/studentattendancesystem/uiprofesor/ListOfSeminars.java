@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.foi.air.core.entities.Seminars;
+import com.foi.air.core.entities.Seminar;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
 
@@ -31,7 +31,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     RecyclerView recyclerView;
     ListOfSeminarsAdapter adapter;
 
-    List<Seminars> seminarsList;
+    List<Seminar> seminarList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,58 +49,58 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        seminarsList = new ArrayList<>();
+        seminarList = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Analiza i razvoj programa",
                         "Petak",
                         "14:00-16:00",
                         "D9"));
 
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Vanjskotrgovinsko poslovanje",
                         "Srijeda",
                         "17:00-18:00",
                         "D10"));
 
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Operacijski sustavi",
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Diskretne strukture s teorijom grafova",
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Sigurnost informacijskih sustava",
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
-        seminarsList.add(
-                new Seminars(
+        seminarList.add(
+                new Seminar(
                         1,
                         "Računalom posredovana komunikacija",
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
 
-        adapter=new ListOfSeminarsAdapter(this, seminarsList);
+        adapter=new ListOfSeminarsAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
     }
 

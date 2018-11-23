@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.foi.air.core.entities.Seminars;
+import com.foi.air.core.entities.Seminar;
 import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
@@ -16,11 +16,11 @@ import java.util.List;
 public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAdapter.SeminarViewHolder>{
 
     private Context mCtx;
-    private List<Seminars> seminarsList;
+    private List<Seminar> seminarList;
 
-    public ListOfSeminarsAdapter(Context mCtx, List<Seminars> seminarsList) {
+    public ListOfSeminarsAdapter(Context mCtx, List<Seminar> seminarList) {
         this.mCtx = mCtx;
-        this.seminarsList = seminarsList;
+        this.seminarList = seminarList;
     }
 
     @NonNull
@@ -35,7 +35,7 @@ public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAd
 
     @Override
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int i) {
-        Seminars seminar = seminarsList.get(i);
+        Seminar seminar = seminarList.get(i);
 
         seminarViewHolder.title.setText(seminar.getTitle());
         seminarViewHolder.day.setText(seminar.getDay());
@@ -45,7 +45,7 @@ public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAd
 
     @Override
     public int getItemCount() {
-        return seminarsList.size();
+        return seminarList.size();
     }
 
     class SeminarViewHolder extends RecyclerView.ViewHolder {

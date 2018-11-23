@@ -1,10 +1,10 @@
 package com.foi.air.core.entities;
 
-public class Seminars {
+public class Seminar {
     private int id;
     private String title, day, time, classroom;
 
-    public Seminars(int id, String title, String day, String time, String classroom) {
+    public Seminar(int id, String title, String day, String time, String classroom) {
         this.id = id;
         this.title = title;
         this.day = day;
