@@ -1,5 +1,6 @@
 package com.foi.air.webservice;
 
+import com.foi.air.core.entities.Profesor;
 import com.foi.air.webservice.responses.SasWebServiceResponse;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -21,5 +22,9 @@ public class SasWebServiceCaller {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
+    }
+    public void CallWsForRegistiraniKorisnik(Profesor data) {
+        SasWebService fdWebService = retrofit.create(SasWebService.class);
+        //call = fdWebService.getKorisnik();
     }
 }
