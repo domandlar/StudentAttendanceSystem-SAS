@@ -19,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mBtnStudent = findViewById(R.id.btnStudent);
+        mBtnStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+            }
+        });
+
         mBtnProfesor = findViewById(R.id.btnProfesor);
         mBtnProfesor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

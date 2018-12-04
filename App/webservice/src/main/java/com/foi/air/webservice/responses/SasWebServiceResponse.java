@@ -1,40 +1,34 @@
 package com.foi.air.webservice.responses;
 
 public class SasWebServiceResponse {
-    public int responseId;
-    public String responseText;
-    public long timeStamp;
-    public String items;
+    public String status;
+    public String message;
+    public String data;
 
-    public int getResponseId() {
-        return responseId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setResponseId(int responseId) {
-        this.responseId = responseId;
+    public void setStatus(String status) {
+        status = status;
     }
 
-    public String getResponseText() {
-        return responseText;
+    public String getMessage() {
+        return message;
     }
 
-    public void setResponseText(String responseText) {
-        this.responseText = responseText;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    public String getData() {
+        return data;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public String getItems() {
-        return items;
-    }
 
-    public void setItems(String items) {
-        this.items = items;
-    }
+
 }

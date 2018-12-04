@@ -2,10 +2,12 @@ package com.foi.air.webservice;
 
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.core.entities.Student;
 import com.foi.air.webservice.responses.SasWebServiceResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Protocol;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -17,36 +19,44 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class SasWebServiceCaller {
-    SasWebServiceHandler mSasWebServiceHandler;
-    // retrofit object
+    SasWebServiceHandler webServiceHandler;
     Retrofit retrofit;
     Call<SasWebServiceResponse> call;
 
-    private final String baseUrl = "https://studentattendancesystem-sas.000webhostapp.com/webservice/"; //nije napravljen jos web servis
-    public SasWebServiceCaller(SasWebServiceHandler fdWebServiceHandler){
-        this.mSasWebServiceHandler = fdWebServiceHandler;
+    private final String baseUrl = "https://studentattendancesystem-sas.000webhostapp.com/webservice/";
+
+    public SasWebServiceCaller(SasWebServiceHandler webServiceHandler) {
+        this.webServiceHandler = webServiceHandler;
         OkHttpClient okHttpClient  = new OkHttpClient();
+        okHttpClient.setProtocols(Arrays.asList(Protocol.HTTP_1_1));
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
     }
-    public void getAll(String method, final Type entityType){
-        Call<SasWebServiceResponse> call = null;
 
-        SasWebService serviceCaller = retrofit.create(SasWebService.class);
-        call = serviceCaller.getKolegijZaProfesora(method);
-
+    public void CallWsForStudenta(Student data) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.prijavaStudent(data.getEmail(),data.getLozinka());
+        HandleResponseFromCall("prijava");
+    }
+    public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
                 @Override
                 public void onResponse(Response<SasWebServiceResponse> response, Retrofit retrofit) {
-                    try {
+                    try{
                         if(response.isSuccess()){
-                            handleCourses(response);
+                            if(webServiceHandler != null)
+                                if(method=="prijava"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getMessage());
+
+                                }
                         }
-                    } catch (Exception ex) {
+                    }catch (Exception ex){
                         ex.printStackTrace();
                     }
                 }
@@ -56,16 +66,5 @@ public class SasWebServiceCaller {
                 }
             });
         }
-        private void handleCourses(Response<SasWebServiceResponse> response) {
-            Gson gson = new GsonBuilder()
-                    .setDateFormat("yyyy-MM-dd") // response JSON format
-                    .create();
-            Kolegij[] discountItems = gson.fromJson(response.body().getItems(), Kolegij[].class);
-            if(mSasWebServiceHandler != null){
-                mSasWebServiceHandler.onDataArrived(Arrays.asList(discountItems), true, response.body().getTimeStamp());
-            }
-        }
-
-
     }
 }
