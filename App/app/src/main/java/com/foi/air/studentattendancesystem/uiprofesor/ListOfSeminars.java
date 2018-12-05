@@ -15,14 +15,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
+import com.foi.air.core.entities.Student;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListOfSeminars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListOfSeminars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
 
@@ -31,7 +37,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     RecyclerView recyclerView;
     ListOfSeminarsAdapter adapter;
 
-    List<Seminar> seminarList;
+    List<Aktivnost> seminarList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,10 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //podaci s web servisa
+
+
+        /*
         seminarList = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -99,6 +109,15 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                         "Utorak",
                         "10:00-14:00",
                         "D7"));
+        */
+        Profesor profesor = new Profesor(28);
+        Aktivnost aktivnost = new Aktivnost("Seminar");
+
+        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+        sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
+
+        //populate recyclerView
+        seminarList = new ArrayList<Aktivnost>();
 
         adapter=new ListOfSeminarsAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
@@ -115,6 +134,10 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 intent = new Intent(ListOfSeminars.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }
@@ -145,5 +168,10 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onWsDataLoaded(Object message, String status, Object data) {
+
     }
 }

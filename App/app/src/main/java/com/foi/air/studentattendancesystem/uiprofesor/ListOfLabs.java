@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 
 public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -52,6 +53,10 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
                 intent = new Intent(ListOfLabs.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

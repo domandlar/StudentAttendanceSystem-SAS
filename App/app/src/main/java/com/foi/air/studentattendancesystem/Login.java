@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
     }
 
     @Override
-    public void onWsDataLoaded(Object message, String status) {
+    public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK")) {
             startNextActivity();
         }

@@ -1,7 +1,9 @@
 package com.foi.air.webservice;
 
+import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
 import com.foi.air.webservice.responses.SasWebServiceResponse;
 import com.google.gson.Gson;
@@ -41,6 +43,11 @@ public class SasWebServiceCaller {
         call = webService.prijavaStudent(data.getEmail(),data.getLozinka());
         HandleResponseFromCall("prijava");
     }
+    public void CallWsForAktivnostiProfesora(Profesor profesor, Aktivnost aktivnost) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getAktivnostForProfesor("Profesor", profesor.getIdProfesora(), aktivnost.getTipAktivnosti());
+        HandleResponseFromCall("dohvacanje_aktivnosti");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -50,10 +57,12 @@ public class SasWebServiceCaller {
                         if(response.isSuccess()){
                             if(webServiceHandler != null)
                                 if(method=="prijava"){
-                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus());
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getMessage());
 
+                                }else if(method=="dohvacanje_aktivnosti"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }
                         }
                     }catch (Exception ex){
