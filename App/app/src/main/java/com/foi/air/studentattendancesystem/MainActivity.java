@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
-
 public class MainActivity extends AppCompatActivity {
 
     Button mBtnStudent;
@@ -23,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                intent.putExtra("uloga", "student");
+                Intent intent = new Intent(getApplicationContext(), LoginStudent.class);
                 startActivity(intent);
             }
         });
@@ -32,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnProfesor = findViewById(R.id.btnProfesor);
         mBtnProfesor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent (getApplicationContext(), Login.class);
-                intent.putExtra("uloga", "profesor");
+                Intent intent = new Intent (getApplicationContext(), LoginProfesor.class);
                 startActivity(intent);
             }
         });

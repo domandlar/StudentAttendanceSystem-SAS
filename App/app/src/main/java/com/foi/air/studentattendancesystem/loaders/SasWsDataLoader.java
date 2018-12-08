@@ -26,7 +26,7 @@ public class SasWsDataLoader {
     }
     public void aktivnostForProfesor(Profesor profesor, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForAktivnostiProfesora(profesor,aktivnost);
+        Ws.CallWsForAktivnostiProfesora();
     }
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override

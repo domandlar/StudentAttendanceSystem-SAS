@@ -1,5 +1,7 @@
 package com.foi.air.webservice;
 
+import android.util.Log;
+
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
@@ -48,9 +50,9 @@ public class SasWebServiceCaller {
         call = webService.prijavaProfesor(data.getEmail(),data.getLozinka());
         HandleResponseFromCall("prijava");
     }
-    public void CallWsForAktivnostiProfesora(Profesor profesor, Aktivnost aktivnost) {
+    public void CallWsForAktivnostiProfesora() {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getAktivnostForProfesor("Profesor", profesor.getIdProfesora(), aktivnost.getTipAktivnosti());
+        call = webService.getAktivnostForProfesor("Profesor",29, "Seminar");
         HandleResponseFromCall("dohvacanje_aktivnosti");
     }
     public void HandleResponseFromCall(final String method){
@@ -68,7 +70,8 @@ public class SasWebServiceCaller {
 
                                 }else if(method=="dohvacanje_aktivnosti"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                }
+                                    Log.d("jebate patak: ", response.body().getStatus());
+                            }
                         }
                     }catch (Exception ex){
                         ex.printStackTrace();

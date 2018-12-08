@@ -14,16 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
-import com.foi.air.studentattendancesystem.uistudent.SeminarList;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Login extends AppCompatActivity implements SasWsDataLoadedListener {
+public class LoginProfesor extends AppCompatActivity implements SasWsDataLoadedListener {
 
     private EditText editEmail;
     private EditText editPassword;
@@ -37,12 +35,11 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
 
     private boolean prijavljen = false;
 
-    private String uloga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_profesor);
 
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPassword = (EditText) findViewById(R.id.editPassword);
@@ -54,10 +51,6 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
 
         checkSharedPreferences();
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            uloga = extras.getString("uloga");
-        }
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +64,7 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
 
                 doLogin();
 
+
             }
         });
 
@@ -79,15 +73,9 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
     public void doLogin(){
         if(!editEmail.getText().toString().isEmpty() && !editPassword.getText().toString().isEmpty()){
             if(validateMail(editEmail.getText().toString())){
-                if(uloga.equals("student")){
-                    Student student = new Student(editEmail.getText().toString(),editPassword.getText().toString());
-                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.prijavaStudent(student,this);
-                }else{
-                    Profesor profesor = new Profesor(editEmail.getText().toString(),editPassword.getText().toString());
-                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.prijavaProfesor(profesor,this);
-                }
+                Profesor profesor = new Profesor(editEmail.getText().toString(),editPassword.getText().toString());
+                SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                sasWsDataLoader.prijavaProfesor(profesor,this);
             }
             else Toast.makeText(this,"nije dobar mail", Toast.LENGTH_SHORT).show();
         }
@@ -101,7 +89,7 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
             startNextActivity();
         }
         else{
-            AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+            AlertDialog alertDialog = new AlertDialog.Builder(LoginProfesor.this).create();
             alertDialog.setTitle("Rezultat prijave");
             alertDialog.setMessage(message.toString());
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -115,13 +103,8 @@ public class Login extends AppCompatActivity implements SasWsDataLoadedListener 
     }
 
     private void startNextActivity(){
-        if(uloga.equals("profesor")){
-            Intent intent = new Intent(Login.this, ListOfSeminars.class);
-            startActivity(intent);
-        }else{
-            Intent intent = new Intent(Login.this, SeminarList.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(LoginProfesor.this, ListOfSeminars.class);
+        startActivity(intent);
     }
 
     private void checkSharedPreferences() {

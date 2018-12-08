@@ -110,7 +110,8 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                         "10:00-14:00",
                         "D7"));
         */
-        Profesor profesor = new Profesor(28);
+
+        Profesor profesor = new Profesor(29);
         Aktivnost aktivnost = new Aktivnost("Seminar");
 
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
@@ -120,7 +121,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         seminarList = new ArrayList<Aktivnost>();
 
         adapter=new ListOfSeminarsAdapter(this, seminarList);
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
     }
 
     @Override
