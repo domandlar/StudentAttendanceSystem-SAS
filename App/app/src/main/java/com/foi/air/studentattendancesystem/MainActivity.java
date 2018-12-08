@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
+                intent.putExtra("uloga", "student");
                 startActivity(intent);
             }
         });
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnProfesor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext(), Login.class);
+                intent.putExtra("uloga", "profesor");
                 startActivity(intent);
             }
         });

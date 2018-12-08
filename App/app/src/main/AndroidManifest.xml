@@ -23,7 +23,8 @@
         <activity android:name=".uiprofesor.AddLab" />
         <activity android:name=".uiprofesor.ListOfLabs" />
         <activity android:name=".Login" />
-        <activity android:name=".uiprofesor.ListOfSeminars"></activity>
+        <activity android:name=".uiprofesor.ListOfSeminars" />
+        <activity android:name=".uistudent.SeminarList"></activity>
     </application>
 
 </manifest>
