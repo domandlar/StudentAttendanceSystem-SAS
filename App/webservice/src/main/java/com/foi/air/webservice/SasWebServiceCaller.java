@@ -52,7 +52,7 @@ public class SasWebServiceCaller {
     }
     public void CallWsForAktivnostiProfesora() {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getAktivnostForProfesor("Profesor",29, "Seminar");
+        call = webService.getAktivnostForProfesor("profesor",29, "seminar");
         HandleResponseFromCall("dohvacanje_aktivnosti");
     }
     public void HandleResponseFromCall(final String method){
@@ -71,6 +71,7 @@ public class SasWebServiceCaller {
                                 }else if(method=="dohvacanje_aktivnosti"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     Log.d("jebate patak: ", response.body().getStatus());
+                                    Log.d("jebate patak2: ", response.body().getData());
                             }
                         }
                     }catch (Exception ex){

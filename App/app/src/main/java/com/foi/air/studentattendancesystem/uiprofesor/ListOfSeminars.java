@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,7 +28,12 @@ import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapte
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ListOfSeminars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
@@ -38,6 +46,10 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     ListOfSeminarsAdapter adapter;
 
     List<Aktivnost> seminarList;
+
+    Aktivnost aktivnost;
+
+    String idProfesora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,73 +67,21 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //podaci s web servisa
-
-
-        /*
-        seminarList = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Analiza i razvoj programa",
-                        "Petak",
-                        "14:00-16:00",
-                        "D9"));
 
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Vanjskotrgovinsko poslovanje",
-                        "Srijeda",
-                        "17:00-18:00",
-                        "D10"));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        idProfesora = prefs.getString("idProfesora", "");
+        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        aktivnost = new Aktivnost("seminar");
 
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Operacijski sustavi",
-                        "Utorak",
-                        "10:00-14:00",
-                        "D7"));
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Diskretne strukture s teorijom grafova",
-                        "Utorak",
-                        "10:00-14:00",
-                        "D7"));
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Sigurnost informacijskih sustava",
-                        "Utorak",
-                        "10:00-14:00",
-                        "D7"));
-        seminarList.add(
-                new Seminar(
-                        1,
-                        "Računalom posredovana komunikacija",
-                        "Utorak",
-                        "10:00-14:00",
-                        "D7"));
-        */
-
-        Profesor profesor = new Profesor(29);
-        Aktivnost aktivnost = new Aktivnost("Seminar");
-
+        //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
 
-        //populate recyclerView
-        seminarList = new ArrayList<Aktivnost>();
-
-        adapter=new ListOfSeminarsAdapter(this, seminarList);
-        //recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -173,6 +133,26 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
+        seminarList = new ArrayList<Aktivnost>();
+        String dataString = String.valueOf(data);
+        try {
+            JSONArray array = new JSONArray(dataString);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject row = array.getJSONObject(i);
+                aktivnost.setIdAktivnosti(row.getInt("id"));
+                aktivnost.setKolegij(row.getString("kolegij"));
+                aktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
+                aktivnost.setPocetak(row.getString("pocetak"));
+                aktivnost.setKraj(row.getString("kraj"));
+                //aktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
+                aktivnost.setDvorana(row.getString("dvorana"));
+                seminarList.add(aktivnost);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        adapter=new ListOfSeminarsAdapter(this, seminarList);
+        recyclerView.setAdapter(adapter);
     }
 }

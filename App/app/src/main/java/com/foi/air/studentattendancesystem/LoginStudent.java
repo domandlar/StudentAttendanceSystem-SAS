@@ -18,6 +18,9 @@ import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uistudent.SeminarList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,7 +90,16 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK")) {
-            startNextActivity();
+            String dataString = String.valueOf(data);
+            try {
+                JSONObject jo = new JSONObject(dataString);
+                String id = jo.getString("id_studenta");
+                editor.putString("idStudenta", id);
+                editor.commit();
+                startNextActivity();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         else{
             AlertDialog alertDialog = new AlertDialog.Builder(LoginStudent.this).create();

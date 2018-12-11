@@ -38,7 +38,7 @@ public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAd
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int i) {
         Aktivnost aktivnost = seminarList.get(i);
 
-        seminarViewHolder.title.setText(aktivnost.getTipAktivnosti());
+        seminarViewHolder.title.setText(aktivnost.getKolegij());
         seminarViewHolder.day.setText(aktivnost.getDanIzvodenja());
         seminarViewHolder.time.setText(aktivnost.getPocetak());
         seminarViewHolder.classroom.setText(aktivnost.getDvorana());

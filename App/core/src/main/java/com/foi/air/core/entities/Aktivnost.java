@@ -2,15 +2,36 @@ package com.foi.air.core.entities;
 
 public class Aktivnost {
     int idAktivnosti;
-    int dozvoljenoIzostanaka;
+    String kolegij;
+    String danIzvodenja;
     String pocetak;
     String kraj;
-    String danIzvodenja;
+    int dozvoljenoIzostanaka;
     String dvorana;
     String tipAktivnosti;
 
-    public Aktivnost(String tipAktivnosti){
-        this.tipAktivnosti=tipAktivnosti;
+
+    public Aktivnost(String tipAktivnosti) {
+        this.tipAktivnosti = tipAktivnosti;
+    }
+
+    public Aktivnost(int idAktivnosti, String kolegij, int dozvoljenoIzostanaka, String pocetak, String kraj, String danIzvodenja, String dvorana, String tipAktivnosti) {
+        this.idAktivnosti = idAktivnosti;
+        this.kolegij = kolegij;
+        this.dozvoljenoIzostanaka = dozvoljenoIzostanaka;
+        this.pocetak = pocetak;
+        this.kraj = kraj;
+        this.danIzvodenja = danIzvodenja;
+        this.dvorana = dvorana;
+        this.tipAktivnosti = tipAktivnosti;
+    }
+
+    public String getKolegij() {
+        return kolegij;
+    }
+
+    public void setKolegij(String kolegij) {
+        this.kolegij = kolegij;
     }
 
     public int getIdAktivnosti() {

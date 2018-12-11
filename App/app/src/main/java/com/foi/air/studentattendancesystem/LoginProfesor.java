@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,13 @@ import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,7 +93,16 @@ public class LoginProfesor extends AppCompatActivity implements SasWsDataLoadedL
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK")) {
-            startNextActivity();
+            String dataString = String.valueOf(data);
+            try {
+                JSONObject jo = new JSONObject(dataString);
+                String id = jo.getString("id_profesora");
+                editor.putString("idProfesora", id);
+                editor.commit();
+                startNextActivity();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         else{
             AlertDialog alertDialog = new AlertDialog.Builder(LoginProfesor.this).create();
