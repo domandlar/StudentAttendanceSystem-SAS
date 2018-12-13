@@ -26,7 +26,15 @@ public class SasWsDataLoader {
     }
     public void aktivnostForProfesor(Profesor profesor, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForAktivnostiProfesora();
+        Ws.CallWsForAktivnostiProfesora(profesor,aktivnost);
+    }
+    public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForKolegijiProfesora(profesor);
+    }
+    public void Dvorane(String tipDvorane){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForDvorane(tipDvorane);
     }
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override

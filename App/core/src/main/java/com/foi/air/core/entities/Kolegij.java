@@ -14,16 +14,33 @@ public class Kolegij {
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+
+        this.id = id;
+    }
+
     public int getSemestar() {
         return semestar;
+    }
+
+    public void setSemestar(int semestar) {
+        this.semestar = semestar;
     }
 
     public String getNaziv() {
         return naziv;
     }
 
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
     public String getStudij() {
         return studij;
     }
 
+    public void setStudij(String studij) {
+        this.studij = studij;
+    }
 }

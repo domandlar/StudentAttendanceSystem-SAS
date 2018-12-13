@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -12,13 +14,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Dvorana;
+import com.foi.air.core.entities.Kolegij;
+import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 
-public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddSeminar;
+
+    String idProfesora;
+
+    List<Kolegij> kolegijList;
+    List<Dvorana> dvoranaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +58,14 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        idProfesora = prefs.getString("idProfesora", "");
+        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+
+        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+        sasWsDataLoader.kolegijForProfesor(profesor,this);
+        sasWsDataLoader.Dvorane("predavaona");
+
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,5 +82,36 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    public void onWsDataLoaded(Object message, String status, Object data) {
+        if(status.equals("OK") && message.equals("Pronađeni kolegiji.")){
+            kolegijList = new ArrayList<Kolegij>();
+            String dataStringKolegij = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataStringKolegij);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    Kolegij noviKolegij= new Kolegij(row.getInt("id"),row.getString("naziv"), row.getInt("semestar"), row.getString("studij"));
+                    kolegijList.add(noviKolegij);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else if(status.equals("OK") && message.equals("Pronađene dvorane.")){
+            dvoranaList = new ArrayList<Dvorana>();
+            String dataStringDvorane = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataStringDvorane);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    Dvorana novaDvorana= new Dvorana(row.getInt("id_dvorane"),row.getString("naziv"), row.getInt("kapacitet"));
+                    dvoranaList.add(novaDvorana);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -50,10 +50,20 @@ public class SasWebServiceCaller {
         call = webService.prijavaProfesor(data.getEmail(),data.getLozinka());
         HandleResponseFromCall("prijava");
     }
-    public void CallWsForAktivnostiProfesora() {
+    public void CallWsForAktivnostiProfesora(Profesor profesor, Aktivnost aktivnost) {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getAktivnostForProfesor("profesor",29, "seminar");
+        call = webService.getAktivnostForProfesor("profesor", profesor.getIdProfesora(), aktivnost.getTipAktivnosti());
         HandleResponseFromCall("dohvacanje_aktivnosti");
+    }
+    public void CallWsForKolegijiProfesora(Profesor profesor) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getKolegijForProfesor("profesor", profesor.getIdProfesora());
+        HandleResponseFromCall("dohvacanje_kolegija_profesora");
+    }
+    public void CallWsForDvorane(String tipDvorane) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getDvorane(tipDvorane);
+        HandleResponseFromCall("dohvacanje_dvorana");
     }
     public void HandleResponseFromCall(final String method){
         if(call != null){
@@ -70,9 +80,17 @@ public class SasWebServiceCaller {
 
                                 }else if(method=="dohvacanje_aktivnosti"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method=="dohvacanje_kolegija_profesora") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method=="dohvacanje_dvorana") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     Log.d("jebate patak: ", response.body().getStatus());
                                     Log.d("jebate patak2: ", response.body().getData());
-                            }
+                                }
                         }
                     }catch (Exception ex){
                         ex.printStackTrace();
