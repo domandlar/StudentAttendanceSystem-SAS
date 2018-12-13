@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Dvorana;
@@ -21,6 +23,7 @@ import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,16 +32,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddSeminar;
+    BetterSpinner spinnerKolegiji;
 
     String idProfesora;
 
     List<Kolegij> kolegijList;
     List<Dvorana> dvoranaList;
+    ArrayAdapter<String> arrayAdapter;
+    String[] ssss;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,12 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                 // Code here executes on main thread after user presses button
             }
         });
+
+        spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
+
+
+
+
     }
 
     @Override
@@ -96,6 +110,14 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                     Kolegij noviKolegij= new Kolegij(row.getInt("id"),row.getString("naziv"), row.getInt("semestar"), row.getString("studij"));
                     kolegijList.add(noviKolegij);
                 }
+
+                ssss = new String[kolegijList.size()];
+                for(int i=0;i<kolegijList.size();i++){
+                    ssss[i] = kolegijList.get(i).getNaziv();
+                }
+                arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_dropdown_item_1line, ssss);
+                spinnerKolegiji.setAdapter(arrayAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

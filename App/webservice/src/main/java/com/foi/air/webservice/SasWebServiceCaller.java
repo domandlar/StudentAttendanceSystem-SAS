@@ -84,12 +84,12 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_kolegija_profesora") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                    //Log.d("jebate patak: ", response.body().getStatus());
-                                    //Log.d("jebate patak2: ", response.body().getData());
-                                }else if(method=="dohvacanje_dvorana") {
-                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     Log.d("jebate patak: ", response.body().getStatus());
                                     Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method=="dohvacanje_dvorana") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
                                 }
                         }
                     }catch (Exception ex){
