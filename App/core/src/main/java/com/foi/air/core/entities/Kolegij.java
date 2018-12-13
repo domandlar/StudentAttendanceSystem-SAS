@@ -11,6 +11,9 @@ public class Kolegij {
         this.studij = studij;
     }
 
+    public Kolegij() {
+    }
+
     public int getId() {
         return id;
     }
@@ -43,4 +46,10 @@ public class Kolegij {
     public void setStudij(String studij) {
         this.studij = studij;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
+
 }

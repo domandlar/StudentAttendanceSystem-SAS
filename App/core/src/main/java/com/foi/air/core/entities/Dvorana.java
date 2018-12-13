@@ -43,4 +43,7 @@ public class Dvorana {
     public void setTipDvorane(String tipDvorane) {
         this.tipDvorane = tipDvorane;
     }
+    public String toString() {
+        return nazivDvorane;
+    }
 }
