@@ -13,12 +13,12 @@ import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
 
-public class ListOfActivityAdapter extends RecyclerView.Adapter<ListOfActivityAdapter.SeminarViewHolder>{
+public class ListOfActivitiesAdapter extends RecyclerView.Adapter<ListOfActivitiesAdapter.SeminarViewHolder>{
 
     private Context mCtx;
     private List<Aktivnost> seminarList;
 
-    public ListOfActivityAdapter(Context mCtx, List<Aktivnost> seminarList) {
+    public ListOfActivitiesAdapter(Context mCtx, List<Aktivnost> seminarList) {
         this.mCtx = mCtx;
         this.seminarList = seminarList;
     }

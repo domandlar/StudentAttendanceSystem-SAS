@@ -21,7 +21,7 @@ import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivityAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -40,7 +40,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ListOfActivityAdapter adapter;
+    ListOfActivitiesAdapter adapter;
 
     List<Aktivnost> labList;
 
@@ -150,7 +150,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
             e.printStackTrace();
         }
 
-        adapter=new ListOfActivityAdapter(this, labList);
+        adapter=new ListOfActivitiesAdapter(this, labList);
         recyclerView.setAdapter(adapter);
     }
 }
