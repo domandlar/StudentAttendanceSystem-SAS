@@ -79,7 +79,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idStudenta = prefs.getString("idStudenta", "");
         Student student = new Student(Integer.parseInt(idStudenta));
-        aktivnost = new Aktivnost("seminar");
+        aktivnost = new Aktivnost("Seminar");
 
         //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
