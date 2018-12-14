@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/textViewNazivSeminara"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="Naziv kolegija:"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
@@ -39,7 +39,7 @@
         <TextView
             android:id="@+id/textViewDvorana"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="Dvorana:"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
@@ -56,7 +56,7 @@
         <TextView
             android:id="@+id/textViewDanOdrzavanja"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:text="Dan odražavanja:"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
@@ -71,17 +71,49 @@
             android:layout_marginRight="20dp"/>
 
         <TextView
-            android:id="@+id/textViewVrijemeOdrzavanja"
+            android:id="@+id/textViewPocetak"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vrijeme odražavanja:"
+            android:layout_height="20dp"
+            android:text="Početak sata:"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
         <EditText
-            android:id="@+id/editTextVrijemeOdrzavanja"
+            android:id="@+id/editTextPocetak"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/textViewKraj"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Kraj sata:"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <EditText
+            android:id="@+id/editTextKraj"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/textDozvoljenoIzostanaka"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Dozvoljeno izostanaka:"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <EditText
+            android:id="@+id/editTextDozvoljenoIzostanaka"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
         <Button

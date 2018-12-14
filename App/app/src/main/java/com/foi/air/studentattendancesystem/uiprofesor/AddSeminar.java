@@ -1,5 +1,7 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Message;
@@ -20,12 +22,14 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.studentattendancesystem.LoginStudent;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -41,11 +45,14 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 
-public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener, AdapterView.OnItemClickListener {
+public class AddSeminar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddSeminar;
+    EditText mEditPocetakSata;
+    EditText mEditKrajSata;
+    EditText mEditDozvoljenoIzostanaka;
     BetterSpinner spinnerKolegiji;
     BetterSpinner spinnerDvorane;
     BetterSpinner spinnerDani;
@@ -61,6 +68,9 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
     int idKolegija=0;
     int idDvorane=0;
     String danOdrzavanja=null;
+    String pocetakSata=null;
+    String krajStata=null;
+    int dozvoljenoIzostanaka=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +104,59 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
         spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
         spinnerKolegiji.setAdapter(spinnerAdapterKolegiji);
-        spinnerKolegiji.setOnItemClickListener(this);
+        spinnerKolegiji.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                Kolegij kolegij = (Kolegij) parent.getItemAtPosition(position);
+                idKolegija = kolegij.getId();
+            }
+        });
 
         spinnerDvorane = findViewById(R.id.spinnerDvorane);
         spinnerAdapterDvorane = new ArrayAdapter<Dvorana>(this, android.R.layout.simple_dropdown_item_1line, dvoranaList);
         spinnerDvorane.setAdapter(spinnerAdapterDvorane);
-        spinnerDvorane.setOnItemClickListener(this);
+        spinnerDvorane.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                Dvorana dvorana = (Dvorana) parent.getItemAtPosition(position);
+                idDvorane = dvorana.getIdDvorane();
+            }
+        });
 
         spinnerDani = findViewById(R.id.spinnerDanOdrzavanja);
         spinnerAdapterDani = ArrayAdapter.createFromResource(this,R.array.dani_u_tjednu,android.R.layout.simple_dropdown_item_1line);
         spinnerDani.setAdapter(spinnerAdapterDani);
-        spinnerDani.setOnItemClickListener(this);
+        spinnerDani.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                danOdrzavanja = String.valueOf(parent.getItemAtPosition(position));
+            }
+        });
 
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null){
+                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
+                    pocetakSata = mEditPocetakSata.getText().toString();
+                    mEditKrajSata = findViewById(R.id.editTextKraj);
+                    krajStata = mEditKrajSata.getText().toString();
+                    mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
+                    dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
+                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                    sasWsDataLoader.dodajSeminar(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
+                }else{
+                    AlertDialog alertDialog = new AlertDialog.Builder(AddSeminar.this).create();
+                    alertDialog.setTitle("Pogreška");
+                    alertDialog.setMessage("Niste unjeli sva polja!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
             }
         });
 
@@ -159,20 +206,6 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
-        Toast.makeText(this, String.valueOf(view.getId()), Toast.LENGTH_SHORT).show();
-        /*
-        if(parent.getId() == R.id.spinnerKolegiji){
-            Kolegij kolegij = (Kolegij) parent.getItemAtPosition(pos);
-            idKolegija = kolegij.getId();
-        }else if(parent.getId() == R.id.spinnerDvorane){
-            Dvorana dvorana = (Dvorana) parent.getItemAtPosition(pos);
-            idDvorane = dvorana.getIdDvorane();
-        } */
-
     }
 }
 
