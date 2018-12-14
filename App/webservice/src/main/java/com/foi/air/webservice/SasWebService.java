@@ -29,9 +29,9 @@ public interface SasWebService {
     Call<SasWebServiceResponse> getDvorane (@Path("tipDvorane") String tipDvorane);
 
     @POST("aktivnost/nova/profesor/")
-    Call<SasWebServiceResponse> addSeminar (@Field("profesor") int idProfesora, @Field ("kolegij") int idKolegija, @Field ("dozvoljenoIzostanaka") int maxIzostanaka,
-                                            @Field ("pocetak") String pocetak, @Field ("kraj") String kraj, @Field ("danIzvodenja") String danIzvodenja,
-                                            @Field ("dvorana") int idDvorane, @Field ("tipAktivnosti") String tipAktivnosti );
+    Call<SasWebServiceResponse> addSeminar (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
+                                            @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,
+                                            @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
 
 
 }
