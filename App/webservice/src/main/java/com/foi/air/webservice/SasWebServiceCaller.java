@@ -55,6 +55,11 @@ public class SasWebServiceCaller {
         call = webService.getAktivnostForProfesor("profesor", profesor.getIdProfesora(), aktivnost.getTipAktivnosti());
         HandleResponseFromCall("dohvacanje_aktivnosti");
     }
+    public void CallWsForAktivnostiStudenta(Student student, Aktivnost aktivnost) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getAktivnostForStudent("student", student.getIdStudenta(), aktivnost.getTipAktivnosti());
+        HandleResponseFromCall("dohvacanje_aktivnosti");
+    }
     public void CallWsForKolegijiProfesora(Profesor profesor) {
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.getKolegijForProfesor("profesor", profesor.getIdProfesora());

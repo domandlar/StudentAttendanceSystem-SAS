@@ -28,6 +28,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAktivnostiProfesora(profesor,aktivnost);
     }
+    public void aktivnostForStudent(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAktivnostiStudenta(student,aktivnost);
+    }
     public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForKolegijiProfesora(profesor);

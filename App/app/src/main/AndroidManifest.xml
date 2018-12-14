@@ -25,7 +25,8 @@
         <activity android:name=".LoginStudent" />
         <activity android:name=".uiprofesor.ListOfSeminars" />
         <activity android:name=".uistudent.SeminarList" />
-        <activity android:name=".LoginProfesor"></activity>
+        <activity android:name=".LoginProfesor" />
+        <activity android:name=".uistudent.LabsList"></activity>
     </application>
 
 </manifest>

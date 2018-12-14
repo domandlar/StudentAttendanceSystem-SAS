@@ -13,6 +13,14 @@ public class Profesor {
         this.idProfesora = id;
     }
 
+    public int getIdProfesora() {
+        return idProfesora;
+    }
+
+    public void setIdProfesora(int idProfesora) {
+        this.idProfesora = idProfesora;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -28,13 +36,4 @@ public class Profesor {
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
     }
-
-    public int getIdProfesora() {
-        return idProfesora;
-    }
-
-    public void setIdProfesora(int idProfesora) {
-        this.idProfesora = idProfesora;
-    }
-
 }

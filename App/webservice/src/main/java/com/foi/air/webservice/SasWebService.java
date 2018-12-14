@@ -13,6 +13,9 @@ public interface SasWebService {
     @GET("aktivnost/dohvati/{uloga}/{idUloge}/{tipAktivnosti}/")
     Call<SasWebServiceResponse> getAktivnostForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("tipAktivnosti") String tipAktivnosti);
 
+    @GET("aktivnost/dohvati/{uloga}/{idUloge}/{tipAktivnosti}/")
+    Call<SasWebServiceResponse> getAktivnostForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("tipAktivnosti") String tipAktivnosti);
+
     @GET("prijava/student/{email}/{lozinka}/")
     Call<SasWebServiceResponse> prijavaStudent(@Path("email") String email, @Path("lozinka") String loznika);
 
