@@ -13,45 +13,45 @@ import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
 
-public class ListOfActivitiesAdapter extends RecyclerView.Adapter<ListOfActivitiesAdapter.SeminarViewHolder>{
+public class ListOfActivitiesAdapter extends RecyclerView.Adapter<ListOfActivitiesAdapter.ActivityViewHolder>{
 
     private Context mCtx;
-    private List<Aktivnost> seminarList;
+    private List<Aktivnost> activityList;
 
     public ListOfActivitiesAdapter(Context mCtx, List<Aktivnost> seminarList) {
         this.mCtx = mCtx;
-        this.seminarList = seminarList;
+        this.activityList = seminarList;
     }
 
     @NonNull
     @Override
-    public SeminarViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater =LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.adapter_list_of_activities, null);
-        SeminarViewHolder holder = new SeminarViewHolder(view);
+        ActivityViewHolder holder = new ActivityViewHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int i) {
-        Aktivnost aktivnost = seminarList.get(i);
+    public void onBindViewHolder(@NonNull ActivityViewHolder activityViewHolder, int i) {
+        Aktivnost aktivnost = activityList.get(i);
 
-        seminarViewHolder.title.setText(aktivnost.getKolegij());
-        seminarViewHolder.day.setText(aktivnost.getDanIzvodenja());
-        seminarViewHolder.time.setText(aktivnost.getPocetak());
-        seminarViewHolder.classroom.setText(aktivnost.getDvorana());
+        activityViewHolder.title.setText(aktivnost.getKolegij());
+        activityViewHolder.day.setText(aktivnost.getDanIzvodenja());
+        activityViewHolder.time.setText(aktivnost.getPocetak());
+        activityViewHolder.classroom.setText(aktivnost.getDvorana());
     }
 
     @Override
     public int getItemCount() {
-        return seminarList.size();
+        return activityList.size();
     }
 
-    class SeminarViewHolder extends RecyclerView.ViewHolder {
+    class ActivityViewHolder extends RecyclerView.ViewHolder {
         TextView title, day, time, classroom;
 
-        public SeminarViewHolder(@NonNull View itemView) {
+        public ActivityViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewTitle);
             day = itemView.findViewById(R.id.textViewDay);

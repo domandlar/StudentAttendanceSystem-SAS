@@ -36,6 +36,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForDvorane(tipDvorane);
     }
+    public void dodajAktivnost(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAddAktivnost(idProfesora, idKolegija, maxIzostanaka, pocetak, kraj, danIzvodenja, idDvorane, tipAktivnosti);
+    }
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override
         public void onDataArrived(Object message, String stauts, Object data) {

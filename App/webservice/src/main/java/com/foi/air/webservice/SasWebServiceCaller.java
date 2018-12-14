@@ -65,6 +65,11 @@ public class SasWebServiceCaller {
         call = webService.getDvorane(tipDvorane);
         HandleResponseFromCall("dohvacanje_dvorana");
     }
+    public void CallWsForAddAktivnost(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.addAktivnost(idProfesora, idKolegija, pocetak, kraj,danIzvodenja, idDvorane, idKolegija, tipAktivnosti);
+        HandleResponseFromCall("dohvacanje_dvorana");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {

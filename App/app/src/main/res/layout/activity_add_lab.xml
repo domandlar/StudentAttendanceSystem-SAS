@@ -8,85 +8,135 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include
-            layout="@layout/toolbar_layout"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewNazivLabosa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Naziv labosa:"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <EditText
-            android:id="@+id/editTextNazivLabosa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <TextView
-            android:id="@+id/textViewDvorana"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dvorana:"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <EditText
-            android:id="@+id/editTextDvorana"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <TextView
-            android:id="@+id/textViewDanOdrzavanja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dan odražavanja:"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <EditText
-            android:id="@+id/editTextDanOdrzavanja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <TextView
-            android:id="@+id/textViewVrijemeOdrzavanja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vrijeme odražavanja:"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <EditText
-            android:id="@+id/editTextVrijemeOdrzavanja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
-        <Button
-            android:id="@+id/buttonDodajLabos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:text="Dodaj labos"/>
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            <include
+                layout="@layout/toolbar_layout"/>
 
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewNazivSeminara"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Naziv kolegija:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerKolegiji"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Odaberi kolegij:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+            <TextView
+                android:id="@+id/textViewDvorana"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Dvorana:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerDvorane"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Odaberi dvoranu:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textViewDanOdrzavanja"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Dan odražavanja:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerDanOdrzavanja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Odaberi dan:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textViewPocetak"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Početak sata:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+            <EditText
+                android:id="@+id/editTextPocetak"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textViewKraj"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Kraj sata:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <EditText
+                android:id="@+id/editTextKraj"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textDozvoljenoIzostanaka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dozvoljeno izostanaka:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <EditText
+                android:id="@+id/editTextDozvoljenoIzostanaka"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+            <Button
+                android:id="@+id/buttonDodajLabos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:text="Dodaj labos"/>
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
