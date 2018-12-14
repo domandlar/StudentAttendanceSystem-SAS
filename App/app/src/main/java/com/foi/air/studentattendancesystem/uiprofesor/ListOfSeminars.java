@@ -13,19 +13,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.core.entities.Seminar;
-import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
-import com.foi.air.studentattendancesystem.adaptersprofesor.Seminars;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivityAdapter;
 
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -35,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ListOfSeminars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
@@ -45,7 +40,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ListOfSeminarsAdapter adapter;
+    ListOfActivityAdapter adapter;
 
     List<Aktivnost> seminarList;
 
@@ -141,20 +136,21 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
             JSONArray array = new JSONArray(dataString);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject row = array.getJSONObject(i);
-                aktivnost.setIdAktivnosti(row.getInt("id"));
-                aktivnost.setKolegij(row.getString("kolegij"));
-                aktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
-                aktivnost.setPocetak(row.getString("pocetak"));
-                aktivnost.setKraj(row.getString("kraj"));
+                Aktivnost novaAktivnost = new Aktivnost("Seminar");
+                novaAktivnost.setIdAktivnosti(row.getInt("id"));
+                novaAktivnost.setKolegij(row.getString("kolegij"));
+                novaAktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
+                novaAktivnost.setPocetak(row.getString("pocetak"));
+                novaAktivnost.setKraj(row.getString("kraj"));
                 //aktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
-                aktivnost.setDvorana(row.getString("dvorana"));
-                seminarList.add(aktivnost);
+                novaAktivnost.setDvorana(row.getString("dvorana"));
+                seminarList.add(novaAktivnost);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        adapter=new ListOfSeminarsAdapter(this, seminarList);
+        adapter=new ListOfActivityAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
     }
 }

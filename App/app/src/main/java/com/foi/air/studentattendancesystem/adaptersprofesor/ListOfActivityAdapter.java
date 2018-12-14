@@ -9,17 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.foi.air.core.entities.Aktivnost;
-import com.foi.air.core.entities.Seminar;
 import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
 
-public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAdapter.SeminarViewHolder>{
+public class ListOfActivityAdapter extends RecyclerView.Adapter<ListOfActivityAdapter.SeminarViewHolder>{
 
     private Context mCtx;
     private List<Aktivnost> seminarList;
 
-    public ListOfSeminarsAdapter(Context mCtx, List<Aktivnost> seminarList) {
+    public ListOfActivityAdapter(Context mCtx, List<Aktivnost> seminarList) {
         this.mCtx = mCtx;
         this.seminarList = seminarList;
     }
@@ -28,7 +27,7 @@ public class ListOfSeminarsAdapter extends RecyclerView.Adapter<ListOfSeminarsAd
     @Override
     public SeminarViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater =LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.adapter_list_of_seminars, null);
+        View view = inflater.inflate(R.layout.adapter_list_of_activities, null);
         SeminarViewHolder holder = new SeminarViewHolder(view);
 
         return holder;

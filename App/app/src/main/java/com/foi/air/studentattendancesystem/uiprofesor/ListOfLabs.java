@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,23 +10,43 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-
+import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
-
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivityAdapter;
 
-public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
 
+    RecyclerView recyclerView;
+    ListOfActivityAdapter adapter;
 
+    List<Aktivnost> labList;
+
+    Aktivnost aktivnost;
+
+    String idProfesora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +65,22 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
         toggle.syncState();
 
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewLabs);
+        //recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        idProfesora = prefs.getString("idProfesora", "");
+        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        aktivnost = new Aktivnost("Labosi");
+
+        //hohvacanje podataka sa servisa
+        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+        sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
+
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
@@ -70,6 +107,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -88,5 +126,31 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onWsDataLoaded(Object message, String status, Object data) {
+        labList = new ArrayList<Aktivnost>();
+        String dataString = String.valueOf(data);
+        try {
+            JSONArray array = new JSONArray(dataString);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject row = array.getJSONObject(i);
+                Aktivnost novaAktivnos = new Aktivnost("Labosi");
+                novaAktivnos.setIdAktivnosti(row.getInt("id"));
+                novaAktivnos.setKolegij(row.getString("kolegij"));
+                novaAktivnos.setDanIzvodenja(row.getString("dan_izvodenja"));
+                novaAktivnos.setPocetak(row.getString("pocetak"));
+                novaAktivnos.setKraj(row.getString("kraj"));
+                //aktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
+                novaAktivnos.setDvorana(row.getString("dvorana"));
+                labList.add(novaAktivnos);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        adapter=new ListOfActivityAdapter(this, labList);
+        recyclerView.setAdapter(adapter);
     }
 }
