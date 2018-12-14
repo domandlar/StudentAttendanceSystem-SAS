@@ -46,7 +46,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    SeminarListAdapter adapter;
+    ListOfSeminarsAdapter adapter;
 
     List<Aktivnost> seminarList;
 
@@ -153,7 +153,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
             e.printStackTrace();
         }
 
-        adapter = new SeminarListAdapter(this, seminarList);
+        adapter = new ListOfSeminarsAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
     }
 }

@@ -5,6 +5,7 @@ import com.foi.air.webservice.responses.SasWebServiceResponse;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
@@ -28,6 +29,7 @@ public interface SasWebService {
     @GET("dvorane/dohvati/{tipDvorane}/")
     Call<SasWebServiceResponse> getDvorane (@Path("tipDvorane") String tipDvorane);
 
+    @FormUrlEncoded
     @POST("aktivnost/nova/profesor/")
     Call<SasWebServiceResponse> addSeminar (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
                                             @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,

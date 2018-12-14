@@ -136,7 +136,7 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null){
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null && pocetakSata != null && krajStata != null && dozvoljenoIzostanaka !=0){
                     mEditPocetakSata = findViewById(R.id.editTextPocetak);
                     pocetakSata = mEditPocetakSata.getText().toString();
                     mEditKrajSata = findViewById(R.id.editTextKraj);
@@ -145,6 +145,7 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.dodajSeminar(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
+                    Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddSeminar.this).create();
                     alertDialog.setTitle("Pogreška");
