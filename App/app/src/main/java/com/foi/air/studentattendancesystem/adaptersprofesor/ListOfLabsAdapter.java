@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Lab;
 import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
@@ -15,9 +17,9 @@ import java.util.List;
 public class ListOfLabsAdapter extends RecyclerView.Adapter<ListOfLabsAdapter.LabViewHolder> {
 
     private Context mCtx;
-    private List<Lab> labsList;
+    private List<Aktivnost> labsList;
 
-    public ListOfLabsAdapter(Context mCtx, List<Lab> labsList) {
+    public ListOfLabsAdapter(Context mCtx, List<Aktivnost> labsList) {
         this.mCtx = mCtx;
         this.labsList = labsList;
     }
@@ -34,12 +36,12 @@ public class ListOfLabsAdapter extends RecyclerView.Adapter<ListOfLabsAdapter.La
 
     @Override
     public void onBindViewHolder(@NonNull LabViewHolder labViewHolder, int i) {
-        Lab lab = labsList.get(i);
+        Aktivnost lab = labsList.get(i);
 
-        labViewHolder.title.setText(lab.getTitle());
-        labViewHolder.day.setText(lab.getDay());
-        labViewHolder.time.setText(lab.getTime());
-        labViewHolder.classroom.setText(lab.getClassroom());
+        labViewHolder.title.setText(lab.getKolegij());
+        labViewHolder.day.setText(lab.getDanIzvodenja());
+        labViewHolder.time.setText(lab.getPocetak());
+        labViewHolder.classroom.setText(lab.getDvorana());
     }
 
     @Override
