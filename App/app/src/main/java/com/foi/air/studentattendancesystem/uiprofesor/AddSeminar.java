@@ -76,6 +76,7 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_seminar);
+        setTitle("Dodaj Seminar");
 
 
 

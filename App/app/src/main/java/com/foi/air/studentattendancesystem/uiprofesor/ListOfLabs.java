@@ -52,6 +52,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_labs);
+        setTitle("Moji Labosi");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
