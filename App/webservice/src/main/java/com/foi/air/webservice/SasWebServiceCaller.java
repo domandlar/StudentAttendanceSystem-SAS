@@ -72,8 +72,8 @@ public class SasWebServiceCaller {
     }
     public void CallWsForAddSeminar(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti) {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.addSeminar(idProfesora, maxIzostanaka,pocetak,kraj,danIzvodenja,idDvorane,idKolegija,tipAktivnosti);
-        HandleResponseFromCall("dodavanje_seminara");
+        call = webService.addAktivnost(idProfesora, maxIzostanaka,pocetak,kraj,danIzvodenja,idDvorane,idKolegija,tipAktivnosti);
+        HandleResponseFromCall("dodavanje_aktivnosti");
     }
     public void HandleResponseFromCall(final String method){
         if(call != null){
@@ -100,7 +100,7 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());
-                                }else if(method=="dodavanje_seminara") {
+                                }else if(method=="dodavanje_aktivnosti") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());

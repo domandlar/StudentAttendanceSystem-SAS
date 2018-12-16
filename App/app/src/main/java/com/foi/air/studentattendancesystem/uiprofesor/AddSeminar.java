@@ -144,7 +144,7 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                     mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.dodajSeminar(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
+                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
                     Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddSeminar.this).create();

@@ -13,18 +13,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.core.entities.Seminar;
-import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
+
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 
@@ -33,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ListOfSeminars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
@@ -43,7 +40,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ListOfSeminarsAdapter adapter;
+    ListOfActivitiesAdapter adapter;
 
     List<Aktivnost> seminarList;
 
@@ -146,6 +143,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 novaAktivnost.setPocetak(row.getString("pocetak"));
                 novaAktivnost.setKraj(row.getString("kraj"));
                 //novaAktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
+                //aktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
                 novaAktivnost.setDvorana(row.getString("dvorana"));
                 seminarList.add(novaAktivnost);
             }
@@ -153,7 +151,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
             e.printStackTrace();
         }
 
-        adapter=new ListOfSeminarsAdapter(this, seminarList);
+        adapter=new ListOfActivitiesAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
     }
 }

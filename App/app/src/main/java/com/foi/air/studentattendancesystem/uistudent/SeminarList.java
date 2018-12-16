@@ -25,7 +25,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.SeminarListAdapter;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.AddSeminar;
@@ -46,7 +46,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ListOfSeminarsAdapter adapter;
+    ListOfActivitiesAdapter adapter;
 
     List<Aktivnost> seminarList;
 
@@ -153,7 +153,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
             e.printStackTrace();
         }
 
-        adapter = new ListOfSeminarsAdapter(this, seminarList);
+        adapter = new ListOfActivitiesAdapter(this, seminarList);
         recyclerView.setAdapter(adapter);
     }
 }

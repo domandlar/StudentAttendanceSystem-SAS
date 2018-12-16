@@ -31,9 +31,7 @@ public interface SasWebService {
 
     @FormUrlEncoded
     @POST("aktivnost/nova/profesor/")
-    Call<SasWebServiceResponse> addSeminar (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
+    Call<SasWebServiceResponse> addAktivnost (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
                                             @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,
                                             @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
-
-
 }

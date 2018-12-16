@@ -27,7 +27,7 @@ public class SeminarListAdapter extends RecyclerView.Adapter<SeminarListAdapter.
     @Override
     public SeminarViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater =LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.adapter_list_of_seminars, null);
+        View view = inflater.inflate(R.layout.adapter_list_of_activities, null);
         SeminarViewHolder holder = new SeminarViewHolder(view);
 
         return holder;
