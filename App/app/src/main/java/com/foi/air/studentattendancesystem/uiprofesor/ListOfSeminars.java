@@ -1,5 +1,6 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -22,6 +23,7 @@ import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
+import com.foi.air.studentattendancesystem.LoginProfesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
@@ -56,6 +58,12 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_seminars);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        idProfesora = prefs.getString("idProfesora", "");
+
+        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        aktivnost = new Aktivnost("Seminar");
+
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
@@ -72,11 +80,6 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        idProfesora = prefs.getString("idProfesora", "");
-        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
-        aktivnost = new Aktivnost("Seminar");
 
         //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();

@@ -58,6 +58,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seminar_list);
+        setTitle("Moji Seminari");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -140,14 +141,15 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
             JSONArray array = new JSONArray(dataString);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject row = array.getJSONObject(i);
-                aktivnost.setIdAktivnosti(row.getInt("id"));
-                aktivnost.setKolegij(row.getString("kolegij"));
-                aktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
-                aktivnost.setPocetak(row.getString("pocetak"));
-                aktivnost.setKraj(row.getString("kraj"));
-                //aktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
-                aktivnost.setDvorana(row.getString("dvorana"));
-                seminarList.add(aktivnost);
+                Aktivnost novaAktivnost = new Aktivnost("Seminar");
+                novaAktivnost.setIdAktivnosti(row.getInt("id"));
+                novaAktivnost.setKolegij(row.getString("kolegij"));
+                novaAktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
+                novaAktivnost.setPocetak(row.getString("pocetak"));
+                novaAktivnost.setKraj(row.getString("kraj"));
+                //novaAktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
+                novaAktivnost.setDvorana(row.getString("dvorana"));
+                seminarList.add(novaAktivnost);
             }
         } catch (JSONException e) {
             e.printStackTrace();

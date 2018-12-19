@@ -11,14 +11,11 @@ import retrofit.http.POST;
 import retrofit.http.Path;
 
 public interface SasWebService {
+    //profesor
+
     @GET("aktivnost/dohvati/{uloga}/{idUloge}/{tipAktivnosti}/")
     Call<SasWebServiceResponse> getAktivnostForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("tipAktivnosti") String tipAktivnosti);
 
-    @GET("aktivnost/dohvati/{uloga}/{idUloge}/{tipAktivnosti}/")
-    Call<SasWebServiceResponse> getAktivnostForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("tipAktivnosti") String tipAktivnosti);
-
-    @GET("prijava/student/{email}/{lozinka}/")
-    Call<SasWebServiceResponse> prijavaStudent(@Path("email") String email, @Path("lozinka") String loznika);
 
     @GET("prijava/profesor/{email}/{lozinka}/")
     Call<SasWebServiceResponse> prijavaProfesor(@Path("email") String email, @Path("lozinka") String loznika);
@@ -36,4 +33,11 @@ public interface SasWebService {
                                             @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
 
 
+    //student
+
+    @GET("aktivnost/dohvati/{uloga}/{idUloge}/{tipAktivnosti}/")
+    Call<SasWebServiceResponse> getAktivnostForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("tipAktivnosti") String tipAktivnosti);
+
+    @GET("prijava/student/{email}/{lozinka}/")
+    Call<SasWebServiceResponse> prijavaStudent(@Path("email") String email, @Path("lozinka") String loznika);
 }
