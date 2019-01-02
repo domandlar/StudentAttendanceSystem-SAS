@@ -58,6 +58,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seminar_list);
+        setTitle("Moji Seminari");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
