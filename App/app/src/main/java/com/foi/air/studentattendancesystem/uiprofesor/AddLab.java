@@ -20,6 +20,7 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_lab);
+        setTitle("Dodaj labos");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);

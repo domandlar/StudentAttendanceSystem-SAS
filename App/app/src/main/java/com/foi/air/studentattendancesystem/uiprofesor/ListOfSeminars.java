@@ -57,6 +57,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_seminars);
+        setTitle("Moji Seminari");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
@@ -102,6 +103,11 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                break;
+                case R.id.nav_schedule:
+                    intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
+                    startActivity(intent);
+                    break;
         }
         return true;
     }

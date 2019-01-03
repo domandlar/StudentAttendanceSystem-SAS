@@ -8,6 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,20 +17,22 @@ import android.view.MenuItem;
 
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
 
-public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ScheduleProfesor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
 
-
+    RecyclerView recyclerView;
+    ListOfSeminarsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_labs);
-        setTitle("Moji Labosi");
+        setContentView(R.layout.activity_schedule_profesor);
+        setTitle("Raspored");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -41,47 +45,47 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewSchedule);
+        //recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(ListOfLabs.this, ListOfSeminars.class);
+                Intent intent = new Intent(ScheduleProfesor.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ListOfLabs.this, ListOfLabs.class);
+                intent = new Intent(ScheduleProfesor.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
-            case R.id.nav_schedule:
-                intent = new Intent(ListOfLabs.this, ScheduleProfesor.class);
-                startActivity(intent);
-                break;
         }
         return true;
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.app_bar_menu_labos,menu);
+        menuInflater.inflate(R.menu.app_bar_menu,menu);
 
         return true;
     }
+
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_dodaj_labos:
-                Intent intent = new Intent(ListOfLabs.this, AddLab.class);
+            case R.id.action_dodaj_seminar:
+                Intent intent = new Intent(ScheduleProfesor.this, AddSeminar.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     //drawer
     @Override
