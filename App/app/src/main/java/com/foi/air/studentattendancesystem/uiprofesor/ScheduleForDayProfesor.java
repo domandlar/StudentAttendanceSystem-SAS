@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,90 +10,89 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridLayout;
 
 import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Kolegij;
+import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScheduleProfesor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ScheduleForDayProfesor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    ScheduleForDayAdapter adapter;
 
-    ArrayList<String> daysList;
+    List<Kolegij> kolegijList;
 
+    Aktivnost aktivnost;
+
+    String idProfesora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_profesor);
-        setTitle("Raspored za dan");
+        setContentView(R.layout.activity_schedule_for_day_profesor);
+        setTitle("Raspored");
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        idProfesora = prefs.getString("idProfesora", "");
+
+        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        aktivnost = new Aktivnost("Seminar");
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
 
-        String[] days = {"Ponedjeljak",
-                "Utorak",
-                "Srijeda",
-                "Cetvrtak",
-                "Petak"};
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //adapter=new ListOfSeminarsAdapter(this, daysList);
-        //recyclerView.setAdapter(adapter);
 
-        adapter = new ScheduleAdapter(this, days);
-        recyclerView.setAdapter(adapter);
+        //hohvacanje podataka sa servisa
+        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+        sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
 
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.nav_schedule:
-                Intent intent = new Intent(ScheduleProfesor.this, ScheduleProfesor.class);
-                startActivity(intent);
-                break;
             case R.id.nav_seminars:
-                intent = new Intent(ScheduleProfesor.this, ListOfSeminars.class);
+                Intent intent = new Intent(ScheduleForDayProfesor.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ScheduleProfesor.this, ListOfLabs.class);
+                intent = new Intent(ScheduleForDayProfesor.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
@@ -99,10 +100,14 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
                 startActivity(intent);
                 finish();
                 break;
-
+            case R.id.nav_schedule:
+                intent = new Intent(ScheduleForDayProfesor.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -116,11 +121,12 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_dodaj_seminar:
-                Intent intent = new Intent(ScheduleProfesor.this, AddSeminar.class);
+                Intent intent = new Intent(ListOfSeminars.this, AddSeminar.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
+    */
 
     //drawer
     @Override
@@ -130,5 +136,33 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onWsDataLoaded(Object message, String status, Object data) {
+        kolegijList = new ArrayList<Kolegij>();
+        String dataString = String.valueOf(data);
+        try {
+            JSONArray array = new JSONArray(dataString);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject row = array.getJSONObject(i);
+                /*
+                Kolegij novaAktivnost = new Aktivnost("Seminar");
+                novaAktivnost.setIdAktivnosti(row.getInt("id"));
+                novaAktivnost.setKolegij(row.getString("kolegij"));
+                novaAktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
+                novaAktivnost.setPocetak(row.getString("pocetak"));
+                novaAktivnost.setKraj(row.getString("kraj"));
+                //novaAktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
+                novaAktivnost.setDvorana(row.getString("dvorana"));
+                kolegijList.add(novaAktivnost);
+                */
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        adapter=new ScheduleForDayAdapter(this, kolegijList);
+        recyclerView.setAdapter(adapter);
     }
 }
