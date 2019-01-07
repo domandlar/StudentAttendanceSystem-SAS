@@ -25,6 +25,9 @@ public class Aktivnost {
         this.dvorana = dvorana;
         this.tipAktivnosti = tipAktivnosti;
     }
+    public Aktivnost(){
+
+    }
 
     public String getKolegij() {
         return kolegij;

@@ -32,6 +32,9 @@ public interface SasWebService {
                                             @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,
                                             @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
 
+    @GET("aktivnost/dohvatiPoDanu/{uloga}/{idUloge}/{danIzvodenja}/")
+    Call<SasWebServiceResponse> getAktivnostForProfesorForDay (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("danIzvodenja") String danIzvodenja);
+
 
     //student
 
@@ -40,4 +43,7 @@ public interface SasWebService {
 
     @GET("prijava/student/{email}/{lozinka}/")
     Call<SasWebServiceResponse> prijavaStudent(@Path("email") String email, @Path("lozinka") String loznika);
+
+
+
 }

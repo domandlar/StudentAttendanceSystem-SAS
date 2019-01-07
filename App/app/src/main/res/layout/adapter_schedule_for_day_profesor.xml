@@ -25,12 +25,23 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
 
+            <TextView
+                android:id="@+id/textViewActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewTitle"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/imageView"
+                android:text="AIR"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
 
             <TextView
                 android:id="@+id/textViewTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewDay"
+                android:layout_below="@id/textViewActivity"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/imageView"

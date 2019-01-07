@@ -43,20 +43,24 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
     RecyclerView recyclerView;
     ScheduleForDayAdapter adapter;
 
-    List<Kolegij> kolegijList;
+    List<Aktivnost> kolegijList;
 
     Aktivnost aktivnost;
 
     String idProfesora;
 
+    String day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_for_day_profesor);
-        setTitle("Raspored");
+        day = getIntent().getStringExtra("day");
+        setTitle("Raspored za " + day);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
+
 
         Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
         aktivnost = new Aktivnost("Seminar");
@@ -80,7 +84,7 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
 
         //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-        sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
+        sasWsDataLoader.aktivnostForProfesorForDay(Integer.parseInt(idProfesora),day,this);
 
     }
 
@@ -140,15 +144,15 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
-        kolegijList = new ArrayList<Kolegij>();
+        kolegijList = new ArrayList<Aktivnost>();
         String dataString = String.valueOf(data);
         try {
             JSONArray array = new JSONArray(dataString);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject row = array.getJSONObject(i);
-                /*
-                Kolegij novaAktivnost = new Aktivnost("Seminar");
+                Aktivnost novaAktivnost = new Aktivnost();
                 novaAktivnost.setIdAktivnosti(row.getInt("id"));
+                novaAktivnost.setTipAktivnosti(row.getString("tip_aktivnosti"));
                 novaAktivnost.setKolegij(row.getString("kolegij"));
                 novaAktivnost.setDanIzvodenja(row.getString("dan_izvodenja"));
                 novaAktivnost.setPocetak(row.getString("pocetak"));
@@ -156,7 +160,6 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
                 //novaAktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
                 novaAktivnost.setDvorana(row.getString("dvorana"));
                 kolegijList.add(novaAktivnost);
-                */
             }
         } catch (JSONException e) {
             e.printStackTrace();

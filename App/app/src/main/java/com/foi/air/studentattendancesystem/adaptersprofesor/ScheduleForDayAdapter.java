@@ -17,9 +17,9 @@ import java.util.List;
 public class ScheduleForDayAdapter extends RecyclerView.Adapter<ScheduleForDayAdapter.ScheduleForDayViewHolder>{
 
     private Context mCtx;
-    private List<Kolegij> kolegijList;
+    private List<Aktivnost> kolegijList;
 
-    public ScheduleForDayAdapter(Context mCtx, List<Kolegij> kolegijList) {
+    public ScheduleForDayAdapter(Context mCtx, List<Aktivnost> kolegijList) {
         this.mCtx = mCtx;
         this.kolegijList = kolegijList;
     }
@@ -36,11 +36,12 @@ public class ScheduleForDayAdapter extends RecyclerView.Adapter<ScheduleForDayAd
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleForDayViewHolder seminarViewHolder, int i) {
-        Kolegij kolegij = kolegijList.get(i);
+        Aktivnost kolegij = kolegijList.get(i);
 
-        seminarViewHolder.title.setText(kolegij.getNaziv());
-        seminarViewHolder.time.setText(kolegij.getSemestar());
-        seminarViewHolder.classroom.setText(kolegij.getStudij());
+        seminarViewHolder.title.setText(kolegij.getKolegij());
+        seminarViewHolder.time.setText(kolegij.getPocetak());
+        seminarViewHolder.activity.setText(kolegij.getTipAktivnosti());
+        seminarViewHolder.classroom.setText(kolegij.getDvorana());
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ScheduleForDayAdapter extends RecyclerView.Adapter<ScheduleForDayAd
     }
 
     class ScheduleForDayViewHolder extends RecyclerView.ViewHolder {
-        TextView title, day, time, classroom;
+        TextView title, day, time, classroom, activity;
 
         public ScheduleForDayViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +58,7 @@ public class ScheduleForDayAdapter extends RecyclerView.Adapter<ScheduleForDayAd
             day = itemView.findViewById(R.id.textViewDay);
             time = itemView.findViewById(R.id.textViewTime);
             classroom = itemView.findViewById(R.id.textViewClassroom);
+            activity = itemView.findViewById(R.id.textViewActivity);
 
 
         }
