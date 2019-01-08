@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.uiprofesor;
+package com.foi.air.studentattendancesystem.uistudent;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -27,7 +27,7 @@ import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScheduleProfesor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ScheduleStudent extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolBar;
 
@@ -43,7 +43,7 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_profesor);
+        setContentView(R.layout.activity_schedule_student);
         setTitle("Raspored za dan");
 
         toolBar = findViewById(R.id.toolBar);
@@ -63,7 +63,7 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
         String[] days = {"Ponedjeljak",
                 "Utorak",
                 "Srijeda",
-                "Četvrtak",
+                "Cetvrtak",
                 "Petak"};
 
 
@@ -83,15 +83,15 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_schedule:
-                Intent intent = new Intent(ScheduleProfesor.this, ScheduleProfesor.class);
+                Intent intent = new Intent(ScheduleStudent.this, ScheduleStudent.class);
                 startActivity(intent);
                 break;
             case R.id.nav_seminars:
-                intent = new Intent(ScheduleProfesor.this, ListOfSeminars.class);
+                intent = new Intent(ScheduleStudent.this, SeminarList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ScheduleProfesor.this, ListOfLabs.class);
+                intent = new Intent(ScheduleStudent.this, LabsList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
