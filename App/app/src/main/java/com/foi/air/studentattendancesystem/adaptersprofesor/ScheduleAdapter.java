@@ -68,9 +68,11 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
                             mCtx.startActivity(intent);
                             break;
                     }
+                    /*
                     Snackbar.make(v, "Click detected on item " + position,
                             Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                            */
 
                 }
             });

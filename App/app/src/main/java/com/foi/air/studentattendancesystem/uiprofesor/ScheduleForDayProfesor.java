@@ -61,9 +61,10 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
 
-
+/*
         Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
         aktivnost = new Aktivnost("Seminar");
+        */
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);

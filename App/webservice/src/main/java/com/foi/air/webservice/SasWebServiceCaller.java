@@ -80,6 +80,11 @@ public class SasWebServiceCaller {
         call = webService.getAktivnostForProfesorForDay("profesor", idProfesora, day);
         HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
     }
+    public void CallWsForAktivnostiStudentaForDay(String uloga, int idStudenta, String day) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getAktivnostForStudentForDay("student", idStudenta, day);
+        HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {

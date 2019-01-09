@@ -16,6 +16,7 @@ import com.foi.air.core.entities.Seminar;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
 import com.foi.air.studentattendancesystem.uiprofesor.ScheduleForDayProfesor;
+import com.foi.air.studentattendancesystem.uistudent.ScheduleForDayStudent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,34 +44,36 @@ public class ScheduleAdapterStudent extends RecyclerView.Adapter<ScheduleAdapter
 
                     switch(position){
                         case 0:
-                            Intent intent = new Intent(mCtx, ScheduleForDayProfesor.class);
+                            Intent intent = new Intent(mCtx, ScheduleForDayStudent.class);
                             intent.putExtra("day", "Ponedjeljak");
                             mCtx.startActivity(intent);
                             break;
                         case 1:
-                            intent = new Intent(mCtx, ScheduleForDayProfesor.class);
+                            intent = new Intent(mCtx, ScheduleForDayStudent.class);
                             intent.putExtra("day", "Utorak");
                             mCtx.startActivity(intent);
                             break;
                         case 2:
-                            intent = new Intent(mCtx, ScheduleForDayProfesor.class);
+                            intent = new Intent(mCtx, ScheduleForDayStudent.class);
                             intent.putExtra("day", "Srijeda");
                             mCtx.startActivity(intent);
                             break;
                         case 3:
-                            intent = new Intent(mCtx, ScheduleForDayProfesor.class);
+                            intent = new Intent(mCtx, ScheduleForDayStudent.class);
                             intent.putExtra("day", "Četvrtak");
                             mCtx.startActivity(intent);
                             break;
                         case 4:
-                            intent = new Intent(mCtx, ScheduleForDayProfesor.class);
+                            intent = new Intent(mCtx, ScheduleForDayStudent.class);
                             intent.putExtra("day", "Petak");
                             mCtx.startActivity(intent);
                             break;
                     }
+                    /*
                     Snackbar.make(v, "Click detected on item " + position,
                             Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                            */
 
                 }
             });

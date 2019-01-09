@@ -23,6 +23,7 @@ import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.adaptersStudent.ScheduleForDayAdapterStudent;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
@@ -42,7 +43,7 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ScheduleForDayAdapter adapter;
+    ScheduleForDayAdapterStudent adapter;
 
     List<Aktivnost> kolegijList;
 
@@ -62,9 +63,10 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idStudenta = prefs.getString("idStudenta", "");
 
-
+/*
         Student profesor = new Student(Integer.parseInt(idStudenta));
         aktivnost = new Aktivnost("Seminar");
+        */
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -85,7 +87,7 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
 
         //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-        sasWsDataLoader.aktivnostForProfesorForDay(Integer.parseInt(idStudenta),day,this);
+        sasWsDataLoader.aktivnostForStudentForDay(Integer.parseInt(idStudenta),day,this);
 
     }
 
@@ -166,7 +168,7 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
             e.printStackTrace();
         }
 
-        adapter=new ScheduleForDayAdapter(this, kolegijList);
+        adapter=new ScheduleForDayAdapterStudent(this, kolegijList);
         recyclerView.setAdapter(adapter);
     }
 }

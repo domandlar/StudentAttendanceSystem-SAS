@@ -48,6 +48,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAktivnostiProfesoraForDay("Profesor",idProfesora,day);
     }
+    public void aktivnostForStudentForDay(int idStudenta, String day, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAktivnostiStudentaForDay("Student",idStudenta,day);
+    }
 
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override
