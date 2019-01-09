@@ -75,6 +75,16 @@ public class SasWebServiceCaller {
         call = webService.addAktivnost(idProfesora, maxIzostanaka,pocetak,kraj,danIzvodenja,idDvorane,idKolegija,tipAktivnosti);
         HandleResponseFromCall("dodavanje_aktivnosti");
     }
+    public void CallWsForAktivnostiProfesoraForDay(String uloga, int idProfesora, String day) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getAktivnostForProfesorForDay("profesor", idProfesora, day);
+        HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
+    }
+    public void CallWsForAktivnostiStudentaForDay(String uloga, int idStudenta, String day) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getAktivnostForStudentForDay("student", idStudenta, day);
+        HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -101,6 +111,11 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dodavanje_aktivnosti") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
+                                }
+                                else if(method=="dohvacanje_aktivnosti_za_dan") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());

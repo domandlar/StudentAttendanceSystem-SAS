@@ -97,6 +97,10 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            case R.id.nav_schedule:
+                intent = new Intent(ListOfLabs.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }
