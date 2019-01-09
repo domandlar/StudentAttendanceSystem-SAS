@@ -1,5 +1,6 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
@@ -48,11 +51,16 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
     String idProfesora;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_seminars);
         setTitle("Moji Seminari");
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -96,7 +104,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
             case R.id.nav_logout:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
             case R.id.nav_schedule:
                 intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
                 startActivity(intent);
@@ -134,6 +142,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
+        progressBar.setVisibility(View.GONE);
         seminarList = new ArrayList<Aktivnost>();
         String dataString = String.valueOf(data);
         try {

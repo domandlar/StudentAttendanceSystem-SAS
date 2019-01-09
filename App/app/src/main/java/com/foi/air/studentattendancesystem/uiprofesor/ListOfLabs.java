@@ -1,5 +1,6 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
@@ -48,11 +51,16 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
 
     String idProfesora;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_labs);
         setTitle("Moji Labosi");
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -94,7 +102,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(ListOfLabs.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             case R.id.nav_schedule:
@@ -135,6 +143,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
+        progressBar.setVisibility(View.GONE);
         labList = new ArrayList<Aktivnost>();
         String dataString = String.valueOf(data);
         try {

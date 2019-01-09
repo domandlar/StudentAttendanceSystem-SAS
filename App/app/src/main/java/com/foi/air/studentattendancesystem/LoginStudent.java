@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,10 +41,15 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
 
     private String uloga;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_student);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPassword = (EditText) findViewById(R.id.editPassword);
@@ -66,6 +72,8 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
                 editor.putString("Password", password);
                 editor.commit();
 
+                progressBar.setVisibility(View.VISIBLE);
+
                 doLogin();
 
 
@@ -81,9 +89,15 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
                 SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                 sasWsDataLoader.prijavaStudent(student,this);
             }
-            else Toast.makeText(this,"nije dobar mail", Toast.LENGTH_SHORT).show();
+            else{
+                Toast.makeText(this,"nije dobar mail", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            }
         }
-        else Toast.makeText(this, "popunite sva polja", Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(this, "popunite sva polja", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+        }
 
     }
 
@@ -111,12 +125,15 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
                             dialog.dismiss();
                         }
                     });
+            progressBar.setVisibility(View.GONE);
             alertDialog.show();
+
         }
     }
 
     private void startNextActivity(){
         Intent intent = new Intent(LoginStudent.this, SeminarList.class);
+        progressBar.setVisibility(View.GONE);
         startActivity(intent);
 
     }
