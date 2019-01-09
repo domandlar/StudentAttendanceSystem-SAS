@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".uiprofesor.ListOfSeminars"/>
+        <activity android:name=".uiprofesor.ListOfSeminars" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".uiprofesor.AddSeminar" />
         <activity android:name=".uiprofesor.AddLab" />
-        <activity android:name=".uiprofesor.ListOfLabs"></activity>
+        <activity android:name=".uiprofesor.ListOfLabs" />
         <activity android:name=".LoginStudent" />
         <activity android:name=".uistudent.SeminarList" />
         <activity android:name=".LoginProfesor" />
@@ -32,7 +32,8 @@
         <activity android:name=".uiprofesor.ScheduleProfesor" />
         <activity android:name=".uiprofesor.ScheduleForDayProfesor" />
         <activity android:name=".uistudent.ScheduleStudent" />
-        <activity android:name=".uistudent.ScheduleForDayStudent"></activity>
+        <activity android:name=".uistudent.ScheduleForDayStudent" />
+        <activity android:name=".uistudent.LabsBooking"></activity>
     </application>
 
 </manifest>
