@@ -24,7 +24,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.ScheduleForDayAdapterStudent;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;

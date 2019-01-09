@@ -21,7 +21,7 @@ import android.widget.GridLayout;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfSeminarsAdapter;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleAdapter;
 
 import java.util.ArrayList;

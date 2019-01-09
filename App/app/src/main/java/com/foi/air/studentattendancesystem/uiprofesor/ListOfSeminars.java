@@ -97,6 +97,9 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            case R.id.nav_schedule:
+                intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
+                startActivity(intent);
         }
         return true;
     }
