@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_courses"
             android:title="Moji kolegiji" />
         <item
+            android:id="@+id/nav_lectures"
+            android:icon="@drawable/ic_courses"
+            android:title="Moja predavanja" />
+        <item
             android:id="@+id/nav_seminars"
             android:icon="@drawable/ic_seminars"
             android:title="Moji seminari" />

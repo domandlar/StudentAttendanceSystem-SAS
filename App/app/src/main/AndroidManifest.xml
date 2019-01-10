@@ -20,13 +20,20 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".uiprofesor.AddSeminar" />
+        <activity android:name=".uiprofesor.AddCourse" />
         <activity android:name=".uiprofesor.AddLab" />
         <activity android:name=".uiprofesor.ListOfLabs" />
+        <activity android:name=".uiprofesor.ListOfCourses" />
         <activity android:name=".LoginStudent" />
         <activity android:name=".uiprofesor.ListOfSeminars" />
         <activity android:name=".uistudent.SeminarList" />
         <activity android:name=".LoginProfesor" />
         <activity android:name=".uistudent.LabsList"></activity>
+        <activity android:name=".uiprofesor.ChangeCourse" />
+        <activity android:name=".uiprofesor.ListOfLectures" />
+        <activity android:name=".uiprofesor.AddLecture" />
+        <activity android:name=".uiprofesor.AddCourseToProfessor" />
+        <activity android:name=".uiprofesor.ChangeLecture" />
     </application>
 
 </manifest>
