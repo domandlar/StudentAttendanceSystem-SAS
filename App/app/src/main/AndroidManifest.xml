@@ -41,6 +41,8 @@
         <activity android:name=".uiprofesor.ChangeLecture" />
         <activity android:name=".uiprofesor.ListOfCourses" />
         <activity android:name=".uiprofesor.ListOfLectures" />
+        <activity android:name=".uistudent.ListCourses" />
+        <activity android:name=".uistudent.LecturesList" />
     </application>
 
 </manifest>
