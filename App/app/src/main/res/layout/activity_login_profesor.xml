@@ -4,18 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginStudent">
+    tools:context=".LoginProfesor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="95dp">
+        android:layout_marginTop="70dp">
 
         <TextView
-            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -23,38 +20,39 @@
             android:layout_marginRight="20dp"
             android:text="Login"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/text"/>
 
         <EditText
             android:id="@+id/editEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="20dp"
             android:ems="10"
+            android:inputType="textPersonName"
             android:hint="Email adresa"
-            android:inputType="textPersonName" />
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
         <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="20dp"
             android:ems="10"
+            android:inputType="textPassword"
             android:hint="Lozinka"
-            android:inputType="textPassword" />
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:text="Login"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="20dp"
-            android:text="Login" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -63,6 +61,8 @@
             android:layout_marginTop="25dp"
             android:layout_gravity="center"
             android:indeterminate="true" />
+
+
 
 
     </LinearLayout>
