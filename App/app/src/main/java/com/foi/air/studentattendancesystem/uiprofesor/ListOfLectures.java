@@ -85,17 +85,20 @@ public class ListOfLectures extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(ListOfLectures.this, ListOfLectures.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_courses:
-                intent = new Intent(ListOfLectures.this, ListOfCourses.class);
+                Intent intent = new Intent(ListOfLectures.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
                 intent = new Intent(ListOfLectures.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_courses:
+                intent = new Intent(ListOfLectures.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(ListOfLectures.this, ScheduleProfesor.class);
+                startActivity(intent);
             case R.id.nav_lectures:
                 intent = new Intent(ListOfLectures.this, ListOfLectures.class);
                 startActivity(intent);

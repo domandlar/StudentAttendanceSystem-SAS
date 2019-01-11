@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
@@ -47,14 +48,11 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
 
-
-
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
         drawer = findViewById(R.id.drawer_layout);
 
-        //osluskivanje gumba
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -90,6 +88,7 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
 
                 if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                    // Potrebno popraviti pogreške
                     sasWsDataLoader.dodajKolegij(Integer.parseInt(idProfesora), nazivKolegija, semestarIzvodjenja, nazivStudija);
                     Toast.makeText(getApplicationContext(),"Kolegij je dodan!", Toast.LENGTH_SHORT).show();
                 }else{
@@ -113,8 +112,28 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(AddCourse.this, ListOfCourses.class);
+                Intent intent = new Intent(AddCourse.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(AddCourse.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(AddCourse.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(AddCourse.this, ScheduleProfesor.class);
+                startActivity(intent);
+            case R.id.nav_lectures:
+                intent = new Intent(AddCourse.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

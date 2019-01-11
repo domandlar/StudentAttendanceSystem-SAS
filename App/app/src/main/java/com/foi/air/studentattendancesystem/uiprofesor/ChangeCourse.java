@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
@@ -125,8 +126,28 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(ChangeCourse.this, ListOfCourses.class);
+                Intent intent = new Intent(ChangeCourse.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(ChangeCourse.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(ChangeCourse.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(ChangeCourse.this, ScheduleProfesor.class);
+                startActivity(intent);
+            case R.id.nav_lectures:
+                intent = new Intent(ChangeCourse.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

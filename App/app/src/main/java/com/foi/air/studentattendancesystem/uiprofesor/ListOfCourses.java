@@ -76,7 +76,6 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
         );
 
 
-        //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.kolegijForProfesor(profesor,this);
 
@@ -95,6 +94,13 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_courses:
                 intent = new Intent(ListOfCourses.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(ListOfCourses.this, ScheduleProfesor.class);
+                startActivity(intent);
+            case R.id.nav_lectures:
+                intent = new Intent(ListOfCourses.this, ListOfLectures.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
@@ -127,7 +133,7 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-    //drawer
+
     @Override
     public void onBackPressed() {
         if(drawer.isDrawerOpen(GravityCompat.START)){

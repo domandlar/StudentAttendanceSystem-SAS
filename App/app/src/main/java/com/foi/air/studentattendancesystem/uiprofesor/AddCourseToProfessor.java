@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -96,6 +97,7 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
             public void onClick(View v) {
                 if(idKolegija !=0 ){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                    // Potrebno popraviti pogreške
                     sasWsDataLoader.dodajKolegijProfesoru(Integer.parseInt(idProfesora), idKolegija);
                     Toast.makeText(getApplicationContext(),"Kolegij je upisan!", Toast.LENGTH_SHORT).show();
                 }else{
@@ -119,8 +121,28 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(AddCourseToProfessor.this, ListOfCourses.class);
+                Intent intent = new Intent(AddCourseToProfessor.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(AddCourseToProfessor.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(AddCourseToProfessor.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(AddCourseToProfessor.this, ScheduleProfesor.class);
+                startActivity(intent);
+            case R.id.nav_lectures:
+                intent = new Intent(AddCourseToProfessor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }
