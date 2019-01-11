@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_schedule"
             android:title="Raspored predavanja" />
         <item
+            android:id="@+id/nav_generate_passwords"
+            android:icon="@drawable/ic_baseline_cached_24px"
+            android:title="Generiraj lozinku" />
+        <item
             android:id="@+id/nav_attendance"
             android:icon="@drawable/ic_attendance"
             android:title="Prisustva" />

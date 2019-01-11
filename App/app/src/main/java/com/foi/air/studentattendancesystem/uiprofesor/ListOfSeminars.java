@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,12 +25,14 @@ import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.passwordrecord.profesor.GeneratePassword;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,6 +113,12 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
             case R.id.nav_schedule:
                 intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ListOfSeminars.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
+                startActivity(intent);
+                break;
         }
         return true;
     }
