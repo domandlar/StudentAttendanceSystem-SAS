@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="63" />
+                                                <entry key="scalingPercent" value="54" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,9 +34,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\mato\Desktop\proffesors.png" />
+                                      <entry key="foregroundImage" value="C:\Users\mato\Desktop\logo.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="ic_launcher_profesor" />
+                                      <entry key="outputName" value="ic_launcher_logo" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -63,11 +63,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="120" />
-                            <entry key="outputName" value="ic_proffesors" />
+                            <entry key="height" value="665" />
+                            <entry key="outputName" value="ic_logo" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\mato\Downloads\proffesors(2).svg" />
-                            <entry key="width" value="151" />
+                            <entry key="sourceFile" value="C:\Users\mato\Downloads\logo.svg" />
+                            <entry key="width" value="957" />
                           </map>
                         </option>
                       </PersistentState>
