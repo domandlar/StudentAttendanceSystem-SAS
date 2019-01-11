@@ -1,0 +1,47 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+	package
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:3:5-41
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:1-10:12
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:5:5-8:19
+activity#com.foi.air.passwordrecord.profesor.PasswordGenerate
+ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:6:9-63
+	android:name
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:6:19-60
+activity#com.foi.air.passwordrecord.student.AttendanceSubmit
+ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:7:9-71
+	android:name
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml:7:19-59
+uses-sdk
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		ADDED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml
+		INJECTED from D:\Projekti\SAS-novo\App\passwordrecord\src\main\AndroidManifest.xml

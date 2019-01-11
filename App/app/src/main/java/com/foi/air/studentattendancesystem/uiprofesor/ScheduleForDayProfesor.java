@@ -1,5 +1,6 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
@@ -51,6 +54,8 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
 
     String day;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +63,11 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
         day = getIntent().getStringExtra("day");
         setTitle("Raspored za " + day);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
-
 /*
         Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
         aktivnost = new Aktivnost("Seminar");
@@ -145,6 +152,7 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
+        progressBar.setVisibility(View.GONE);
         kolegijList = new ArrayList<Aktivnost>();
         String dataString = String.valueOf(data);
         try {

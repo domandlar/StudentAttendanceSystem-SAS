@@ -1,7 +1,10 @@
 package com.foi.air.studentattendancesystem.uistudent;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
@@ -53,12 +58,18 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
 
     String day;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_for_day_student);
         day = getIntent().getStringExtra("day");
         setTitle("Raspored za " + day);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idStudenta = prefs.getString("idStudenta", "");
@@ -144,9 +155,9 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
             super.onBackPressed();
         }
     }
-
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
+        progressBar.setVisibility(View.GONE);
         kolegijList = new ArrayList<Aktivnost>();
         String dataString = String.valueOf(data);
         try {
@@ -163,6 +174,7 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
                 //novaAktivnost.setDozvoljenoIzostanaka(row.getInt("dozvoljeno_izostanaka"));
                 novaAktivnost.setDvorana(row.getString("dvorana"));
                 kolegijList.add(novaAktivnost);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
