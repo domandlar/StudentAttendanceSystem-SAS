@@ -65,6 +65,11 @@ public class SasWebServiceCaller {
         call = webService.getKolegijForProfesor("profesor", profesor.getIdProfesora());
         HandleResponseFromCall("dohvacanje_kolegija_profesora");
     }
+    public void CallWsForKolegijiStudenta(Student student) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getKolegijForStudent("student", student.getIdStudenta());
+        HandleResponseFromCall("dohvacanje_kolegija_studenta");
+    }
     public void CallWsForDvorane(String tipDvorane) {
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.getDvorane(tipDvorane);
@@ -106,6 +111,10 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     Log.d("jebate patak: ", response.body().getStatus());
                                     Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method=="dohvacanje_kolegija_studenta") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    Log.d("jebate patak: ", response.body().getStatus());
+                                    Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_dvorana") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
@@ -132,4 +141,5 @@ public class SasWebServiceCaller {
             });
         }
     }
+
 }

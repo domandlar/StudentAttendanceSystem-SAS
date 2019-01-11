@@ -26,6 +26,8 @@ public interface SasWebService {
     @GET("kolegij/dohvati/{uloga}/{idUloge}/")
     Call<SasWebServiceResponse> getKolegijForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
 
+    @GET("kolegij/dohvati/{uloga}/{idUloge}/")
+    Call<SasWebServiceResponse> getKolegijForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
     @GET("dvorane/dohvati/{tipDvorane}/")
     Call<SasWebServiceResponse> getDvorane (@Path("tipDvorane") String tipDvorane);
 
@@ -40,4 +42,5 @@ public interface SasWebService {
 
     @GET("aktivnost/dohvatiPoDanu/{uloga}/{idUloge}/{danIzvodenja}/")
     Call<SasWebServiceResponse> getAktivnostForStudentForDay (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("danIzvodenja") String danIzvodenja);
+
 }

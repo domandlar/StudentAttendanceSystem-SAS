@@ -4,6 +4,7 @@ import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
+import com.foi.air.studentattendancesystem.uistudent.LabsBooking;
 import com.foi.air.webservice.SasWebServiceCaller;
 import com.foi.air.webservice.SasWebServiceHandler;
 
@@ -36,6 +37,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForKolegijiProfesora(profesor);
     }
+    public void kolegijForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener) {
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForKolegijiStudenta(student);
+    }
     public void Dvorane(String tipDvorane){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForDvorane(tipDvorane);
@@ -59,4 +64,5 @@ public class SasWsDataLoader {
             sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
         }
     };
+
 }

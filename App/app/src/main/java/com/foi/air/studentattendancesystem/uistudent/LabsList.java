@@ -106,7 +106,7 @@ public class LabsList extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.app_bar_menu, menu);
+        menuInflater.inflate(R.menu.app_bar_menu_predbiljezbe_labosa, menu);
 
         return true;
     }
@@ -114,7 +114,9 @@ public class LabsList extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
+            case R.id.action_predbiljezba_labosa:
+                Intent intent = new Intent(LabsList.this, LabsBooking.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
