@@ -101,6 +101,12 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
                 break;
 
         }
+        int id = menuItem.getItemId();
+
+        if(id==R.id.nav_courses){
+            Intent intent = new Intent(this, ListOfCourses.class);
+            startActivity(intent);
+        }
         return true;
     }
     @Override
