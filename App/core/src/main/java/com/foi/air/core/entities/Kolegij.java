@@ -1,25 +1,28 @@
 package com.foi.air.core.entities;
 
 public class Kolegij {
+
     private int id, semestar;
     private String naziv, studij;
 
+
     public Kolegij(int id, String naziv, int semestar, String studij) {
         this.id = id;
-        this.naziv = naziv;
         this.semestar = semestar;
+        this.naziv = naziv;
         this.studij = studij;
     }
+    public Kolegij(int id){
 
-    public Kolegij() {
-    }
+        this.id = id;
+
+    };
 
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-
         this.id = id;
     }
 

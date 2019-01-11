@@ -85,6 +85,29 @@ public class SasWebServiceCaller {
         call = webService.getAktivnostForStudentForDay("student", idStudenta, day);
         HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
     }
+
+    public void CallWsForAddCourse(int idProfesora, String nazivKolegija, int semestarIzvodjenja, String nazivStudija) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.addCourse(idProfesora, nazivKolegija, semestarIzvodjenja, nazivStudija);
+        HandleResponseFromCall("dodavanje_kolegija");
+    }
+    public void CallWsForNeupisaniKolegijiProfesora(Profesor profesor){
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getNeupisaniKolegijForProfesor("profesor", profesor.getIdProfesora());
+        HandleResponseFromCall("dohvacanje_neupisanih_kolegija_profesora");
+    }
+    public void CallWsForAddCourseToProfesora(int profesor, int idKolegija){
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.addCourseToProfessor( profesor, idKolegija);
+        HandleResponseFromCall("upisivanje_kolegija_profesoru");
+    }
+    public void CallWsForAzurirajKolegij(int idProfesora, int idKolegija, String nazivKolegija, int semestarIzvodjenja, String nazivStudija) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.azurirajKolegij(idProfesora, idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
+        HandleResponseFromCall("azuriranje_kolegija");
+    }
+
+
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -104,8 +127,8 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_kolegija_profesora") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                    Log.d("jebate patak: ", response.body().getStatus());
-                                    Log.d("jebate patak2: ", response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_dvorana") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
@@ -119,6 +142,14 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method =="dodavanje_kolegija"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                }else if(method =="dohvacanje_neupisanih_kolegija_profesora"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                }else if(method =="upisivanje_kolegija_profesoru"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                }else if(method =="azuriranje_kolegija"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }
                         }
                     }catch (Exception ex){
