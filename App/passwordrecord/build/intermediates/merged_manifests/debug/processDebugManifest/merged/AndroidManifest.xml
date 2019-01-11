@@ -8,9 +8,4 @@
         android:minSdkVersion="22"
         android:targetSdkVersion="28" />
 
-    <application>
-        <activity android:name="com.foi.air.passwordrecord.profesor.PasswordGenerate" />
-        <activity android:name="com.foi.air.passwordrecord.student.AttendanceSubmit" />
-    </application>
-
 </manifest>
