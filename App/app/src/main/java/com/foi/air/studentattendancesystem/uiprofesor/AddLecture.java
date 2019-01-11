@@ -133,7 +133,7 @@ public class AddLecture extends AppCompatActivity implements NavigationView.OnNa
                     mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.dodajSeminar(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Predavanje");
+                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Predavanje");
                     Toast.makeText(getApplicationContext(),"Predavanje je dodano!", Toast.LENGTH_SHORT).show();
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddLecture.this).create();

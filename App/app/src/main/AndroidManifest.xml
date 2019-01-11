@@ -33,6 +33,14 @@
         <activity android:name=".uiprofesor.ScheduleForDayProfesor" />
         <activity android:name=".uistudent.ScheduleStudent" />
         <activity android:name=".uistudent.ScheduleForDayStudent"></activity>
+        <activity android:name=".ui_prof.ListOfCourses" />
+        <activity android:name=".uiprofesor.AddCourse" />
+        <activity android:name=".uiprofesor.AddCourseToProfessor" />
+        <activity android:name=".uiprofesor.AddLecture" />
+        <activity android:name=".uiprofesor.ChangeCourse" />
+        <activity android:name=".uiprofesor.ChangeLecture" />
+        <activity android:name=".uiprofesor.ListOfCourses" />
+        <activity android:name=".uiprofesor.ListOfLectures" />
     </application>
 
 </manifest>

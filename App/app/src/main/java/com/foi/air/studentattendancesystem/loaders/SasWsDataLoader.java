@@ -52,8 +52,24 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAktivnostiStudentaForDay("Student",idStudenta,day);
     }
+    public void dodajKolegij(int idProfesora, String nazivKolegija, int semestarIzvodjenja, String nazivStudija){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAddCourse(idProfesora, nazivKolegija,semestarIzvodjenja,nazivStudija);
+    }
+    public void neupisaniKolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForNeupisaniKolegijiProfesora(profesor);
+    }
+    public void dodajKolegijProfesoru(int idProfesor, int idKolegija){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAddCourseToProfesora(idProfesor, idKolegija);
+    }
+    public void azurirajKolegij(int idProfesora, int idKolegija, String nazivKolegija, int semestarIzvodjenja, String nazivStudija) {
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAzurirajKolegij(idProfesora, idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
+    }
 
-    public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
+        public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override
         public void onDataArrived(Object message, String stauts, Object data) {
             sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
