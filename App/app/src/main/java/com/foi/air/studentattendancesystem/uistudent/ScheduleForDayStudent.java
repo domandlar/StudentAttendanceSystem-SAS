@@ -104,7 +104,7 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_seminars:
                 Intent intent = new Intent(ScheduleForDayStudent.this, SeminarList.class);
                 startActivity(intent);
@@ -120,6 +120,14 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_schedule:
                 intent = new Intent(ScheduleForDayStudent.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(ScheduleForDayStudent.this, ListCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(ScheduleForDayStudent.this, LecturesList.class);
                 startActivity(intent);
                 break;
         }

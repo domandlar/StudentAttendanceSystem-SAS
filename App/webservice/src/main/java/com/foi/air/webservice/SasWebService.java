@@ -29,18 +29,21 @@ public interface SasWebService {
     @GET("dvorane/dohvati/{tipDvorane}/")
     Call<SasWebServiceResponse> getDvorane (@Path("tipDvorane") String tipDvorane);
 
-    @GET("kolegij/neupisani/{uloga}/{idUloge}/")
-    Call<SasWebServiceResponse> getNeupisaniKolegijForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
+    @GET("kolegij/svi/{uloga}/{idUloge}/")
+    Call<SasWebServiceResponse> getAllCourses (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
 
     @FormUrlEncoded
     @POST("aktivnost/nova/profesor/")
     Call<SasWebServiceResponse> addAktivnost (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
                                             @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,
                                             @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
+    @FormUrlEncoded
     @POST("kolegij/novi/profesor/{idUloge}/")
     Call<SasWebServiceResponse> addCourse (@Path("idUloge") int idProfesora, @Field("naziv") String nazivKolegija, @Field ("semestar") int semestarIzvodjenja, @Field ("studij") String nazivStudija);
-    @POST("kolegij/neupisani/profesor/{idUloge}/")
+    @FormUrlEncoded
+    @POST("kolegij/dodaj/profesor/{idUloge}/")
     Call<SasWebServiceResponse> addCourseToProfessor (@Path("idUloge") int profesor, @Field ("kolegij") int idKolegija);
+    @FormUrlEncoded
     @POST("kolegij/azuriraj/profesor/{idUloge}/")
     Call<SasWebServiceResponse> azurirajKolegij (@Path("idUloge") int profesor, @Field ("idKolegija") int idKolegija, @Field ("naziv") String naziv, @Field ("semestar") int semestar, @Field ("studij") String studij);
 
@@ -49,4 +52,11 @@ public interface SasWebService {
 
     @GET("aktivnost/dohvatiPoDanu/{uloga}/{idUloge}/{danIzvodenja}/")
     Call<SasWebServiceResponse> getAktivnostForStudentForDay (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("danIzvodenja") String danIzvodenja);
+
+    @GET("kolegij/dohvati/{uloga}/{idUloge}/")
+    Call<SasWebServiceResponse> getKolegijForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
+    @FormUrlEncoded
+    @POST("kolegij/dodaj/student/{idUloge}/")
+    Call<SasWebServiceResponse> addCourseToStudent (@Path("idUloge") int student, @Field ("kolegij") int idKolegija);
+
 }

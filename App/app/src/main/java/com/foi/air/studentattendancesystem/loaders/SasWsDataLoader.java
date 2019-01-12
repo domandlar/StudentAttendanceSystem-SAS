@@ -56,9 +56,9 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAddCourse(idProfesora, nazivKolegija,semestarIzvodjenja,nazivStudija);
     }
-    public void neupisaniKolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+    public void sviKolegiji(int id, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForNeupisaniKolegijiProfesora(profesor);
+        Ws.CallWsForSviKolegiji(id);
     }
     public void dodajKolegijProfesoru(int idProfesor, int idKolegija){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
@@ -67,6 +67,14 @@ public class SasWsDataLoader {
     public void azurirajKolegij(int idProfesora, int idKolegija, String nazivKolegija, int semestarIzvodjenja, String nazivStudija) {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAzurirajKolegij(idProfesora, idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
+    }
+    public void kolegijForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForKolegijiStudenta(student);
+    }
+    public void dodajKolegijStudentu(int idStudenta, int idKolegija){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAddCourseToStudent(idStudenta, idKolegija);
     }
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {

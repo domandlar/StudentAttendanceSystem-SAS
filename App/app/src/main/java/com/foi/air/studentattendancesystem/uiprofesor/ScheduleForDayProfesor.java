@@ -116,6 +116,14 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
                 intent = new Intent(ScheduleForDayProfesor.this, ScheduleProfesor.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_courses:
+                intent = new Intent(ScheduleForDayProfesor.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(ScheduleForDayProfesor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }

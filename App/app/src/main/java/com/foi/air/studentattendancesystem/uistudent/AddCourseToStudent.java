@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.uiprofesor;
+package com.foi.air.studentattendancesystem.uistudent;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,21 +17,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.uistudent.LabsList;
-import com.foi.air.studentattendancesystem.uistudent.LecturesList;
-import com.foi.air.studentattendancesystem.uistudent.ListCourses;
-import com.foi.air.studentattendancesystem.uistudent.ScheduleStudent;
-import com.foi.air.studentattendancesystem.uistudent.SeminarList;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
+import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
@@ -40,20 +39,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AddCourseToProfessor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
+public class AddCourseToStudent extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddCourseToProfessor;
 
     BetterSpinner spinnerKolegiji;
+    Student student;
+    String idStudenta;
 
-    String idProfesora;
-
-    ArrayList<Kolegij> upisaniKolegijList;
     ArrayList<Kolegij> kolegijList;
+    ArrayList<Kolegij> upisaniKolegijList;
     ArrayAdapter<Kolegij> spinnerAdapterKolegiji;
-
 
     int idKolegija=0;
 
@@ -63,6 +61,7 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course_to_professor);
         setTitle("Upisivanje kolegija");
+
 
 
         toolBar = findViewById(R.id.toolBar);
@@ -78,12 +77,12 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
         toggle.syncState();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        idProfesora = prefs.getString("idProfesora", "");
-        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        idStudenta = prefs.getString("idStudenta", "");
+        student = new Student(Integer.parseInt(idStudenta));
 
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-        sasWsDataLoader.sviKolegiji(profesor.getIdProfesora(),this);
-        sasWsDataLoader.kolegijForProfesor(profesor,this);
+        sasWsDataLoader.sviKolegiji(student.getIdStudenta(),this);
+        sasWsDataLoader.kolegijForStudent(student,this);
 
 
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
@@ -102,13 +101,13 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
         btnAddCourseToProfessor = findViewById(R.id.buttonUpisiKolegij);
         btnAddCourseToProfessor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && !UpisaniKolegij(idKolegija)){
+                if(idKolegija !=0 && !UpisaniKolegij(idKolegija) ){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.dodajKolegijProfesoru(Integer.parseInt(idProfesora), idKolegija);
+                    sasWsDataLoader.dodajKolegijStudentu(Integer.parseInt(idStudenta), idKolegija);
                     Toast.makeText(getApplicationContext(),"Kolegij je upisan!", Toast.LENGTH_SHORT).show();
                 }else{
                     if(idKolegija==0) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(AddCourseToProfessor.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(AddCourseToStudent.this).create();
                         alertDialog.setTitle("Pogreška");
                         alertDialog.setMessage("Niste unjeli sva polja!");
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -119,7 +118,7 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
                                 });
                         alertDialog.show();
                     }else {
-                        AlertDialog alertDialog = new AlertDialog.Builder(AddCourseToProfessor.this).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(AddCourseToStudent.this).create();
                         alertDialog.setTitle("Pogreška");
                         alertDialog.setMessage("Odabrani kolegij je već upisan!");
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -140,23 +139,23 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(AddCourseToProfessor.this, ListOfSeminars.class);
+                Intent intent = new Intent(AddCourseToStudent.this, SeminarList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(AddCourseToProfessor.this, ListOfLabs.class);
+                intent = new Intent(AddCourseToStudent.this, LabsList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_courses:
-                intent = new Intent(AddCourseToProfessor.this, ListOfCourses.class);
+                intent = new Intent(AddCourseToStudent.this, ListCourses.class);
                 startActivity(intent);
                 break;
             case R.id.nav_schedule:
-                intent = new Intent(AddCourseToProfessor.this, ScheduleProfesor.class);
+                intent = new Intent(AddCourseToStudent.this, ScheduleStudent.class);
                 startActivity(intent);
                 break;
             case R.id.nav_lectures:
-                intent = new Intent(AddCourseToProfessor.this, ListOfLectures.class);
+                intent = new Intent(AddCourseToStudent.this, LecturesList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
@@ -165,6 +164,17 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
                 finish();
         }
         return true;
+    }
+
+    public boolean UpisaniKolegij(int idKolegija){
+        for (Kolegij k: upisaniKolegijList)
+        {
+            if(k.getId()==idKolegija)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -185,7 +195,8 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else if(status.equals("OK") && message.equals("Pronađeni kolegiji.")){
+        }
+        if(status.equals("OK") && message.equals("Pronađeni kolegiji.")){
             upisaniKolegijList = new ArrayList<Kolegij>();
             String dataStringKolegij = String.valueOf(data);
             try {
@@ -201,15 +212,7 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
         }
     }
 
-    public boolean UpisaniKolegij(int idKolegija){
-        for (Kolegij k: upisaniKolegijList)
-        {
-            if(k.getId()==idKolegija)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+
+
 }
 
