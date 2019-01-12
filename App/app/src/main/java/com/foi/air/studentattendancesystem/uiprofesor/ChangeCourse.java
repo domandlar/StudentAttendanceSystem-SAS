@@ -97,14 +97,21 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
         btnChangeCourse.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                nazivKolegija=mEditNazivKolegija.getText().toString();
+                boolean uspjeh=true;
+                try {
+                    nazivKolegija=mEditNazivKolegija.getText().toString();
 
-                semestarIzvodjenja = Integer.parseInt(mEditSemestar.getText().toString());
-
-                if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null){
+                    semestarIzvodjenja = Integer.parseInt(mEditSemestar.getText().toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                    uspjeh=false;
+                }
+                if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null && uspjeh){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.azurirajKolegij(Integer.parseInt(idProfesora), idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
                     Toast.makeText(getApplicationContext(),"Kolegij je ažuriran!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ChangeCourse.this, ListOfCourses.class);
+                    startActivity(intent);
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(ChangeCourse.this).create();
                     alertDialog.setTitle("Pogreška");
@@ -120,6 +127,16 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            spinnerStudij.setSelection(1);
+        }catch (Exception e){
+
+        }
     }
 
     @Override
