@@ -47,6 +47,8 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
+        setTitle("Novi kolegij");
+
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -88,7 +90,6 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
 
                 if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    // Potrebno popraviti pogreške
                     sasWsDataLoader.dodajKolegij(Integer.parseInt(idProfesora), nazivKolegija, semestarIzvodjenja, nazivStudija);
                     Toast.makeText(getApplicationContext(),"Kolegij je dodan!", Toast.LENGTH_SHORT).show();
                 }else{
@@ -126,6 +127,7 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
             case R.id.nav_schedule:
                 intent = new Intent(AddCourse.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
             case R.id.nav_lectures:
                 intent = new Intent(AddCourse.this, ListOfLectures.class);
                 startActivity(intent);

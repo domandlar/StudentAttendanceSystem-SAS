@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -163,9 +164,27 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
             case R.id.nav_seminars:
                 Intent intent = new Intent(AddLab.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
             case R.id.nav_labs:
                 intent = new Intent(AddLab.this, ListOfLabs.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(AddLab.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(AddLab.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(AddLab.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

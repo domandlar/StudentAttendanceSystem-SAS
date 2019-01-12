@@ -51,6 +51,7 @@ public class ListOfLectures extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_lectures);
+        setTitle("Moja Predavanja");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
@@ -71,11 +72,9 @@ public class ListOfLectures extends AppCompatActivity implements NavigationView.
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
 
@@ -99,6 +98,7 @@ public class ListOfLectures extends AppCompatActivity implements NavigationView.
             case R.id.nav_schedule:
                 intent = new Intent(ListOfLectures.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
             case R.id.nav_lectures:
                 intent = new Intent(ListOfLectures.this, ListOfLectures.class);
                 startActivity(intent);

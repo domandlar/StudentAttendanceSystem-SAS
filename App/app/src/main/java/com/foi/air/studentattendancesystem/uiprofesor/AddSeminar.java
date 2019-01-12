@@ -30,6 +30,7 @@ import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.LoginStudent;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -170,6 +171,27 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
             case R.id.nav_seminars:
                 Intent intent = new Intent(AddSeminar.this, ListOfSeminars.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(AddSeminar.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(AddSeminar.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(AddSeminar.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(AddSeminar.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

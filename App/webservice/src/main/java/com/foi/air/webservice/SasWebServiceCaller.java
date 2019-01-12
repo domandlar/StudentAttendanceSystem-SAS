@@ -91,10 +91,10 @@ public class SasWebServiceCaller {
         call = webService.addCourse(idProfesora, nazivKolegija, semestarIzvodjenja, nazivStudija);
         HandleResponseFromCall("dodavanje_kolegija");
     }
-    public void CallWsForNeupisaniKolegijiProfesora(Profesor profesor){
+    public void CallWsForSviKolegiji(int id){
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getNeupisaniKolegijForProfesor("profesor", profesor.getIdProfesora());
-        HandleResponseFromCall("dohvacanje_neupisanih_kolegija_profesora");
+        call = webService.getAllCourses("profesor", id);
+        HandleResponseFromCall("dohvacanje_svih_kolegija");
     }
     public void CallWsForAddCourseToProfesora(int profesor, int idKolegija){
         SasWebService webService = retrofit.create(SasWebService.class);
@@ -105,6 +105,16 @@ public class SasWebServiceCaller {
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.azurirajKolegij(idProfesora, idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
         HandleResponseFromCall("azuriranje_kolegija");
+    }
+    public void CallWsForKolegijiStudenta(Student student) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getKolegijForStudent("student", student.getIdStudenta());
+        HandleResponseFromCall("dohvacanje_kolegija_studenta");
+    }
+    public void CallWsForAddCourseToStudent(int student, int idKolegija){
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.addCourseToStudent( student, idKolegija);
+        HandleResponseFromCall("upisivanje_kolegija_studentu");
     }
 
 
@@ -144,11 +154,15 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method =="dodavanje_kolegija"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                }else if(method =="dohvacanje_neupisanih_kolegija_profesora"){
+                                }else if(method =="dohvacanje_svih_kolegija"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }else if(method =="upisivanje_kolegija_profesoru"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }else if(method =="azuriranje_kolegija"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                }else if(method =="dohvacanje_kolegija_studenta"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                }else if(method =="upisivanje_kolegija_studentu"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }
                         }

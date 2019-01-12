@@ -82,13 +82,9 @@ public class ScheduleStudent extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
-            case R.id.nav_schedule:
-                Intent intent = new Intent(ScheduleStudent.this, ScheduleStudent.class);
-                startActivity(intent);
-                break;
+        switch (menuItem.getItemId()) {
             case R.id.nav_seminars:
-                intent = new Intent(ScheduleStudent.this, SeminarList.class);
+                Intent intent = new Intent(ScheduleStudent.this, SeminarList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
@@ -100,7 +96,18 @@ public class ScheduleStudent extends AppCompatActivity implements NavigationView
                 startActivity(intent);
                 finish();
                 break;
-
+            case R.id.nav_schedule:
+                intent = new Intent(ScheduleStudent.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(ScheduleStudent.this, ListCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(ScheduleStudent.this, LecturesList.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }

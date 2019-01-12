@@ -22,6 +22,7 @@ import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.adaptersStudent.ListCoursesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfCoursesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
@@ -44,7 +45,7 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
     private DrawerLayout drawer;
 
     RecyclerView recyclerView;
-    ListOfCoursesAdapter adapter;
+    ListCoursesAdapter adapter;
 
     List<Kolegij> courseList;
 
@@ -54,6 +55,7 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_courses);
+        setTitle("Moji Kolegiji");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idStudenta = prefs.getString("idStudenta", "");
@@ -79,9 +81,8 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
         );
 
 
-        //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-        //sasWsDataLoader.kolegijForProfesor(profesor,this);
+        sasWsDataLoader.kolegijForStudent(student,this);
 
     }
 
@@ -93,11 +94,19 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ListCourses.this, ListOfLabs.class);
+                intent = new Intent(ListCourses.this, LabsList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_courses:
                 intent = new Intent(ListCourses.this, ListCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(ListCourses.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(ListCourses.this, LecturesList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
@@ -120,7 +129,7 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_dodaj_upisi_kolegij:
-                Intent intent = new Intent(ListCourses.this, AddCourseToProfessor.class);
+                Intent intent = new Intent(ListCourses.this, AddCourseToStudent.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -155,7 +164,7 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
             e.printStackTrace();
         }
 
-        adapter=new ListOfCoursesAdapter(this, courseList);
+        adapter=new ListCoursesAdapter(this, courseList);
         recyclerView.setAdapter(adapter);
     }
 }

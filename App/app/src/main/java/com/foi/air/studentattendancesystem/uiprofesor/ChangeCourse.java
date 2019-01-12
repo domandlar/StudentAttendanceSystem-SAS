@@ -47,7 +47,7 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_course);
-
+        setTitle("Uređivanje kolegija");
 
 
         toolBar = findViewById(R.id.toolBar);
@@ -140,6 +140,7 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
             case R.id.nav_schedule:
                 intent = new Intent(ChangeCourse.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
             case R.id.nav_lectures:
                 intent = new Intent(ChangeCourse.this, ListOfLectures.class);
                 startActivity(intent);

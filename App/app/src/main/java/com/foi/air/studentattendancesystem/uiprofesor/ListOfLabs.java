@@ -93,14 +93,22 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
                 intent = new Intent(ListOfLabs.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_logout:
-                intent = new Intent(this, MainActivity.class);
+            case R.id.nav_courses:
+                intent = new Intent(ListOfLabs.this, ListOfCourses.class);
                 startActivity(intent);
-                finish();
+                break;
             case R.id.nav_schedule:
                 intent = new Intent(ListOfLabs.this, ScheduleProfesor.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_lectures:
+                intent = new Intent(ListOfLabs.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
         }
         return true;
     }

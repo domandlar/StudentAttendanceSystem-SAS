@@ -74,7 +74,6 @@ public class AddLecture extends AppCompatActivity implements NavigationView.OnNa
 
         drawer = findViewById(R.id.drawer_layout);
 
-        //osluskivanje gumba "Moja predavanja"
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -171,6 +170,7 @@ public class AddLecture extends AppCompatActivity implements NavigationView.OnNa
             case R.id.nav_schedule:
                 intent = new Intent(AddLecture.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
             case R.id.nav_lectures:
                 intent = new Intent(AddLecture.this, ListOfLectures.class);
                 startActivity(intent);

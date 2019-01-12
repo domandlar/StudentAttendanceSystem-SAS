@@ -54,6 +54,7 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_lectures);
+        setTitle("Moja Predavanja");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
@@ -74,11 +75,9 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        //hohvacanje podataka sa servisa
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.aktivnostForProfesor(profesor,aktivnost,this);
 
@@ -88,15 +87,19 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(LecturesList.this, LecturesList.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_courses:
-                intent = new Intent(LecturesList.this, ListOfCourses.class);
+                Intent intent = new Intent(LecturesList.this, SeminarList.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(LecturesList.this, ListOfLabs.class);
+                intent = new Intent(LecturesList.this, LabsList.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(LecturesList.this, ListCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_schedule:
+                intent = new Intent(LecturesList.this, ScheduleStudent.class);
                 startActivity(intent);
                 break;
             case R.id.nav_lectures:
@@ -123,8 +126,7 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_dodaj_predavanje:
-                Intent intent = new Intent(LecturesList.this, AddLecture.class);
-                startActivity(intent);
+
         }
         return super.onOptionsItemSelected(item);
     }

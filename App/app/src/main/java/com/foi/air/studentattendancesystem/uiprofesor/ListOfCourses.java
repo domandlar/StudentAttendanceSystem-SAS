@@ -50,6 +50,7 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_courses);
+        setTitle("Moji Kolegiji");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         idProfesora = prefs.getString("idProfesora", "");
@@ -69,7 +70,6 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addOnItemTouchListener(
                 new RecyclerView.SimpleOnItemTouchListener()
@@ -99,6 +99,7 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
             case R.id.nav_schedule:
                 intent = new Intent(ListOfCourses.this, ScheduleProfesor.class);
                 startActivity(intent);
+                break;
             case R.id.nav_lectures:
                 intent = new Intent(ListOfCourses.this, ListOfLectures.class);
                 startActivity(intent);

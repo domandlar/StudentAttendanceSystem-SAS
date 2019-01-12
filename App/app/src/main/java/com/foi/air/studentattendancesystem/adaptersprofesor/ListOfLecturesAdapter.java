@@ -1,19 +1,15 @@
 package com.foi.air.studentattendancesystem.adaptersprofesor;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.uiprofesor.ChangeCourse;
-import com.foi.air.studentattendancesystem.uiprofesor.ChangeLecture;
 
 import java.util.List;
 
@@ -46,21 +42,6 @@ public class ListOfLecturesAdapter extends RecyclerView.Adapter<ListOfLecturesAd
         lectureViewHolder.time.setText(aktivnost.getPocetak());
         lectureViewHolder.classroom.setText(aktivnost.getDvorana());
 
-        lectureViewHolder.relative.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mCtx, ChangeLecture.class);
-                intent.putExtra("idAktivnosti", toString().valueOf(aktivnost.getIdAktivnosti()));
-                intent.putExtra("dozvoljenoIzostanaka", toString().valueOf(aktivnost.getDozvoljenoIzostanaka()));
-                intent.putExtra("pocetak", aktivnost.getPocetak());
-                intent.putExtra("kraj", aktivnost.getKraj());
-                intent.putExtra("danIzvodjenja", aktivnost.getDanIzvodenja());
-                intent.putExtra("dvoranaId", toString().valueOf(aktivnost.getDvorana()));
-                intent.putExtra("kolegijId", toString().valueOf(aktivnost.getKolegij()));
-                mCtx.startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -70,7 +51,6 @@ public class ListOfLecturesAdapter extends RecyclerView.Adapter<ListOfLecturesAd
 
     class LectureViewHolder extends RecyclerView.ViewHolder {
         TextView title, day, time, classroom;
-        RelativeLayout relative;
 
         public LectureViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,7 +58,6 @@ public class ListOfLecturesAdapter extends RecyclerView.Adapter<ListOfLecturesAd
             day = itemView.findViewById(R.id.textViewDay);
             time = itemView.findViewById(R.id.textViewTime);
             classroom = itemView.findViewById(R.id.textViewClassroom);
-            relative = itemView.findViewById(R.id.relative);
         }
     }
 }

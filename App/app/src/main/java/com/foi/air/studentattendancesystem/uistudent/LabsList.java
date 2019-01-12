@@ -95,8 +95,17 @@ public class LabsList extends AppCompatActivity implements NavigationView.OnNavi
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                break;
             case R.id.nav_schedule:
                 intent = new Intent(LabsList.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(LabsList.this, ListCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(LabsList.this, LecturesList.class);
                 startActivity(intent);
                 break;
         }

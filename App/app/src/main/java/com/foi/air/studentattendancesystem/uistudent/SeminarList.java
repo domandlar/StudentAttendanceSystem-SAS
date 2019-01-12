@@ -104,6 +104,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                break;
             case R.id.nav_schedule:
                 intent = new Intent(SeminarList.this, ScheduleStudent.class);
                 startActivity(intent);
@@ -113,7 +114,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
                 startActivity(intent);
                 break;
             case R.id.nav_lectures:
-                intent = new Intent(SeminarList.this, ListOfLectures.class);
+                intent = new Intent(SeminarList.this, LecturesList.class);
                 startActivity(intent);
                 break;
         }

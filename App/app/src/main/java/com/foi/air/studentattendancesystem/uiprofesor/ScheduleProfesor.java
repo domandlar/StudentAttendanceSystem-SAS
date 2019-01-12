@@ -82,12 +82,8 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.nav_schedule:
-                Intent intent = new Intent(ScheduleProfesor.this, ScheduleProfesor.class);
-                startActivity(intent);
-                break;
             case R.id.nav_seminars:
-                intent = new Intent(ScheduleProfesor.this, ListOfSeminars.class);
+                Intent intent = new Intent(ScheduleProfesor.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
@@ -99,13 +95,18 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
                 startActivity(intent);
                 finish();
                 break;
-
-        }
-        int id = menuItem.getItemId();
-
-        if(id==R.id.nav_courses){
-            Intent intent = new Intent(this, ListOfCourses.class);
-            startActivity(intent);
+            case R.id.nav_schedule:
+                intent = new Intent(ScheduleProfesor.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_courses:
+                intent = new Intent(ScheduleProfesor.this, ListOfCourses.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_lectures:
+                intent = new Intent(ScheduleProfesor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }
