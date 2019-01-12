@@ -125,16 +125,25 @@ public class AddLecture extends AppCompatActivity implements NavigationView.OnNa
         btnAddPredavanje = findViewById(R.id.buttonDodajPredavanje);
         btnAddPredavanje.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null && pocetakSata != null && krajStata != null && dozvoljenoIzostanaka !=0){
+                boolean uspjeh=true;
+                try {
                     mEditPocetakSata = findViewById(R.id.editTextPocetak);
                     pocetakSata = mEditPocetakSata.getText().toString();
                     mEditKrajSata = findViewById(R.id.editTextKraj);
                     krajStata = mEditKrajSata.getText().toString();
                     mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
+                }catch (Exception e){
+                    uspjeh=false;
+                }
+
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null && pocetakSata != null && krajStata != null && dozvoljenoIzostanaka !=0 && uspjeh){
+
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Predavanje");
                     Toast.makeText(getApplicationContext(),"Predavanje je dodano!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddLecture.this, ListOfLectures.class);
+                    startActivity(intent);
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddLecture.this).create();
                     alertDialog.setTitle("Pogreška");

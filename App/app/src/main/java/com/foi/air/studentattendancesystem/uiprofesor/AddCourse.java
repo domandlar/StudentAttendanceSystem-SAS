@@ -82,16 +82,23 @@ public class AddCourse extends AppCompatActivity implements NavigationView.OnNav
         btnAddCourse.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                mEditNazivKolegija = findViewById(R.id.editTextNazivKolegija);
-                nazivKolegija=mEditNazivKolegija.getText().toString();
+                boolean uspjeh=true;
+                try {
+                    mEditNazivKolegija = findViewById(R.id.editTextNazivKolegija);
+                    nazivKolegija=mEditNazivKolegija.getText().toString();
+                    mEditSemestar = findViewById(R.id.editTextSemestar);
+                    semestarIzvodjenja = Integer.parseInt(mEditSemestar.getText().toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                    uspjeh=false;
+                }
 
-                mEditSemestar = findViewById(R.id.editTextSemestar);
-                semestarIzvodjenja = Integer.parseInt(mEditSemestar.getText().toString());
-
-                if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null){
+                if(nazivKolegija !=null && semestarIzvodjenja != 0 && nazivStudija != null && uspjeh){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.dodajKolegij(Integer.parseInt(idProfesora), nazivKolegija, semestarIzvodjenja, nazivStudija);
                     Toast.makeText(getApplicationContext(),"Kolegij je dodan!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddCourse.this, ListOfCourses.class);
+                    startActivity(intent);
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddCourse.this).create();
                     alertDialog.setTitle("Pogreška");
