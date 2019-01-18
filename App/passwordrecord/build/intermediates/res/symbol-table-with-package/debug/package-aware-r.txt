@@ -1139,6 +1139,7 @@ id smallLabel
 id snackbar_action
 id snackbar_text
 id spacer
+id spinnerTpAktivnosti
 id split_action_bar
 id src_atop
 id src_in
@@ -1255,6 +1256,7 @@ layout layout_child
 layout list_parent
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
+layout multiline_spinner_dropdown_item
 layout nav_header
 layout notification_action
 layout notification_action_tombstone

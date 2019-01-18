@@ -21,4 +21,12 @@ public class SasWsDataLoader {
             sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
         }
     };
+    public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForKolegijiProfesora(profesor);
+    }
+    public void allAktivnostForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAllAktivnostiProfesora(profesor);
+    }
 }

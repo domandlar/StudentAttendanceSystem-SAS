@@ -700,30 +700,30 @@ public final class R {
         public static int select_dialog_listview = 0x7f0c0083;
         public static int shortcut = 0x7f0c0085;
         public static int spacer = 0x7f0c008c;
-        public static int split_action_bar = 0x7f0c008d;
-        public static int src_atop = 0x7f0c008e;
-        public static int src_in = 0x7f0c008f;
-        public static int src_over = 0x7f0c0090;
-        public static int start = 0x7f0c0091;
-        public static int submenuarrow = 0x7f0c0093;
-        public static int submit_area = 0x7f0c0094;
-        public static int tabMode = 0x7f0c0095;
-        public static int tag_transition_group = 0x7f0c0096;
-        public static int tag_unhandled_key_event_manager = 0x7f0c0097;
-        public static int tag_unhandled_key_listeners = 0x7f0c0098;
-        public static int text = 0x7f0c0099;
-        public static int text2 = 0x7f0c009a;
-        public static int textSpacerNoButtons = 0x7f0c009b;
-        public static int textSpacerNoTitle = 0x7f0c009c;
-        public static int time = 0x7f0c00a6;
-        public static int title = 0x7f0c00a7;
-        public static int titleDividerNoCustom = 0x7f0c00a8;
-        public static int title_template = 0x7f0c00a9;
-        public static int top = 0x7f0c00ab;
-        public static int topPanel = 0x7f0c00ac;
-        public static int uniform = 0x7f0c00b3;
-        public static int up = 0x7f0c00b5;
-        public static int wrap_content = 0x7f0c00ba;
+        public static int split_action_bar = 0x7f0c008e;
+        public static int src_atop = 0x7f0c008f;
+        public static int src_in = 0x7f0c0090;
+        public static int src_over = 0x7f0c0091;
+        public static int start = 0x7f0c0092;
+        public static int submenuarrow = 0x7f0c0094;
+        public static int submit_area = 0x7f0c0095;
+        public static int tabMode = 0x7f0c0096;
+        public static int tag_transition_group = 0x7f0c0097;
+        public static int tag_unhandled_key_event_manager = 0x7f0c0098;
+        public static int tag_unhandled_key_listeners = 0x7f0c0099;
+        public static int text = 0x7f0c009a;
+        public static int text2 = 0x7f0c009b;
+        public static int textSpacerNoButtons = 0x7f0c009c;
+        public static int textSpacerNoTitle = 0x7f0c009d;
+        public static int time = 0x7f0c00a7;
+        public static int title = 0x7f0c00a8;
+        public static int titleDividerNoCustom = 0x7f0c00a9;
+        public static int title_template = 0x7f0c00aa;
+        public static int top = 0x7f0c00ac;
+        public static int topPanel = 0x7f0c00ad;
+        public static int uniform = 0x7f0c00b4;
+        public static int up = 0x7f0c00b6;
+        public static int wrap_content = 0x7f0c00bb;
     }
     public static final class integer {
         private integer() {}
@@ -765,16 +765,16 @@ public final class R {
         public static int abc_search_view = 0x7f0f001b;
         public static int abc_select_dialog_material = 0x7f0f001c;
         public static int abc_tooltip = 0x7f0f001e;
-        public static int notification_action = 0x7f0f0034;
-        public static int notification_action_tombstone = 0x7f0f0035;
-        public static int notification_template_custom_big = 0x7f0f0036;
-        public static int notification_template_icon_group = 0x7f0f0037;
-        public static int notification_template_part_chronometer = 0x7f0f0038;
-        public static int notification_template_part_time = 0x7f0f0039;
-        public static int select_dialog_item_material = 0x7f0f003a;
-        public static int select_dialog_multichoice_material = 0x7f0f003b;
-        public static int select_dialog_singlechoice_material = 0x7f0f003c;
-        public static int support_simple_spinner_dropdown_item = 0x7f0f003d;
+        public static int notification_action = 0x7f0f0035;
+        public static int notification_action_tombstone = 0x7f0f0036;
+        public static int notification_template_custom_big = 0x7f0f0037;
+        public static int notification_template_icon_group = 0x7f0f0038;
+        public static int notification_template_part_chronometer = 0x7f0f0039;
+        public static int notification_template_part_time = 0x7f0f003a;
+        public static int select_dialog_item_material = 0x7f0f003b;
+        public static int select_dialog_multichoice_material = 0x7f0f003c;
+        public static int select_dialog_singlechoice_material = 0x7f0f003d;
+        public static int support_simple_spinner_dropdown_item = 0x7f0f003e;
     }
     public static final class string {
         private string() {}
