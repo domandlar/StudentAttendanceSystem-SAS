@@ -25,11 +25,27 @@
             android:hint="Odaberi kolegij:"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
+        <Button
+            android:id="@+id/btnPredbiljezi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spremi odabir"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recyclerViewLabBooking"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+        </ScrollView>
+
 
         <FrameLayout
             android:id="@+id/fragment_container"

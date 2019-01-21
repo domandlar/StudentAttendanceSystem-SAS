@@ -90,6 +90,11 @@ public class SasWebServiceCaller {
         call = webService.getAktivnostForStudentForDay("student", idStudenta, day);
         HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
     }
+    public void CallWsForLabsForKolegij(Kolegij kolegij) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getLabosForKolegij(kolegij.getId());
+        HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -109,12 +114,12 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_kolegija_profesora") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                    Log.d("jebate patak: ", response.body().getStatus());
-                                    Log.d("jebate patak2: ", response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_kolegija_studenta") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
-                                    Log.d("jebate patak: ", response.body().getStatus());
-                                    Log.d("jebate patak2: ", response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_dvorana") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
@@ -128,6 +133,11 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());
+                                }
+                                else if(method=="dohvacanje_labosa_za_kolegij") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    Log.d("jebate patak: ", response.body().getStatus());
+                                    Log.d("jebate patak2: ", response.body().getData());
                                 }
                         }
                     }catch (Exception ex){

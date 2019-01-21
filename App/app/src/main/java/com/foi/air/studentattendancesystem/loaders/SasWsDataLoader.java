@@ -1,6 +1,7 @@
 package com.foi.air.studentattendancesystem.loaders;
 
 import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
@@ -56,6 +57,10 @@ public class SasWsDataLoader {
     public void aktivnostForStudentForDay(int idStudenta, String day, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAktivnostiStudentaForDay("Student",idStudenta,day);
+    }
+    public void labosForKolegij(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForLabsForKolegij(kolegij);
     }
 
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
