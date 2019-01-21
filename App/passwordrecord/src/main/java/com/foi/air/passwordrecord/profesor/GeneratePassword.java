@@ -1,24 +1,33 @@
 package com.foi.air.passwordrecord.profesor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.AktivnostiProfesora;
@@ -37,10 +46,14 @@ import java.util.ArrayList;
 
 public class GeneratePassword extends Fragment implements SasWsDataLoadedListener {
     BetterSpinner spinnerTipAktivnosti;
+    BetterSpinner spinnerTjedanNastave;
+    Button btnGenerirajLozinku;
     String idProfesora;
     ArrayAdapter<AktivnostiProfesora> spinnerAdapterAktivnosti;
+    ArrayAdapter<Integer> spinnerAdapterTjedni;
     ArrayList<AktivnostiProfesora> aktivnostiList;
     int idAktivnosti=0;
+    int tjedanNastve=0;
     View view;
     @Nullable
     @Override
@@ -54,18 +67,9 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.allAktivnostForProfesor(profesor,this);
 
-        /*
-        String [] values =
-                {"Time at Residence","Under 6 months","6-12 months","1-2 years","2-4 years","4-8 years","8-15 years","Over 15 years",};
-       BetterSpinner spinner = (BetterSpinner) view.findViewById(R.id.spinnerTpAktivnosti);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
-        */
         spinnerTipAktivnosti = (BetterSpinner) view.findViewById(R.id.spinnerTpAktivnosti);
         spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(this.getActivity(), R.layout.multiline_spinner_dropdown_item, aktivnostiList);
         spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnosti);
-        /*
         spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
@@ -73,7 +77,48 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
                 idAktivnosti = aktivnostProfesora.getIdAktivnosti();
             }
         });
-        */
+
+        Integer[] weeks = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+        spinnerTjedanNastave = (BetterSpinner) view.findViewById(R.id.spinnerTjedanNastave);
+        spinnerAdapterTjedni = new ArrayAdapter<Integer>(this.getActivity(), R.layout.multiline_spinner_dropdown_item, weeks);
+        spinnerTjedanNastave.setAdapter(spinnerAdapterTjedni);
+        spinnerTjedanNastave.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                tjedanNastve = (Integer) parent.getItemAtPosition(position);
+            }
+        });
+
+        btnGenerirajLozinku = view.findViewById(R.id.buttonGenerirajLozinku);
+        btnGenerirajLozinku.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(idAktivnosti !=0 && tjedanNastve !=0){
+                    /*
+                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
+                    pocetakSata = mEditPocetakSata.getText().toString();
+                    mEditKrajSata = findViewById(R.id.editTextKraj);
+                    krajStata = mEditKrajSata.getText().toString();
+                    mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
+                    dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
+                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
+                    Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
+                    */
+                }else{
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                    alertDialog.setTitle("Pogreška");
+                    alertDialog.setMessage("Niste odabrali sva polja!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+            }
+        });
+
 
 
         return view;
@@ -99,12 +144,46 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
                 aktivnostiList.add(aktivnostiProfesora);
             }
 
-            spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(this.getActivity(), android.R.layout.simple_dropdown_item_1line, aktivnostiList);
+            spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(this.getActivity(), R.layout.multiline_spinner_dropdown_item, aktivnostiList);
             spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnosti);
             spinnerAdapterAktivnosti.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public void showPopup(View anchorView) {
+
+        /*
+        View popupView = getLayoutInflater().inflate(R.layout.password_show, null);
+
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+        // Example: If you have a TextView inside `popup_layout.xml`
+        TextView tv = (TextView) popupView.findViewById(R.id.tv);
+
+        tv.setText(....);
+
+        // Initialize more widgets from `popup_layout.xml`
+    ....
+    ....
+
+        // If the PopupWindow should be focusable
+        popupWindow.setFocusable(true);
+
+        // If you need the PopupWindow to dismiss when when touched outside
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+        int location[] = new int[2];
+
+        // Get the View's(the one that was clicked in the Fragment) location
+        anchorView.getLocationOnScreen(location);
+
+        // Using location, the PopupWindow will be displayed right under anchorView
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
+                location[0], location[1] + anchorView.getHeight());
+        */
     }
 }

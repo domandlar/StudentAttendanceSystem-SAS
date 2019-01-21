@@ -128,7 +128,7 @@ public class SasWebServiceCaller {
                                 else if(method=="dohvacanje_aktivnosti_all") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
-                                    Log.d("jebate patak2: ", response.body().getData());
+                                    //Log.d("jebate patak2: ", response.body().getData());
                                 }
                         }
                     }catch (Exception ex){

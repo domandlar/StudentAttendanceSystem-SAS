@@ -1030,7 +1030,7 @@ id beginning
 id blocking
 id bookSeminar
 id bottom
-id buttonDodajSeminar
+id buttonGenerirajLozinku
 id buttonPanel
 id center
 id checkbox
@@ -1139,6 +1139,7 @@ id smallLabel
 id snackbar_action
 id snackbar_text
 id spacer
+id spinnerTjedanNastave
 id spinnerTpAktivnosti
 id split_action_bar
 id src_atop
@@ -1161,6 +1162,7 @@ id textViewDay
 id textViewNazivSeminara
 id textViewTime
 id textViewTitle
+id textViewTjedanNastave
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
