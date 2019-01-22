@@ -85,10 +85,14 @@ public class AddCourseToProfessor extends AppCompatActivity implements Navigatio
         sasWsDataLoader.sviKolegiji(profesor.getIdProfesora(),this);
         sasWsDataLoader.kolegijForProfesor(profesor,this);
 
-
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
-        spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
-        spinnerKolegiji.setAdapter(spinnerAdapterKolegiji);
+        try {
+            spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
+            spinnerKolegiji.setAdapter(spinnerAdapterKolegiji);
+            Thread.sleep(500);
+        }catch (Exception e){
+
+        }
         spinnerKolegiji.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
