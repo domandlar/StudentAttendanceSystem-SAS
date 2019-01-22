@@ -15,12 +15,7 @@ public class SasWsDataLoader {
         Ws = new SasWebServiceCaller(responseHandler);
     }
 
-    public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
-        @Override
-        public void onDataArrived(Object message, String stauts, Object data) {
-            sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
-        }
-    };
+
     public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForKolegijiProfesora(profesor);
@@ -29,4 +24,15 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAllAktivnostiProfesora(profesor);
     }
+    public void generatePassword(int idAktivnosti, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForGeneratePassword(idAktivnosti,tjedanNastave);
+    }
+    public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
+        @Override
+        public void onDataArrived(Object message, String stauts, Object data) {
+            sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
+        }
+    };
+
 }

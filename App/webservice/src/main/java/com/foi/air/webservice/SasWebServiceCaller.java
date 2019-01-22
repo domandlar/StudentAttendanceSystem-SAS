@@ -90,6 +90,11 @@ public class SasWebServiceCaller {
         call = webService.getAllAktivnostForProfesor("profesor", profesor.getIdProfesora());
         HandleResponseFromCall("dohvacanje_aktivnosti_all");
     }
+    public void CallWsForGeneratePassword(int idAktivnosti, int tjedanNastave) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.generirajLozinku(idAktivnosti,tjedanNastave);
+        HandleResponseFromCall("generiranje_lozinke");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -129,6 +134,11 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak2: ", response.body().getData());
+                                }
+                                else if(method=="generiranje_lozinke") {
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    Log.d("jebate patak: ", response.body().getStatus());
+                                    Log.d("jebate patak2: ", response.body().getData());
                                 }
                         }
                     }catch (Exception ex){

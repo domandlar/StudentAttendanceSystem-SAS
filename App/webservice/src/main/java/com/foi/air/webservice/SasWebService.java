@@ -43,4 +43,9 @@ public interface SasWebService {
 
     @GET("aktivnost/dohvati/{uloga}/{idUloge}/all/")
     Call<SasWebServiceResponse> getAllAktivnostForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
+
+    @FormUrlEncoded
+    @POST("evidentiraj/generirajLozinku/")
+    Call<SasWebServiceResponse> generirajLozinku (@Field("aktivnost") int idAktivnosti, @Field ("tjedanNastave") int tjedanNastave);
+
 }

@@ -105,9 +105,13 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
                     sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
                     Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
                     */
-                    ShowPassword newGamefragment = new ShowPassword();
+                    ShowPassword showPasswordFragment = new ShowPassword();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idAktivnosti", idAktivnosti);
+                    bundle.putInt("tjedanNastave", tjedanNastve);
+                    showPasswordFragment.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, newGamefragment);
+                    fragmentTransaction.replace(R.id.fragment_container, showPasswordFragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
