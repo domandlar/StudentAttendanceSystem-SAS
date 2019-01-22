@@ -31,6 +31,7 @@ import com.foi.air.studentattendancesystem.adaptersStudent.SeminarListAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 import com.foi.air.studentattendancesystem.uiprofesor.AddSeminar;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 
@@ -113,6 +114,11 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
                 finish();
             case R.id.nav_schedule:
                 intent = new Intent(SeminarList.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(SeminarList.this, PasswordFragment.class);
+                intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;
         }

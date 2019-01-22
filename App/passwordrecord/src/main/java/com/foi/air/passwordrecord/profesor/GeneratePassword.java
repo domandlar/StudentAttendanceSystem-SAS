@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,11 +55,11 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
     ArrayList<AktivnostiProfesora> aktivnostiList;
     int idAktivnosti=0;
     int tjedanNastve=0;
-    View view;
+    View rootView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_generate_password,
+        rootView =  inflater.inflate(R.layout.fragment_generate_password,
                 container, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         idProfesora = prefs.getString("idProfesora", "");
@@ -67,7 +68,7 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.allAktivnostForProfesor(profesor,this);
 
-        spinnerTipAktivnosti = (BetterSpinner) view.findViewById(R.id.spinnerTpAktivnosti);
+        spinnerTipAktivnosti = (BetterSpinner) rootView.findViewById(R.id.spinnerTpAktivnosti);
         spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(this.getActivity(), R.layout.multiline_spinner_dropdown_item, aktivnostiList);
         spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnosti);
         spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,7 +80,7 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         });
 
         Integer[] weeks = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-        spinnerTjedanNastave = (BetterSpinner) view.findViewById(R.id.spinnerTjedanNastave);
+        spinnerTjedanNastave = (BetterSpinner) rootView.findViewById(R.id.spinnerTjedanNastave);
         spinnerAdapterTjedni = new ArrayAdapter<Integer>(this.getActivity(), R.layout.multiline_spinner_dropdown_item, weeks);
         spinnerTjedanNastave.setAdapter(spinnerAdapterTjedni);
         spinnerTjedanNastave.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,7 +90,7 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
             }
         });
 
-        btnGenerirajLozinku = view.findViewById(R.id.buttonGenerirajLozinku);
+        btnGenerirajLozinku = rootView.findViewById(R.id.buttonGenerirajLozinku);
         btnGenerirajLozinku.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(idAktivnosti !=0 && tjedanNastve !=0){
@@ -104,6 +105,12 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
                     sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
                     Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
                     */
+                    ShowPassword newGamefragment = new ShowPassword();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, newGamefragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
                     alertDialog.setTitle("Pogreška");
@@ -121,7 +128,7 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
 
 
 
-        return view;
+        return rootView;
     }
 
     @Override

@@ -33,6 +33,8 @@ import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdap
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -120,6 +122,11 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
                 break;
             case R.id.nav_schedule:
                 intent = new Intent(ScheduleForDayStudent.this, ScheduleStudent.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ScheduleForDayStudent.this, PasswordFragment.class);
+                intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;
         }
