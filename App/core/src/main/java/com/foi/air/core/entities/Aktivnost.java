@@ -9,6 +9,8 @@ public class Aktivnost {
     int dozvoljenoIzostanaka;
     String dvorana;
     String tipAktivnosti;
+    String pocetakUpisa;
+    String krajUpisa;
 
 
 
@@ -16,16 +18,19 @@ public class Aktivnost {
         this.tipAktivnosti = tipAktivnosti;
     }
 
-    public Aktivnost(int idAktivnosti, String kolegij, int dozvoljenoIzostanaka, String pocetak, String kraj, String danIzvodenja, String dvorana, String tipAktivnosti) {
+    public Aktivnost(int idAktivnosti, String kolegij, String danIzvodenja, String pocetak, String kraj, int dozvoljenoIzostanaka, String dvorana, String tipAktivnosti, String pocetakUpisa, String krajUpisa) {
         this.idAktivnosti = idAktivnosti;
         this.kolegij = kolegij;
-        this.dozvoljenoIzostanaka = dozvoljenoIzostanaka;
+        this.danIzvodenja = danIzvodenja;
         this.pocetak = pocetak;
         this.kraj = kraj;
-        this.danIzvodenja = danIzvodenja;
+        this.dozvoljenoIzostanaka = dozvoljenoIzostanaka;
         this.dvorana = dvorana;
         this.tipAktivnosti = tipAktivnosti;
+        this.pocetakUpisa = pocetakUpisa;
+        this.krajUpisa = krajUpisa;
     }
+
     public Aktivnost(){
 
     }
@@ -92,5 +97,21 @@ public class Aktivnost {
 
     public void setTipAktivnosti(String tipAktivnosti) {
         this.tipAktivnosti = tipAktivnosti;
+    }
+
+    public String getPocetakUpisa() {
+        return pocetakUpisa;
+    }
+
+    public void setPocetakUpisa(String pocetakUpisa) {
+        this.pocetakUpisa = pocetakUpisa;
+    }
+
+    public String getKrajUpisa() {
+        return krajUpisa;
+    }
+
+    public void setKrajUpisa(String krajUpisa) {
+        this.krajUpisa = krajUpisa;
     }
 }
