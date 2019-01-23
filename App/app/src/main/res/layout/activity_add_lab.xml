@@ -119,6 +119,36 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
+            <TextView
+                android:id="@+id/textViewPocetakUpisa"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Početak upisa:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <EditText
+                android:id="@+id/editTextPocetakUpisa"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+            <TextView
+                android:id="@+id/textViewKrajUpisa"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Kraj upisa:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <EditText
+                android:id="@+id/editTextKrajUpisa"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
             <Button
                 android:id="@+id/buttonDodajLabos"
                 android:layout_width="match_parent"
