@@ -1,9 +1,11 @@
 package com.foi.air.studentattendancesystem.loaders;
 
 import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
+import com.foi.air.studentattendancesystem.uistudent.LabsBooking;
 import com.foi.air.webservice.SasWebServiceCaller;
 import com.foi.air.webservice.SasWebServiceHandler;
 
@@ -35,6 +37,10 @@ public class SasWsDataLoader {
     public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForKolegijiProfesora(profesor);
+    }
+    public void kolegijForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener) {
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForKolegijiStudenta(student);
     }
     public void Dvorane(String tipDvorane){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
@@ -68,13 +74,21 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAzurirajKolegij(idProfesora, idKolegija, nazivKolegija, semestarIzvodjenja, nazivStudija);
     }
-    public void kolegijForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
-        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForKolegijiStudenta(student);
-    }
-    public void dodajKolegijStudentu(int idStudenta, int idKolegija){
+    public void dodajKolegijStudentu(int idStudenta, int idKolegija) {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAddCourseToStudent(idStudenta, idKolegija);
+    }
+    public void labosForKolegij(Kolegij kolegij, Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForLabsForKolegij(kolegij, student);
+    }
+    public void upisLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForUpisLabosa(student, aktivnost);
+    }
+    public void ponistiOdabirLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForPonistiOdabirlabosa(student, aktivnost);
     }
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
@@ -83,4 +97,5 @@ public class SasWsDataLoader {
             sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
         }
     };
+
 }

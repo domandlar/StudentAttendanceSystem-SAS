@@ -53,10 +53,20 @@ public interface SasWebService {
     @GET("aktivnost/dohvatiPoDanu/{uloga}/{idUloge}/{danIzvodenja}/")
     Call<SasWebServiceResponse> getAktivnostForStudentForDay (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("danIzvodenja") String danIzvodenja);
 
+
     @GET("kolegij/dohvati/{uloga}/{idUloge}/")
     Call<SasWebServiceResponse> getKolegijForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
     @FormUrlEncoded
     @POST("kolegij/dodaj/student/{idUloge}/")
     Call<SasWebServiceResponse> addCourseToStudent (@Path("idUloge") int student, @Field ("kolegij") int idKolegija);
+
+    @GET("labosi/dohvati/{kolegij}/{student}/")
+    Call<SasWebServiceResponse> getLabosForKolegij (@Path("kolegij") int kolegij, @Path("student") int student);
+
+    @GET("labosi/upisi/{student}/{aktivnost}/")
+    Call<SasWebServiceResponse> upisLabosa (@Path("student") int student, @Path("aktivnost") int aktivnost);
+
+    @GET("labosi/ponisti/{student}/{aktivnost}/")
+    Call<SasWebServiceResponse> ponistiOdabirLabosa (@Path("student") int student, @Path("aktivnost") int aktivnost);
 
 }

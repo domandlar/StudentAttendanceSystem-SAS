@@ -11,6 +11,7 @@ public class Aktivnost {
     String tipAktivnosti;
 
 
+
     public Aktivnost(String tipAktivnosti) {
         this.tipAktivnosti = tipAktivnosti;
     }
