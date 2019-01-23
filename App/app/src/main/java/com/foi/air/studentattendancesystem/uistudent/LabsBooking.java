@@ -97,6 +97,7 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
         final SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.kolegijForStudent(student,this);
 
+        btnPonisti = findViewById(R.id.btnPonistiOdabir);
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
         spinnerAdapterKolokviji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijiList);
         spinnerKolegiji.setAdapter(spinnerAdapterKolokviji);
@@ -104,7 +105,7 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
                 kolegij = (Kolegij) parent.getItemAtPosition(position);
-                idKolegija = kolegij.getId();
+                btnPonisti.setVisibility(View.INVISIBLE);
                 sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
             }
         });
@@ -139,7 +140,7 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
 
             }
         });
-        btnPonisti = findViewById(R.id.btnPonistiOdabir);
+
         btnPonisti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +213,10 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
             if(upisan)
                 btnPonisti.setVisibility(View.VISIBLE);
             adapter=new LabListAdapter(this, labList, upisan);
+            recyclerView.setAdapter(adapter);
+        }else if(status.equals("NOT OK") && message.equals("Nema labosa za odabrani kolegij")){
+            labList.clear();
+            adapter= new LabListAdapter(this, labList, false);
             recyclerView.setAdapter(adapter);
         }
     }
