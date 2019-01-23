@@ -140,6 +140,22 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
             }
         });
         btnPonisti = findViewById(R.id.btnPonistiOdabir);
+        btnPonisti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i=0; i < recyclerView.getChildCount(); i++){
+                    LabListAdapter.LabViewHolder labViewHolder = (LabListAdapter.LabViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
+                    if(labViewHolder.odabir.isChecked()){
+                        aktivnost = new Aktivnost();
+                        aktivnost.setIdAktivnosti(labViewHolder.odabir.getId());
+                        break;
+                    }
+                }
+                sasWsDataLoader.ponistiOdabirLabosa(student, aktivnost,LabsBooking.this);
+                sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
+                btnPonisti.setVisibility(View.INVISIBLE);
+            }
+        });
 
     }
 

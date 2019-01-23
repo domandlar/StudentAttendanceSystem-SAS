@@ -66,6 +66,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForUpisLabosa(student, aktivnost);
     }
+    public void ponistiOdabirLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForPonistiOdabirlabosa(student, aktivnost);
+    }
 
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override

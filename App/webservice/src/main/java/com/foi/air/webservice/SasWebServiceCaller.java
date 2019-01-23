@@ -100,6 +100,11 @@ public class SasWebServiceCaller {
         call = webService.upisLabosa(student.getIdStudenta(), aktivnost.getIdAktivnosti());
         HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
     }
+    public void CallWsForPonistiOdabirlabosa(Student student, Aktivnost aktivnost) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.ponistiOdabirLabosa(student.getIdStudenta(), aktivnost.getIdAktivnosti());
+        HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
+    }
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
