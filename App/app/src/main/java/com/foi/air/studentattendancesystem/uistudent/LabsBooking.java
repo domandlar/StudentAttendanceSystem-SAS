@@ -57,6 +57,8 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
     private Button btnPredbiljezi;
     private Button btnPonisti;
     private Kolegij kolegij;
+    private SasWsDataLoader sasWsDataLoader;
+    private Student student;
 
     RecyclerView recyclerView;
     LabListAdapter adapter;
@@ -92,9 +94,9 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         idStudenta = sharedPreferences.getString("idStudenta", "");
-        final Student student = new Student(Integer.parseInt(idStudenta));
+        student = new Student(Integer.parseInt(idStudenta));
 
-        final SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+        sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.kolegijForStudent(student,this);
 
         btnPonisti = findViewById(R.id.btnPonistiOdabir);
@@ -135,7 +137,6 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
                         }
                     }
                     sasWsDataLoader.upisLabosa(student, aktivnost,LabsBooking.this);
-                    sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
                 }
 
             }
@@ -153,8 +154,6 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
                     }
                 }
                 sasWsDataLoader.ponistiOdabirLabosa(student, aktivnost,LabsBooking.this);
-                sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
-                btnPonisti.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -218,6 +217,11 @@ public class LabsBooking extends AppCompatActivity implements NavigationView.OnN
             labList.clear();
             adapter= new LabListAdapter(this, labList, false);
             recyclerView.setAdapter(adapter);
+        }else if(status.equals("OK") && message.equals("Labos upisan.")){
+            sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
+        }else if(status.equals("OK") && message.equals("Odabir labosa je poništen.")){
+            sasWsDataLoader.labosForKolegij(kolegij, student,LabsBooking.this);
+            btnPonisti.setVisibility(View.INVISIBLE);
         }
     }
 
