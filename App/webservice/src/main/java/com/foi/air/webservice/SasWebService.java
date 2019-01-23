@@ -59,4 +59,9 @@ public interface SasWebService {
     @POST("kolegij/dodaj/student/{idUloge}/")
     Call<SasWebServiceResponse> addCourseToStudent (@Path("idUloge") int student, @Field ("kolegij") int idKolegija);
 
+    @GET("kolegij/tipoviAktivnosti/{idKolegija}/")
+    Call<SasWebServiceResponse> getTipAktivnostiForKolegij (@Path("idKolegija") int idKolegija);
+    @GET("kolegij/studenti/{idKolegija}/")
+    Call<SasWebServiceResponse> getStudentForKolegij (@Path("idKolegija") int idKolegija);
+
 }

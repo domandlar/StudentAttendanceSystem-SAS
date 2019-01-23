@@ -54,7 +54,8 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
     ArrayAdapter<CharSequence> spinnerAdapterDani;
 
     int idKolegija=0;
-    int idDvorane=0;
+    int idStudent=0;
+    int idTipAktivnosti=0;
 
 
     @Override
@@ -91,6 +92,13 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
         spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
         spinnerKolegiji.setAdapter(spinnerAdapterKolegiji);
+        spinnerKolegiji.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                Kolegij kolegij = (Kolegij) parent.getItemAtPosition(position);
+                idKolegija = kolegij.getId();
+            }
+        });
 
         spinnerTipAktivnosti = findViewById(R.id.spinnerTipAktivnosti);
         spinnerAdapterDvorane = new ArrayAdapter<Dvorana>(this, android.R.layout.simple_dropdown_item_1line, dvoranaList);
