@@ -36,7 +36,7 @@ public interface SasWebService {
     @POST("aktivnost/nova/profesor/")
     Call<SasWebServiceResponse> addAktivnost (@Field("profesor") int idProfesora, @Field ("dozvoljenoIzostanaka") int maxIzostanaka, @Field ("pocetak") String pocetak,
                                             @Field ("kraj") String kraj,@Field ("danIzvodenja") String danIzvodenja, @Field ("dvorana") int idDvorane,
-                                            @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti );
+                                            @Field ("kolegij") int idKolegija, @Field ("tipAktivnosti") String tipAktivnosti, @Field ("pocetakUpisa") String pocetakUpisa, @Field ("krajUpisa") String krajUpisa );
     @FormUrlEncoded
     @POST("kolegij/novi/profesor/{idUloge}/")
     Call<SasWebServiceResponse> addCourse (@Path("idUloge") int idProfesora, @Field("naziv") String nazivKolegija, @Field ("semestar") int semestarIzvodjenja, @Field ("studij") String nazivStudija);

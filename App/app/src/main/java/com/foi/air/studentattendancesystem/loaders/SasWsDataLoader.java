@@ -48,7 +48,11 @@ public class SasWsDataLoader {
     }
     public void dodajAktivnost(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForAddSeminar(idProfesora, idKolegija, maxIzostanaka, pocetak, kraj, danIzvodenja, idDvorane,tipAktivnosti);
+        Ws.CallWsForAddSeminar(idProfesora, idKolegija, maxIzostanaka, pocetak, kraj, danIzvodenja, idDvorane,tipAktivnosti, null, null);
+    }
+    public void dodajAktivnost(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti, String pocetakUpisa, String krajUpisa){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAddSeminar(idProfesora, idKolegija, maxIzostanaka, pocetak, kraj, danIzvodenja, idDvorane,tipAktivnosti,pocetakUpisa,krajUpisa);
     }
     public void aktivnostForProfesorForDay(int idProfesora, String day, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;

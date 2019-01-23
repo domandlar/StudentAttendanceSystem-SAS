@@ -75,9 +75,9 @@ public class SasWebServiceCaller {
         call = webService.getDvorane(tipDvorane);
         HandleResponseFromCall("dohvacanje_dvorana");
     }
-    public void CallWsForAddSeminar(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti) {
+    public void CallWsForAddSeminar(int idProfesora, int idKolegija, int maxIzostanaka, String pocetak, String kraj, String danIzvodenja, int idDvorane, String tipAktivnosti, String pocetakUpisa, String krajUpisa) {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.addAktivnost(idProfesora, maxIzostanaka,pocetak,kraj,danIzvodenja,idDvorane,idKolegija,tipAktivnosti);
+        call = webService.addAktivnost(idProfesora, maxIzostanaka,pocetak,kraj,danIzvodenja,idDvorane,idKolegija,tipAktivnosti, pocetakUpisa, krajUpisa);
         HandleResponseFromCall("dodavanje_aktivnosti");
     }
     public void CallWsForAktivnostiProfesoraForDay(String uloga, int idProfesora, String day) {

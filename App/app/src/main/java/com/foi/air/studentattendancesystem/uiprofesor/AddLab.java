@@ -44,6 +44,8 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
     private Button btnAddLab;
     EditText mEditPocetakSata;
     EditText mEditKrajSata;
+    EditText mEditPocetakUpisa;
+    EditText mEditKrajUpisa;
     EditText mEditDozvoljenoIzostanaka;
     BetterSpinner spinnerKolegiji;
     BetterSpinner spinnerDvorane;
@@ -62,6 +64,8 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
     String danOdrzavanja=null;
     String pocetakSata=null;
     String krajStata=null;
+    String pocetakUpisa=null;
+    String krajUpisa=null;
     int dozvoljenoIzostanaka=0;
 
 
@@ -136,10 +140,14 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
                     pocetakSata = mEditPocetakSata.getText().toString();
                     mEditKrajSata = findViewById(R.id.editTextKraj);
                     krajStata = mEditKrajSata.getText().toString();
+                    mEditPocetakUpisa = findViewById(R.id.editTextPocetakUpisa);
+                    pocetakUpisa = mEditPocetakUpisa.getText().toString();
+                    mEditKrajUpisa = findViewById(R.id.editTextKrajUpisa);
+                    krajUpisa = mEditKrajUpisa.getText().toString();
                     mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Labosi");
+                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Labosi",pocetakUpisa,krajUpisa);
                     Toast.makeText(getApplicationContext(),"Labos je dodan!", Toast.LENGTH_SHORT).show();
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(AddLab.this).create();
