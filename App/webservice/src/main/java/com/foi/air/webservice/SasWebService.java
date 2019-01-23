@@ -43,7 +43,10 @@ public interface SasWebService {
     @GET("aktivnost/dohvatiPoDanu/{uloga}/{idUloge}/{danIzvodenja}/")
     Call<SasWebServiceResponse> getAktivnostForStudentForDay (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("danIzvodenja") String danIzvodenja);
 
-    @GET("labosi/dohvati/{kolegij}/")
-    Call<SasWebServiceResponse> getLabosForKolegij (@Path("kolegij") int kolegij);
+    @GET("labosi/dohvati/{kolegij}/{student}/")
+    Call<SasWebServiceResponse> getLabosForKolegij (@Path("kolegij") int kolegij, @Path("student") int student);
+
+    @GET("labosi/upisi/{student}/{aktivnost}/")
+    Call<SasWebServiceResponse> upisLabosa (@Path("student") int student, @Path("aktivnost") int aktivnost);
 
 }

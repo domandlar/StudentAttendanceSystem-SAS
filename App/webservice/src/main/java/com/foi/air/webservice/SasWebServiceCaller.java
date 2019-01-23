@@ -90,9 +90,14 @@ public class SasWebServiceCaller {
         call = webService.getAktivnostForStudentForDay("student", idStudenta, day);
         HandleResponseFromCall("dohvacanje_aktivnosti_za_dan");
     }
-    public void CallWsForLabsForKolegij(Kolegij kolegij) {
+    public void CallWsForLabsForKolegij(Kolegij kolegij, Student student) {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getLabosForKolegij(kolegij.getId());
+        call = webService.getLabosForKolegij(kolegij.getId(), student.getIdStudenta());
+        HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
+    }
+    public void CallWsForUpisLabosa(Student student, Aktivnost aktivnost) {
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.upisLabosa(student.getIdStudenta(), aktivnost.getIdAktivnosti());
         HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
     }
     public void HandleResponseFromCall(final String method){

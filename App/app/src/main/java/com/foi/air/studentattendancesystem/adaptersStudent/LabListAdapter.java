@@ -19,10 +19,12 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.LabViewH
 
     private Context mCtx;
     private List<BookedLab> labList;
+    private boolean upisan;
 
-    public LabListAdapter(Context mCtx, List<BookedLab> labList){
+    public LabListAdapter(Context mCtx, List<BookedLab> labList, Boolean upisan){
         this.mCtx = mCtx;
         this.labList = labList;
+        this.upisan = upisan;
     }
 
     @NonNull
@@ -41,6 +43,13 @@ public class LabListAdapter extends RecyclerView.Adapter<LabListAdapter.LabViewH
         labViewHolder.time.setText(lab.getPocetak() + " - " + lab.getKraj());
         labViewHolder.classroom.setText(lab.getDvorana());
         labViewHolder.numberOfReservations.setText(lab.getBrojUpisanih() + "/" + lab.getKapacitet());
+        labViewHolder.odabir.setId(lab.getIdAktivnosti());
+        if(lab.getBrojUpisanih() >= lab.getKapacitet())
+            labViewHolder.odabir.setEnabled(false);
+        if(upisan)
+            labViewHolder.odabir.setEnabled(false);
+        if(lab.isUpisan())
+            labViewHolder.odabir.setChecked(true);
     }
 
     @Override

@@ -11,11 +11,12 @@ public class BookedLab {
     String tipAktivnosti;
     int kapacitet;
     int brojUpisanih;
+    boolean upisan = false;
 
     public BookedLab() {
     }
 
-    public BookedLab(int idAktivnosti, String kolegij, String danIzvodenja, String pocetak, String kraj, int dozvoljenoIzostanaka, String dvorana, String tipAktivnosti, int kapacitet, int brojUpisanih) {
+    public BookedLab(int idAktivnosti, String kolegij, String danIzvodenja, String pocetak, String kraj, int dozvoljenoIzostanaka, String dvorana, String tipAktivnosti, int kapacitet, int brojUpisanih, boolean upisan) {
         this.idAktivnosti = idAktivnosti;
         this.kolegij = kolegij;
         this.danIzvodenja = danIzvodenja;
@@ -26,6 +27,7 @@ public class BookedLab {
         this.tipAktivnosti = tipAktivnosti;
         this.kapacitet = kapacitet;
         this.brojUpisanih = brojUpisanih;
+        this.upisan = upisan;
     }
 
     public int getIdAktivnosti() {
@@ -106,5 +108,13 @@ public class BookedLab {
 
     public void setBrojUpisanih(int brojUpisanih) {
         this.brojUpisanih = brojUpisanih;
+    }
+
+    public boolean isUpisan() {
+        return upisan;
+    }
+
+    public void setUpisan(boolean upisan) {
+        this.upisan = upisan;
     }
 }

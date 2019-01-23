@@ -58,9 +58,13 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAktivnostiStudentaForDay("Student",idStudenta,day);
     }
-    public void labosForKolegij(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+    public void labosForKolegij(Kolegij kolegij, Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForLabsForKolegij(kolegij);
+        Ws.CallWsForLabsForKolegij(kolegij, student);
+    }
+    public void upisLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForUpisLabosa(student, aktivnost);
     }
 
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
