@@ -1,6 +1,5 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -14,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -92,9 +92,11 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Intent intent;
+        Log.d("izbornik....: ", menuItem.toString() +  "    " + menuItem.getItemId() + "    " + R.id.nav_attendance);
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(ListOfSeminars.this, ListOfSeminars.class);
+                intent = new Intent(ListOfSeminars.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_courses:
@@ -102,16 +104,20 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ListOfSeminars.this, ListOfLabs.class);
+                intent = new Intent(this, ListOfLabs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_lectures:
-                intent = new Intent(ListOfSeminars.this, ListOfLectures.class);
+                intent = new Intent(this, ListOfLectures.class);
                 startActivity(intent);
                 break;
 
             case R.id.nav_schedule:
-                intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
+                intent = new Intent(this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_attendance_preview:
+                intent = new Intent(this, CheckAttendance.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
