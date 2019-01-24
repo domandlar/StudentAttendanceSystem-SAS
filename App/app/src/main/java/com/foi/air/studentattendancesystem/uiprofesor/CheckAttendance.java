@@ -38,9 +38,6 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnPrikaziEvidenciju;
-    EditText mEditPocetakSata;
-    EditText mEditKrajSata;
-    EditText mEditDozvoljenoIzostanaka;
     BetterSpinner spinnerKolegiji;
     BetterSpinner spinnerTipAktivnosti;
     BetterSpinner spinnerStudent;
@@ -146,6 +143,22 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
-
+        if(status.equals("OK") && message.equals("Pronađeni kolegiji.")) {
+            kolegijList = new ArrayList<Kolegij>();
+            String dataStringKolegij = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataStringKolegij);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    Kolegij noviKolegij = new Kolegij(row.getInt("id"), row.getString("naziv"), row.getInt("semestar"), row.getString("studij"));
+                    kolegijList.add(noviKolegij);
+                }
+                spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, kolegijList);
+                spinnerKolegiji.setAdapter(spinnerAdapterKolegiji);
+                spinnerAdapterKolegiji.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
