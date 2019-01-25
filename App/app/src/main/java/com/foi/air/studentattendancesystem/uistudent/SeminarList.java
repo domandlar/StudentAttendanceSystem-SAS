@@ -125,6 +125,9 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(SeminarList.this, LecturesList.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(SeminarList.this, Attendance.class);
+                startActivity(intent);
         }
         return true;
     }

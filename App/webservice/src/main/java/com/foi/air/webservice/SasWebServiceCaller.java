@@ -132,6 +132,14 @@ public class SasWebServiceCaller {
         call = webService.ponistiOdabirLabosa(student.getIdStudenta(), aktivnost.getIdAktivnosti());
         HandleResponseFromCall("dohvacanje_labosa_za_kolegij");
     }
+
+    public void CallWsForDohvatiEvidencijuStudneta(Kolegij kolegij, Aktivnost aktivnost, Student student){
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.dohvatiEvidencijuForStudent(kolegij.getId(), aktivnost.getIdAktivnosti(), student.getIdStudenta());
+        HandleResponseFromCall("evidencija_za_studenta");
+    }
+
+
     public void HandleResponseFromCall(final String method){
         if(call != null){
             call.enqueue(new Callback<SasWebServiceResponse>() {
@@ -187,6 +195,9 @@ public class SasWebServiceCaller {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     Log.d("jebate patak: ", response.body().getStatus());
                                     Log.d("jebate patak2: ", response.body().getData());
+                                }
+                                else if(method=="evidencija_za_studenta"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                 }
                         }
                     }catch (Exception ex){

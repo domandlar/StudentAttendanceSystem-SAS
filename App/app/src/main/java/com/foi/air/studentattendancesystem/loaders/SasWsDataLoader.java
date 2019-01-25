@@ -1,5 +1,7 @@
 package com.foi.air.studentattendancesystem.loaders;
 
+import android.support.v4.os.IResultReceiver;
+
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
@@ -93,6 +95,11 @@ public class SasWsDataLoader {
     public void ponistiOdabirLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForPonistiOdabirlabosa(student, aktivnost);
+    }
+
+    public void evidencijaStudent(Kolegij kolegij, Aktivnost aktivnost, Student student, SasWsDataLoadedListener sasWsDataLoadedListener) {
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForDohvatiEvidencijuStudneta(kolegij, aktivnost, student);
     }
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {

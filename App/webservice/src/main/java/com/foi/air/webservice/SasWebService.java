@@ -69,4 +69,8 @@ public interface SasWebService {
     @GET("labosi/ponisti/{student}/{aktivnost}/")
     Call<SasWebServiceResponse> ponistiOdabirLabosa (@Path("student") int student, @Path("aktivnost") int aktivnost);
 
+    @GET("kolegij/{id}/aktivnost/{id}/dolasci/all/student/{id}")
+    Call<SasWebServiceResponse> dohvatiEvidencijuForStudent (@Path("kolegij") int kolegij, @Path("aktivnost") int aktivnost, @Path("student") int student);
+
+
 }
