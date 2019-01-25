@@ -18,9 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.core.entities.Student;
+import com.foi.air.core.entities.TipAktivnosti;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
@@ -43,16 +46,20 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
     BetterSpinner spinnerStudent;
 
     String idProfesora;
+    Kolegij odabraniKolegij;
 
     ArrayList<Kolegij> kolegijList;
-    ArrayList<Dvorana> dvoranaList;
+    ArrayList<Student> studentList;
+    ArrayList<TipAktivnosti> tipAktivnostList;
     ArrayAdapter<Kolegij> spinnerAdapterKolegiji;
-    ArrayAdapter<Dvorana> spinnerAdapterDvorane;
-    ArrayAdapter<CharSequence> spinnerAdapterDani;
+    ArrayAdapter<TipAktivnosti> spinnerAdapterTipAktivnosti;
+    ArrayAdapter<Student> spinnerAdapterStudenti;
 
     int idKolegija=0;
     int idStudent=0;
     int idTipAktivnosti=0;
+
+    SasWsDataLoader sasWsDataLoader;
 
 
     @Override
@@ -81,9 +88,11 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
         idProfesora = prefs.getString("idProfesora", "");
         Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
 
-        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+
+        sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.kolegijForProfesor(profesor,this);
         sasWsDataLoader.Dvorane("laboratorij");
+
 
 
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
@@ -92,18 +101,24 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
         spinnerKolegiji.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                Kolegij kolegij = (Kolegij) parent.getItemAtPosition(position);
-                idKolegija = kolegij.getId();
+                odabraniKolegij = (Kolegij) parent.getItemAtPosition(position);
+                sasWsDataLoader.tipAktivnostiForKolegij(odabraniKolegij,CheckAttendance.this);
+                sasWsDataLoader.studentiForKolegiji(odabraniKolegij,CheckAttendance.this);
             }
         });
 
         spinnerTipAktivnosti = findViewById(R.id.spinnerTipAktivnosti);
-        spinnerAdapterDvorane = new ArrayAdapter<Dvorana>(this, android.R.layout.simple_dropdown_item_1line, dvoranaList);
-        spinnerTipAktivnosti.setAdapter(spinnerAdapterDvorane);
+        spinnerAdapterTipAktivnosti = new ArrayAdapter<TipAktivnosti>(this, android.R.layout.simple_dropdown_item_1line, tipAktivnostList);
+        /*spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TipAktivnosti tipAktivnost = (TipAktivnosti) parent.getItemAtPosition(position);
+                idTipAktivnosti= tipAktivnost.getId();
+            }
+        });*/
 
         spinnerStudent = findViewById(R.id.spinnerStudent);
-        spinnerAdapterDani = ArrayAdapter.createFromResource(this,R.array.dani_u_tjednu,android.R.layout.simple_dropdown_item_1line);
-        spinnerStudent.setAdapter(spinnerAdapterDani);
+        spinnerAdapterStudenti = new ArrayAdapter<Student>(this, android.R.layout.simple_dropdown_item_1line, studentList);
 
 
         btnPrikaziEvidenciju = findViewById(R.id.buttonPrikaziEvidenciju);
@@ -160,5 +175,27 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 e.printStackTrace();
             }
         }
+        else if(status.equals("OK") && message.equals("Dohvaćeni su tipovi aktivnosti odabranog kolegija")){
+                tipAktivnostList = new ArrayList<TipAktivnosti>();
+                String dataStringAktivnosti = String.valueOf(data);
+                try {
+                    JSONArray array = new JSONArray(dataStringAktivnosti);
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject row = array.getJSONObject(i);
+                        TipAktivnosti tipAktivnosti= new TipAktivnosti();
+                        tipAktivnosti.setId(row.getInt("id_tip_aktivnosti"));
+                        tipAktivnosti.setNaziv(row.getString("naziv"));
+                        tipAktivnostList.add(tipAktivnosti);
+                    }
+                    spinnerAdapterTipAktivnosti = new ArrayAdapter<TipAktivnosti>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, tipAktivnostList);
+                    spinnerTipAktivnosti.setAdapter(spinnerAdapterTipAktivnosti);
+                    spinnerAdapterTipAktivnosti.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+        }
+        
+
+
     }
 }
