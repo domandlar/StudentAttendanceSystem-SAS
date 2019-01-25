@@ -119,12 +119,12 @@ public class SasWebServiceCaller {
     public void CallWsForTipAktivnostiKolegij(int idKolegija){
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.getTipAktivnostiForKolegij(idKolegija);
-        HandleResponseFromCall("dohvacanje tipa aktivnosti za kolegij");
+        HandleResponseFromCall("dohvacanje_aktivnosti");
     }
     public void CallWsForStudentiKolegij(int idKolegija){
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.getStudentForKolegij(idKolegija);
-        HandleResponseFromCall("dohvacanje studenata za kolegij");
+        HandleResponseFromCall("dohvacanje_aktivnosti");
     }
 
 
@@ -144,6 +144,7 @@ public class SasWebServiceCaller {
                                 }else if(method=="dohvacanje_aktivnosti"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak1: ", response.body().getMessage());
                                     //Log.d("jebate patak2: ", response.body().getData());
                                 }else if(method=="dohvacanje_kolegija_profesora") {
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());

@@ -9,6 +9,9 @@ public class TipAktivnosti {
         this.naziv=naziv;
 
     }
+    public TipAktivnosti(){
+
+    }
 
     public int getId() {
         return id;
@@ -24,6 +27,11 @@ public class TipAktivnosti {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
+    }
+
+    @Override
+    public String toString() {
+        return naziv;
     }
 }
 
