@@ -194,7 +194,27 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                     e.printStackTrace();
                 }
         }
-        
+        else if(status.equals("OK") && message.equals("Dohvaćeni su studenti sa odabranog kolegija")){
+            studentList = new ArrayList<Student>();
+            String dataStringStudenti = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataStringStudenti);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    Student student= new Student();
+                    student.setIdStudenta(row.getInt("id_studenta"));
+                    student.setIme(row.getString("ime"));
+                    student.setPrezime(row.getString("prezime"));
+                    studentList.add(student);
+                }
+                spinnerAdapterStudenti = new ArrayAdapter<Student>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, studentList);
+                spinnerStudent.setAdapter(spinnerAdapterStudenti);
+                spinnerAdapterStudenti.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
 
 
     }
