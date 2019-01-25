@@ -145,11 +145,7 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else{
-            Toast.makeText(getContext(),"Nema pronađenih aktivnosti!!", Toast.LENGTH_SHORT).show();
-        }
-
-        if(status.equals("NOT OK") && message.equals("Nema generirane lozinke za prisustvo za odabranu aktivnost u odabranom tjednu nastave.")){
+        }else if(status.equals("NOT OK") && message.equals("Nema generirane lozinke za prisustvo za odabranu aktivnost u odabranom tjednu nastave.")){
             Toast.makeText(getContext(),"Nema generirane lozinke za prisustvo za odabranu aktivnost u odabranom tjednu nastave!", Toast.LENGTH_SHORT).show();
         }else if(status.equals("NOT OK") && message.equals("Isteklo vrijeme.")){
             Toast.makeText(getContext(),"Lozinka više nije važeća!", Toast.LENGTH_SHORT).show();
