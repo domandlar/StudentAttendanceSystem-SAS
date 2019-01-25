@@ -79,8 +79,6 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         setContentView(R.layout.activity_add_seminar);
         setTitle("Dodaj Seminar");
 
-
-
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
@@ -135,10 +133,14 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+
+        mEditPocetakSata = findViewById(R.id.editTextPocetak);
+        mEditKrajSata = findViewById(R.id.editTextKraj);
+        mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null && pocetakSata != null && krajStata != null && dozvoljenoIzostanaka !=0){
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null){
                     mEditPocetakSata = findViewById(R.id.editTextPocetak);
                     pocetakSata = mEditPocetakSata.getText().toString();
                     mEditKrajSata = findViewById(R.id.editTextKraj);
