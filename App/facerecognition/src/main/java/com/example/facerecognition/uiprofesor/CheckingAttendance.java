@@ -1,6 +1,7 @@
 package com.example.facerecognition.uiprofesor;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.facerecognition.R;
+import com.foi.air.core.NavigationItem;
+import com.foi.air.core.entities.Student;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +23,7 @@ import com.example.facerecognition.R;
  * Use the {@link CheckingAttendance#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CheckingAttendance extends Fragment {
+public class CheckingAttendance extends Fragment implements NavigationItem {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +95,26 @@ public class CheckingAttendance extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return null;
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
+    }
+
+    @Override
+    public Drawable getIcon(Context context) {
+        return null;
+    }
+
+    @Override
+    public void setData(List<Student> students) {
+
     }
 
     /**
