@@ -1,5 +1,6 @@
 package com.foi.air.studentattendancesystem.password;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +14,11 @@ import android.view.MenuItem;
 
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
 import com.foi.air.passwordrecord.student.SubmitAttendance;
+import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
+import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
 
 public class PasswordFragment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,6 +65,29 @@ public class PasswordFragment extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        switch (menuItem.getItemId()){
+            case R.id.nav_seminars:
+                Intent intent = new Intent(PasswordFragment.this, ListOfSeminars.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_labs:
+                intent = new Intent(PasswordFragment.this, ListOfLabs.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                //finish();
+            case R.id.nav_schedule:
+                intent = new Intent(PasswordFragment.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(PasswordFragment.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }

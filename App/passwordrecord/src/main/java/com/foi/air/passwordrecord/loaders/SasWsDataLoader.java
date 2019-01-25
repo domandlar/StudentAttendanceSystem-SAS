@@ -1,6 +1,7 @@
 package com.foi.air.passwordrecord.loaders;
 
 import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.AktivnostiStudenta;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
 import com.foi.air.webservice.SasWebServiceCaller;
@@ -28,11 +29,20 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForGeneratePassword(idAktivnosti,tjedanNastave);
     }
+    public void allAktivnostForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAllAktivnostiStudenta(student);
+    }
+    public void zabiljeziLozinkom(Student student,String lozinka, int tjedanNastave, int idAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForZAbiljeziLozinkom(student, lozinka, tjedanNastave, idAktivnosti);
+    }
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override
         public void onDataArrived(Object message, String stauts, Object data) {
             sasWsDataLoadedListener.onWsDataLoaded(message, stauts, data);
         }
     };
+
 
 }
