@@ -40,9 +40,6 @@ public class ListOfAttendanceAdapter extends RecyclerView.Adapter<ListOfAttendan
 
         attendanceViewHolder.numberOfWeek.setText(toString().valueOf(dolazak.getTjedanNastave())+". tjedan nastave " );
         attendanceViewHolder.attendace.setText(dolazak.isPrisustvo() ? "Prisutan" : "Odsutan");
-
-
-
     }
 
     @Override

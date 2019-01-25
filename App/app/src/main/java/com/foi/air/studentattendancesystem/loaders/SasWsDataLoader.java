@@ -5,6 +5,7 @@ import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
+import com.foi.air.core.entities.TipAktivnosti;
 import com.foi.air.webservice.SasWebServiceCaller;
 import com.foi.air.webservice.SasWebServiceHandler;
 
@@ -85,6 +86,11 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForTipAktivnostiKolegij(kolegij.getId());
     }
+    public void prisustvoStudenta(Student student, int idKolegija, int idTipAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForIzostanciStudenti(student,idKolegija,idTipAktivnosti);
+    }
+
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override

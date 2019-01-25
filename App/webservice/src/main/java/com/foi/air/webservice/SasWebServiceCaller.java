@@ -7,6 +7,7 @@ import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
+import com.foi.air.core.entities.TipAktivnosti;
 import com.foi.air.webservice.responses.SasWebServiceResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -124,6 +125,11 @@ public class SasWebServiceCaller {
     public void CallWsForStudentiKolegij(int idKolegija){
         SasWebService webService = retrofit.create(SasWebService.class);
         call = webService.getStudentForKolegij(idKolegija);
+        HandleResponseFromCall("dohvacanje_aktivnosti");
+    }
+    public void CallWsForIzostanciStudenti(Student student, int kolegij, int tipAktivnosti ){
+        SasWebService webService = retrofit.create(SasWebService.class);
+        call = webService.getIzostankeForStudent("student",student.getIdStudenta(),kolegij,tipAktivnosti);
         HandleResponseFromCall("dohvacanje_aktivnosti");
     }
 
