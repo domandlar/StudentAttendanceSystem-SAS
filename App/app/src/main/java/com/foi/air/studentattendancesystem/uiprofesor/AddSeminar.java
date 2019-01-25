@@ -68,9 +68,9 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
 
     int idKolegija=0;
     int idDvorane=0;
-    String danOdrzavanja=null;
-    String pocetakSata=null;
-    String krajStata=null;
+    String danOdrzavanja="";
+    String pocetakSata="";
+    String krajStata="";
     int dozvoljenoIzostanaka=0;
 
     @Override
@@ -140,13 +140,14 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null){
-                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
-                    pocetakSata = mEditPocetakSata.getText().toString();
-                    mEditKrajSata = findViewById(R.id.editTextKraj);
-                    krajStata = mEditKrajSata.getText().toString();
-                    mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
+                pocetakSata = mEditPocetakSata.getText().toString();
+                krajStata = mEditKrajSata.getText().toString();
+                try{
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
+                }catch(Exception e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG);
+                }
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != "" && pocetakSata != "" && krajStata != "" && dozvoljenoIzostanaka != 0){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
                     Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
