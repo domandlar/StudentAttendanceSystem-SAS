@@ -1,5 +1,7 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -9,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +23,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foi.air.core.entities.Aktivnost;
+import com.foi.air.core.entities.Dolazak;
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
@@ -26,6 +31,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.core.entities.TipAktivnosti;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfAttendanceAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
@@ -35,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CheckAttendance extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
@@ -60,6 +67,11 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
     int idTipAktivnosti=0;
 
     SasWsDataLoader sasWsDataLoader;
+
+    RecyclerView recyclerView;
+    ListOfAttendanceAdapter adapter;
+    List<Dolazak> listaDolazaka;
+
 
 
     @Override
@@ -91,7 +103,6 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
 
         sasWsDataLoader = new SasWsDataLoader();
         sasWsDataLoader.kolegijForProfesor(profesor,this);
-        sasWsDataLoader.Dvorane("laboratorij");
 
 
 
@@ -104,24 +115,56 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 odabraniKolegij = (Kolegij) parent.getItemAtPosition(position);
                 sasWsDataLoader.tipAktivnostiForKolegij(odabraniKolegij,CheckAttendance.this);
                 sasWsDataLoader.studentiForKolegiji(odabraniKolegij,CheckAttendance.this);
+                idKolegija=odabraniKolegij.getId();
             }
         });
 
+
+
         spinnerTipAktivnosti = findViewById(R.id.spinnerTipAktivnosti);
         spinnerAdapterTipAktivnosti = new ArrayAdapter<TipAktivnosti>(this, android.R.layout.simple_dropdown_item_1line, tipAktivnostList);
-        /*spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TipAktivnosti tipAktivnost = (TipAktivnosti) parent.getItemAtPosition(position);
                 idTipAktivnosti= tipAktivnost.getId();
             }
-        });*/
+        });
 
         spinnerStudent = findViewById(R.id.spinnerStudent);
         spinnerAdapterStudenti = new ArrayAdapter<Student>(this, android.R.layout.simple_dropdown_item_1line, studentList);
+        spinnerStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Student student = (Student) parent.getItemAtPosition(position);
+                idStudent=student.getIdStudenta();
+            }
+        });
 
 
         btnPrikaziEvidenciju = findViewById(R.id.buttonPrikaziEvidenciju);
+        btnPrikaziEvidenciju.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (idKolegija!=0 && idStudent!=0 && idTipAktivnosti!=0){
+                    recyclerView = (RecyclerView) findViewById(R.id.recyclerViewAttendance);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(CheckAttendance.this));
+                }
+                else {
+                    AlertDialog alertDialog = new AlertDialog.Builder(CheckAttendance.this).create();
+                    alertDialog.setTitle("Pogreška");
+                    alertDialog.setMessage("Niste unjeli sva polja!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+
+            }
+        });
 
     }
 
