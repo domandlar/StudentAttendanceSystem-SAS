@@ -5,7 +5,7 @@ public class Dolazak {
     boolean prisustvo;
 
     public Dolazak(){
-        
+
     }
 
     public int getTjedanNastave() {
