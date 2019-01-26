@@ -52,6 +52,7 @@
                 android:id="@+id/spinnerTipAktivnosti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:hint="Odaberi tip aktivnosti:"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
@@ -69,6 +70,7 @@
                 android:id="@+id/spinnerStudent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:hint="Odaberi studenta:"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>

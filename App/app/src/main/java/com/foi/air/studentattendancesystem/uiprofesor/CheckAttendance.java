@@ -111,7 +111,8 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 sasWsDataLoader.tipAktivnostiForKolegij(odabraniKolegij,CheckAttendance.this);
                 sasWsDataLoader.studentiForKolegiji(odabraniKolegij,CheckAttendance.this);
                 idKolegija=odabraniKolegij.getId();
-
+                spinnerTipAktivnosti.setVisibility(View.VISIBLE);
+                spinnerStudent.setVisibility(View.VISIBLE);
             }
         });
 
