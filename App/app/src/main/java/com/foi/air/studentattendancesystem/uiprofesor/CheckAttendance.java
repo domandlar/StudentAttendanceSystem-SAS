@@ -19,12 +19,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Dolazak;
-import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
@@ -73,11 +69,10 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
     List<Dolazak> listaDolazaka;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chech_attendance);
+        setContentView(R.layout.activity_check_attendance);
         setTitle("Evidencija prisustva");
 
 
@@ -116,13 +111,17 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 sasWsDataLoader.tipAktivnostiForKolegij(odabraniKolegij,CheckAttendance.this);
                 sasWsDataLoader.studentiForKolegiji(odabraniKolegij,CheckAttendance.this);
                 idKolegija=odabraniKolegij.getId();
+
             }
         });
 
 
 
+
+
         spinnerTipAktivnosti = findViewById(R.id.spinnerTipAktivnosti);
         spinnerAdapterTipAktivnosti = new ArrayAdapter<TipAktivnosti>(this, android.R.layout.simple_dropdown_item_1line, tipAktivnostList);
+
         spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -141,14 +140,22 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
             }
         });
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewAttendance);
+        recyclerView.setLayoutManager(new LinearLayoutManager(CheckAttendance.this));
+
 
         btnPrikaziEvidenciju = findViewById(R.id.buttonPrikaziEvidenciju);
         btnPrikaziEvidenciju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (idKolegija!=0 && idStudent!=0 && idTipAktivnosti!=0){
-                    recyclerView = (RecyclerView) findViewById(R.id.recyclerViewAttendance);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(CheckAttendance.this));
+                    try {
+                        sasWsDataLoader.prisustvoStudenta(idStudent,idKolegija,idTipAktivnosti,CheckAttendance.this);
+
+                }
+                catch (Exception e){
+                        e.getMessage();
+                    }
                 }
                 else {
                     AlertDialog alertDialog = new AlertDialog.Builder(CheckAttendance.this).create();
@@ -257,8 +264,43 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 e.printStackTrace();
             }
         }
+        else if(status.equals("OK") && message.equals("Dohvaćena su prisustva studenta")){
+            listaDolazaka = new ArrayList<Dolazak>();
+            String dataStringPrisutnost = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataStringPrisutnost);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    Dolazak dolazak= new Dolazak();
+                    dolazak.setTjedanNastave(row.getInt("tjedan_nastave"));
+                    if(row.getInt("prisutan")==1)
+                        dolazak.setPrisustvo(true);
+                    else
+                        dolazak.setPrisustvo(false);
+                    listaDolazaka.add(dolazak);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+            adapter= new ListOfAttendanceAdapter(this,listaDolazaka);
+            recyclerView.setAdapter(adapter);
+        }
+        else if (status.equals("NOT OK")&& message.equals("Nema zabilježenih prisustva za odabranog studenta")){
+            listaDolazaka=new ArrayList<Dolazak>();
+            adapter= new ListOfAttendanceAdapter(this,listaDolazaka);
+            recyclerView.setAdapter(adapter);
 
-
+            AlertDialog alertDialog = new AlertDialog.Builder(CheckAttendance.this).create();
+            alertDialog.setTitle("Obavijest");
+            alertDialog.setMessage("Student nema zabilježenihh prisustava");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
     }
 }
