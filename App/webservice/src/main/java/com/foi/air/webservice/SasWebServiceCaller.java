@@ -127,10 +127,10 @@ public class SasWebServiceCaller {
         call = webService.getStudentForKolegij(idKolegija);
         HandleResponseFromCall("dohvacanje_aktivnosti");
     }
-    public void CallWsForIzostanciStudenti(Student student, int kolegij, int tipAktivnosti ){
+    public void CallWsForIzostanciStudenti(int student, int kolegij, int tipAktivnosti ){
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.getIzostankeForStudent("student",student.getIdStudenta(),kolegij,tipAktivnosti);
-        HandleResponseFromCall("dohvacanje_aktivnosti");
+        call = webService.getIzostankeForStudent("student",student,kolegij,tipAktivnosti);
+        HandleResponseFromCall("dohvacanje_dolazaka");
     }
 
 
@@ -148,6 +148,11 @@ public class SasWebServiceCaller {
                                     //Log.d("jebate patak2: ", response.body().getMessage());
 
                                 }else if(method=="dohvacanje_aktivnosti"){
+                                    webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
+                                    //Log.d("jebate patak: ", response.body().getStatus());
+                                    //Log.d("jebate patak1: ", response.body().getMessage());
+                                    //Log.d("jebate patak2: ", response.body().getData());
+                                }else if(method=="dohvacanje_dolazaka"){
                                     webServiceHandler.onDataArrived(response.body().getMessage(), response.body().getStatus(), response.body().getData());
                                     //Log.d("jebate patak: ", response.body().getStatus());
                                     //Log.d("jebate patak1: ", response.body().getMessage());

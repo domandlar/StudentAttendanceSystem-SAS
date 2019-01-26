@@ -86,9 +86,9 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForTipAktivnostiKolegij(kolegij.getId());
     }
-    public void prisustvoStudenta(Student student, int idKolegija, int idTipAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+    public void prisustvoStudenta(int idStudent, int idKolegija, int idTipAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForIzostanciStudenti(student,idKolegija,idTipAktivnosti);
+        Ws.CallWsForIzostanciStudenti(idStudent,idKolegija,idTipAktivnosti);
     }
 
 

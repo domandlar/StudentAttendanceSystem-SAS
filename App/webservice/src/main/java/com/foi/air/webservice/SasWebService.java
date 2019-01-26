@@ -64,7 +64,7 @@ public interface SasWebService {
     @GET("kolegij/studenti/{idKolegija}/")
     Call<SasWebServiceResponse> getStudentForKolegij (@Path("idKolegija") int idKolegija);
 
-    @GET("evidencija/{akcija}/{uloga}/{idUloge}/{kolegij}/{tipAktivnosti}/")
+    @GET("evidencija/dohvati/{uloga}/{idUloge}/{kolegij}/{tipAktivnosti}/")
     Call<SasWebServiceResponse> getIzostankeForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("kolegij") int kolegij, @Path("tipAktivnosti") int tipAktivnosti);
 
 }
