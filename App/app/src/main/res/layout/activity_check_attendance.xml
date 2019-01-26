@@ -1,0 +1,109 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include
+                layout="@layout/toolbar_layout"/>
+
+
+            <TextView
+                android:id="@+id/textViewNazivKolegija"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Naziv kolegija:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerKolegiji"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:hint="Odaberi kolegij:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+            <TextView
+                android:id="@+id/textViewTipAktivnosti"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Tip aktivnosti:"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerTipAktivnosti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:hint="Odaberi tip aktivnosti:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textViewStudent"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Student :"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinnerStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:hint="Odaberi studenta:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <Button
+                android:id="@+id/buttonPrikaziEvidenciju"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:text="Prikazi Evidenciju"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewAttendance"
+                android:layout_width="match_parent"
+                android:layout_height="359dp" />
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
+
+
+</android.support.v4.widget.DrawerLayout>

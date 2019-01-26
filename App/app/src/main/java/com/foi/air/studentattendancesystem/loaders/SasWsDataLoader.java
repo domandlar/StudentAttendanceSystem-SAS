@@ -8,6 +8,9 @@ import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.uistudent.LabsBooking;
+
+import com.foi.air.core.entities.TipAktivnosti;
+
 import com.foi.air.webservice.SasWebServiceCaller;
 import com.foi.air.webservice.SasWebServiceHandler;
 
@@ -101,6 +104,19 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForDohvatiEvidencijuStudneta(kolegij, aktivnost, student);
     }
+    public void studentiForKolegiji(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForStudentiKolegij(kolegij.getId());
+    }
+    public void tipAktivnostiForKolegij(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForTipAktivnostiKolegij(kolegij.getId());
+    }
+    public void prisustvoStudenta(int idStudent, int idKolegija, int idTipAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForIzostanciStudenti(idStudent,idKolegija,idTipAktivnosti);
+    }
+
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override
