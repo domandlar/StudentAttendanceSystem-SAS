@@ -28,7 +28,7 @@ public class NavigationManager {
 
     private NavigationManager(){
         navigationItems = new ArrayList<>();
-        navigationItems.add(new CheckingAttendance());
+        //navigationItems.add(new CheckingAttendance());
     }
     public static NavigationManager getInstance()
     {

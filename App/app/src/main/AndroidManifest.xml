@@ -32,7 +32,7 @@
         <activity android:name=".uiprofesor.ScheduleProfesor" />
         <activity android:name=".uiprofesor.ScheduleForDayProfesor" />
         <activity android:name=".uistudent.ScheduleStudent" />
-        <activity android:name=".uistudent.ScheduleForDayStudent"></activity>
+        <activity android:name=".uistudent.ScheduleForDayStudent" />
         <activity android:name=".uiprofesor.AddCourse" />
         <activity android:name=".uiprofesor.AddCourseToProfessor" />
         <activity android:name=".uiprofesor.AddLecture" />
@@ -43,7 +43,8 @@
         <activity android:name=".uistudent.LecturesList" />
         <activity android:name=".uistudent.AddCourseToStudent" />
         <activity android:name=".uistudent.ScheduleForDayStudent" />
-        <activity android:name=".uistudent.LabsBooking"></activity>
+        <activity android:name=".uistudent.LabsBooking" />
+        <activity android:name=".face.FaceFragment"></activity>
     </application>
 
 </manifest>

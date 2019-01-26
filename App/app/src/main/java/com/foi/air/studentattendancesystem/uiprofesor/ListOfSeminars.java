@@ -20,12 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.facerecognition.uiprofesor.CheckingAttendance;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 
+import com.foi.air.studentattendancesystem.face.FaceFragment;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 
@@ -112,6 +114,11 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
             case R.id.nav_schedule:
                 intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_attendance:
+                intent = new Intent(ListOfSeminars.this, FaceFragment.class);
+                //intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
