@@ -29,6 +29,7 @@ import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdap
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -122,6 +123,11 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(ScheduleForDayProfesor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ScheduleForDayProfesor.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
         }

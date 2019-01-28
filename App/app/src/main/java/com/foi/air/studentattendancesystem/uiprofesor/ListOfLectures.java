@@ -24,6 +24,7 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfLecturesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,6 +102,11 @@ public class ListOfLectures extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(ListOfLectures.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ListOfLectures.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
             case R.id.nav_logout:

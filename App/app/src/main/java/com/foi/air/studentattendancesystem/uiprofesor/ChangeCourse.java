@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 
@@ -160,6 +161,11 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(ChangeCourse.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ChangeCourse.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
             case R.id.nav_logout:

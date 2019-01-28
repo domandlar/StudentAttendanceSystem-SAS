@@ -23,6 +23,7 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleAdapter;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +106,11 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(ScheduleProfesor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ScheduleProfesor.this, PasswordFragment.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
         }

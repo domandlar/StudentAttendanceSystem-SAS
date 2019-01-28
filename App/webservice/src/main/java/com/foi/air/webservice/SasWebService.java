@@ -80,4 +80,18 @@ public interface SasWebService {
     @GET("evidencija/dohvati/{uloga}/{idUloge}/{kolegij}/{tipAktivnosti}/")
     Call<SasWebServiceResponse> getIzostankeForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge, @Path("kolegij") int kolegij, @Path("tipAktivnosti") int tipAktivnosti);
 
+    @GET("aktivnost/dohvati/{uloga}/{idUloge}/all/")
+    Call<SasWebServiceResponse> getAllAktivnostForProfesor (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
+
+    @FormUrlEncoded
+    @POST("evidentiraj/generirajLozinku/")
+    Call<SasWebServiceResponse> generirajLozinku (@Field("aktivnost") int idAktivnosti, @Field ("tjedanNastave") int tjedanNastave);
+
+    @GET("aktivnost/dohvati/{uloga}/{idUloge}/all/")
+    Call<SasWebServiceResponse> getAllAktivnostForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
+
+    @FormUrlEncoded
+    @POST("evidentiraj/zabiljeziLozinkom/")
+    Call<SasWebServiceResponse> zabiljeziPrisustvoLozinkom (@Field("student") int idStudenta, @Field("lozinka") String lozinka, @Field ("tjedanNastave") int tjedanNastave, @Field("aktivnost") int idAktivnosti);
+
 }

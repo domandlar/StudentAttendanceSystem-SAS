@@ -12,7 +12,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 
-    <!--
+
     <com.weiwangcn.betterspinner.library.BetterSpinner
         android:id="@+id/spinnerTpAktivnosti"
         android:layout_height="wrap_content"
@@ -21,7 +21,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
-        -->
 
     <TextView
         android:id="@+id/textViewTjedanNastave"
@@ -32,7 +31,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 
-    <!--
+
     <com.weiwangcn.betterspinner.library.BetterSpinner
         android:id="@+id/spinnerTjedanNastave"
         android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         />
-        -->
+
 
     <TextView
         android:id="@+id/textLozinka"

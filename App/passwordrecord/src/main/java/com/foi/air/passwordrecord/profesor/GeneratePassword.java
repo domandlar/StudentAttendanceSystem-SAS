@@ -94,17 +94,6 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         btnGenerirajLozinku.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(idAktivnosti !=0 && tjedanNastve !=0){
-                    /*
-                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
-                    pocetakSata = mEditPocetakSata.getText().toString();
-                    mEditKrajSata = findViewById(R.id.editTextKraj);
-                    krajStata = mEditKrajSata.getText().toString();
-                    mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
-                    dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
-                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
-                    Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();
-                    */
                     ShowPassword showPasswordFragment = new ShowPassword();
                     Bundle bundle = new Bundle();
                     bundle.putInt("idAktivnosti", idAktivnosti);

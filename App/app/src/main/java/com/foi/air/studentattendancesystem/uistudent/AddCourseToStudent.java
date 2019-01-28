@@ -26,6 +26,7 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.password.PasswordFragment;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
@@ -162,10 +163,16 @@ public class AddCourseToStudent extends AppCompatActivity implements NavigationV
                 intent = new Intent(AddCourseToStudent.this, LecturesList.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(AddCourseToStudent.this, PasswordFragment.class);
+                intent.putExtra("uloga","student");
+                startActivity(intent);
+                break;
             case R.id.nav_logout:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
         }
         return true;
     }
