@@ -141,7 +141,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.app_bar_menu, menu);
+        menuInflater.inflate(R.menu.app_bar_menu_seminari_student, menu);
 
         return true;
     }

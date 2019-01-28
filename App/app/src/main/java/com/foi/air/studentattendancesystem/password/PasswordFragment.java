@@ -78,6 +78,7 @@ public class PasswordFragment extends AppCompatActivity implements NavigationVie
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 //finish();
+                break;
             case R.id.nav_schedule:
                 intent = new Intent(PasswordFragment.this, ScheduleProfesor.class);
                 startActivity(intent);
