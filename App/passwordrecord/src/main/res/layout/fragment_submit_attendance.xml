@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewNazivSeminara"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Odaberi aktivnost:"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+
+    <com.weiwangcn.betterspinner.library.BetterSpinner
+        android:id="@+id/spinnerTpAktivnosti"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Aktivnosti..."
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewTjedanNastave"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Odaberi tjedan nastave:"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+
+    <com.weiwangcn.betterspinner.library.BetterSpinner
+        android:id="@+id/spinnerTjedanNastave"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Tjedni..."
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/textLozinka"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Lozinka za aktivnost:"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <EditText
+        android:id="@+id/txtUnosLozinke"
+        android:hint="Unesi lozinku za odabranu aktivnost..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+
+    <Button
+        android:id="@+id/buttonPotvrdiDolazak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="100dp"
+        android:text="Potvrdi dolazak" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</LinearLayout>

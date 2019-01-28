@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtCountDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="20"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <TextView
+        android:id="@+id/txtLozinka"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Lozinka..."
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+</LinearLayout>
