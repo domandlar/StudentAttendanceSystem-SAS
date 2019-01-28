@@ -12,9 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.foi.air.core.NavigationItem;
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
 import com.foi.air.passwordrecord.student.SubmitAttendance;
 import com.foi.air.studentattendancesystem.MainActivity;
+import com.foi.air.studentattendancesystem.NavigationManager;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
@@ -47,22 +49,27 @@ public class PasswordFragment extends AppCompatActivity implements NavigationVie
 
         uloga = getIntent().getStringExtra("uloga");
 
+
+
         if(uloga.equals("profesor")){
             setTitle("Generiraj lozinku");
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            GeneratePassword generatePassword = new GeneratePassword();
-            fragmentTransaction.replace(R.id.fragment_container,generatePassword);
-            fragmentTransaction.commit();
+            initializeNavigationManager();
+            startMainModule("profesor");
         }else if(uloga.equals("student")){
             setTitle("Potvrđivanje prisustva");
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container,new SubmitAttendance());
-            fragmentTransaction.commit();
+            initializeNavigationManager();
+            startMainModule("student");
         }
+
+    }
+    private void startMainModule(String role) {
+        NavigationManager.getInstance().startMainModule(role);
     }
 
+    private void initializeNavigationManager() {
+        NavigationManager nm = NavigationManager.getInstance();
+        nm.setDrawerDependencies(this);
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){

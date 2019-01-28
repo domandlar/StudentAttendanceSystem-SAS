@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foi.air.core.NavigationItem;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.AktivnostiProfesora;
 import com.foi.air.core.entities.AktivnostiStudenta;
@@ -35,7 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SubmitAttendance extends Fragment implements SasWsDataLoadedListener {
+public class SubmitAttendance extends Fragment implements SasWsDataLoadedListener, NavigationItem {
     BetterSpinner spinnerTipAktivnosti;
     BetterSpinner spinnerTjedanNastave;
     EditText lozinkaPrisustva;
@@ -154,5 +155,15 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
         }else if(status.equals("OK") && message.equals("Zabilježeno prisustvo.")){
             Toast.makeText(getContext(),"Prisustvo za odabranu aktivnost je zabilježeno!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return this;
+    }
+
+    @Override
+    public void setData() {
+
     }
 }

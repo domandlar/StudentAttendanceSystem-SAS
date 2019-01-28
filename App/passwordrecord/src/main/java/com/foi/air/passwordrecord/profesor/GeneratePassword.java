@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.foi.air.core.NavigationItem;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.AktivnostiProfesora;
 import com.foi.air.core.entities.Kolegij;
@@ -45,7 +46,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GeneratePassword extends Fragment implements SasWsDataLoadedListener {
+public class GeneratePassword extends Fragment implements SasWsDataLoadedListener, NavigationItem {
     BetterSpinner spinnerTipAktivnosti;
     BetterSpinner spinnerTjedanNastave;
     Button btnGenerirajLozinku;
@@ -151,5 +152,15 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return this;
+    }
+
+    @Override
+    public void setData() {
+
     }
 }
