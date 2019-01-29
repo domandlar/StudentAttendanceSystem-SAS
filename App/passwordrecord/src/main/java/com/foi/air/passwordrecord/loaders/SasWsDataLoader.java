@@ -4,8 +4,8 @@ import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.AktivnostiStudenta;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
-import com.foi.air.webservice.SasWebServiceCaller;
-import com.foi.air.webservice.SasWebServiceHandler;
+import com.foi.air.passwordrecord.SasWebServiceCaller;
+import com.foi.air.passwordrecord.SasWebServiceHandler;
 
 public class SasWsDataLoader {
     private Boolean opSuccessful;
@@ -33,9 +33,9 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForAllAktivnostiStudenta(student);
     }
-    public void zabiljeziLozinkom(Student student,String lozinka, int tjedanNastave, int idAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+    public void provjeriLozinku(Student student,String lozinka, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForZAbiljeziLozinkom(student, lozinka, tjedanNastave, idAktivnosti);
+        Ws.CallWsForProvjeriLozinku(student, lozinka, tjedanNastave);
     }
     public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {
         @Override

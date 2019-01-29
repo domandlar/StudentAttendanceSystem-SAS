@@ -96,7 +96,7 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
                 if(idAktivnosti !=0 && tjedanNastve !=0 && lozinkaPrisustva.getText().toString() != ""){
                     String lozinka = lozinkaPrisustva.getText().toString();
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-                    sasWsDataLoader.zabiljeziLozinkom(student,lozinka,tjedanNastve,idAktivnosti, SubmitAttendance.this);
+                    sasWsDataLoader.provjeriLozinku(student,lozinka,tjedanNastve, SubmitAttendance.this);
 
                 }else{
                     AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
