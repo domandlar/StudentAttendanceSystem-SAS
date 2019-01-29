@@ -47,7 +47,7 @@
         <activity android:name=".uistudent.LabsBooking" />
         <activity android:name=".uistudent.Attendance" />
         <activity android:name=".uistudent.AttendanceList" />
-        <activity android:name=".attendance.PasswordActivity" />
+        <activity android:name=".attendance.profesor.PasswordActivity" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.foi.air.passwordrecord.loaders;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.AktivnostiStudenta;
 import com.foi.air.core.entities.Profesor;

@@ -13,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
+import com.foi.air.passwordrecord.student.SubmitAttendance;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
+import com.foi.air.studentattendancesystem.attendance.profesor.PasswordActivity;
 import com.foi.air.studentattendancesystem.uiprofesor.CheckAttendance;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
@@ -73,6 +75,20 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
             }
 
         }else{//student
+            switch(modul){
+                case 0:
+                    SubmitAttendance sa = new SubmitAttendance();
+                    sa.setData(idAktivnosti,idUloge,tjedanNastave);
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.fragment_container,sa).addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                    break;
+                case 1:
+                    break;
+            }
         }
 
     }

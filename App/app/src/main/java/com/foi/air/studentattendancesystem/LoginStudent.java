@@ -14,9 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Student;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.uistudent.ListCourses;
 import com.foi.air.studentattendancesystem.uistudent.SeminarList;
 
 import org.json.JSONException;
@@ -132,7 +133,7 @@ public class LoginStudent extends AppCompatActivity implements SasWsDataLoadedLi
     }
 
     private void startNextActivity(){
-        Intent intent = new Intent(LoginStudent.this, SeminarList.class);
+        Intent intent = new Intent(LoginStudent.this, ListCourses.class);
         progressBar.setVisibility(View.GONE);
         startActivity(intent);
 

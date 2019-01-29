@@ -18,10 +18,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foi.air.core.NavigationItem;
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.AktivnostiStudenta;
 import com.foi.air.core.entities.Student;
 import com.foi.air.passwordrecord.R;
-import com.foi.air.passwordrecord.loaders.SasWsDataLoadedListener;
 import com.foi.air.passwordrecord.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 

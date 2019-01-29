@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.attendance;
+package com.foi.air.studentattendancesystem.attendance.profesor;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,12 +20,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.foi.air.core.NavigationItem;
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.AktivnostiProfesora;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
-import com.foi.air.studentattendancesystem.NavigationManager;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+import com.foi.air.studentattendancesystem.attendance.ModuleActivity;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;

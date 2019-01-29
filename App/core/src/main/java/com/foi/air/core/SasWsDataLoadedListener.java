@@ -1,4 +1,4 @@
-package com.foi.air.passwordrecord.loaders;
+package com.foi.air.core;
 
 public interface SasWsDataLoadedListener {
     void onWsDataLoaded(Object message, String status, Object data);

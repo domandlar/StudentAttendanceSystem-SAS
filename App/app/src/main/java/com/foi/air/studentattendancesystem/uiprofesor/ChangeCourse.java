@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.profesor.PasswordActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 
