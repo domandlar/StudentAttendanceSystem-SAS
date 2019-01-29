@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import java.util.List;
 
 public interface NavigationItem {
+    boolean prisustvo=false;
     public Fragment getFragment();
-    public void setData();
+    public void setData(int idAktivnosti, int idUloge, int tjedanNastave);
+    public boolean getData();
 }

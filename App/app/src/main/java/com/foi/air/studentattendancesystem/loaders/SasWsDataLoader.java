@@ -116,6 +116,10 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForIzostanciStudenti(idStudent,idKolegija,idTipAktivnosti);
     }
+    public void allAktivnostForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAllAktivnostiProfesora(profesor);
+    }
 
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {

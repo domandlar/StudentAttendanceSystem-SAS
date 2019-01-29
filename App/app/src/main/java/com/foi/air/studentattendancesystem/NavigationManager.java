@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import com.foi.air.core.NavigationItem;
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
 import com.foi.air.passwordrecord.student.SubmitAttendance;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
 
 import java.util.ArrayList;
 import java.util.List;

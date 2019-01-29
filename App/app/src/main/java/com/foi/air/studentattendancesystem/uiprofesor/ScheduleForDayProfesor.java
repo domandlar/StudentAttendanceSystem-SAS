@@ -1,6 +1,5 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -21,15 +20,12 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.foi.air.core.entities.Aktivnost;
-import com.foi.air.core.entities.Kolegij;
-import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -126,7 +122,7 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ScheduleForDayProfesor.this, PasswordFragment.class);
+                intent = new Intent(ScheduleForDayProfesor.this, PasswordActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;

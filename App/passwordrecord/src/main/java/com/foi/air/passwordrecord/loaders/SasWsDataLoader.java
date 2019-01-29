@@ -21,10 +21,7 @@ public class SasWsDataLoader {
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForKolegijiProfesora(profesor);
     }
-    public void allAktivnostForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
-        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForAllAktivnostiProfesora(profesor);
-    }
+
     public void generatePassword(int idAktivnosti, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForGeneratePassword(idAktivnosti,tjedanNastave);

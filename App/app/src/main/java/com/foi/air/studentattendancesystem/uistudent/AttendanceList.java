@@ -22,8 +22,7 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.AttendanceListAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 
 import java.util.List;
 
@@ -98,7 +97,7 @@ public class AttendanceList extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(AttendanceList.this, PasswordFragment.class);
+                intent = new Intent(AttendanceList.this, PasswordActivity.class);
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;

@@ -8,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +18,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foi.air.core.NavigationItem;
-import com.foi.air.core.entities.Aktivnost;
-import com.foi.air.core.entities.AktivnostiProfesora;
 import com.foi.air.core.entities.AktivnostiStudenta;
-import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
 import com.foi.air.passwordrecord.R;
 import com.foi.air.passwordrecord.loaders.SasWsDataLoadedListener;
 import com.foi.air.passwordrecord.loaders.SasWsDataLoader;
-import com.foi.air.passwordrecord.profesor.ShowPassword;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
@@ -163,7 +158,12 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
     }
 
     @Override
-    public void setData() {
+    public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {
 
+    }
+
+    @Override
+    public boolean getData() {
+        return false;
     }
 }

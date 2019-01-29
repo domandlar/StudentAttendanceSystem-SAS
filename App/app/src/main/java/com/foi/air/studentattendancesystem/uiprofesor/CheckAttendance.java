@@ -30,7 +30,7 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfAttendanceAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
@@ -201,7 +201,7 @@ public class CheckAttendance extends AppCompatActivity implements NavigationView
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(CheckAttendance.this, PasswordFragment.class);
+                intent = new Intent(CheckAttendance.this, PasswordActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;

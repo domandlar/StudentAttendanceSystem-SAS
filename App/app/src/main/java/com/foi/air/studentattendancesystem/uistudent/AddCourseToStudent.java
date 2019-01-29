@@ -20,18 +20,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.foi.air.core.entities.Kolegij;
-import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
-import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
@@ -164,7 +158,7 @@ public class AddCourseToStudent extends AppCompatActivity implements NavigationV
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(AddCourseToStudent.this, PasswordFragment.class);
+                intent = new Intent(AddCourseToStudent.this, PasswordActivity.class);
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;

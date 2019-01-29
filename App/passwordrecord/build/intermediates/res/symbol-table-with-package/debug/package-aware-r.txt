@@ -1045,7 +1045,6 @@ id beginning
 id blocking
 id bookSeminar
 id bottom
-id buttonGenerirajLozinku
 id buttonPanel
 id buttonPotvrdiDolazak
 id center
@@ -1290,7 +1289,6 @@ layout notification_template_part_time
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
-layout show_passwod
 layout support_simple_spinner_dropdown_item
 layout toolbar_layout
 menu app_bar_menu

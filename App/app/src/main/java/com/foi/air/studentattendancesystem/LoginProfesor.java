@@ -152,4 +152,11 @@ public class LoginProfesor extends AppCompatActivity implements SasWsDataLoadedL
         Matcher matcher = email_check.matcher(emailStr);
         return matcher.find();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginProfesor.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }

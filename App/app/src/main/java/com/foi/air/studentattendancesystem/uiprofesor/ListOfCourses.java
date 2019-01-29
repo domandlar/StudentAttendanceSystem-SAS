@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
@@ -25,7 +24,7 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfCoursesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,7 +105,7 @@ public class ListOfCourses extends AppCompatActivity implements NavigationView.O
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ListOfCourses.this, PasswordFragment.class);
+                intent = new Intent(ListOfCourses.this, PasswordActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;

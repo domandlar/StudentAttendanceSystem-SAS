@@ -1,6 +1,5 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -28,7 +27,7 @@ import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdap
 
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordFragment;
+import com.foi.air.studentattendancesystem.password.PasswordActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,7 +114,7 @@ public class ListOfLabs extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ListOfLabs.this, PasswordFragment.class);
+                intent = new Intent(ListOfLabs.this, PasswordActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
