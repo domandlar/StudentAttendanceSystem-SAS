@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.facerecognition.R;
+import com.foi.air.core.NavigationItem;
+import com.foi.air.core.entities.Dolazak;
 import com.microsoft.projectoxford.face.FaceServiceClient;
 import com.microsoft.projectoxford.face.FaceServiceRestClient;
 import com.microsoft.projectoxford.face.contract.FaceRectangle;
@@ -23,6 +25,7 @@ import com.microsoft.projectoxford.face.contract.Person;
 import com.microsoft.projectoxford.face.rest.ClientException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import android.app.*;
@@ -31,7 +34,7 @@ import android.graphics.*;
 import android.widget.*;
 
 
-public class CheckingAttendance extends Fragment {
+public class CheckingAttendance extends Fragment implements NavigationItem {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
     Button btnSlikaj;
@@ -40,6 +43,11 @@ public class CheckingAttendance extends Fragment {
 
     Bitmap mBitmap;
     Face[] facesDetected;
+
+    String idProfesora;
+    int idAktivnosti=0;
+    int tjedanNastve=0;
+    ArrayList<Dolazak> prisutniStudenti;
 
     private final String apiEndpoint = "https://westeurope.api.cognitive.microsoft.com/face/v1.0";
 
@@ -58,6 +66,7 @@ public class CheckingAttendance extends Fragment {
         imageView = rootView.findViewById(R.id.cameraView);
         btnSlikaj = rootView.findViewById(R.id.btnPoslikaj);
         btnProvijeri = rootView.findViewById(R.id.btnProvijeri);
+        prisutniStudenti = new ArrayList<Dolazak>();
 
         btnSlikaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +101,23 @@ public class CheckingAttendance extends Fragment {
             imageView.setImageBitmap(imageBitmap);
 
         }
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return null;
+    }
+
+    @Override
+    public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {
+        this.idAktivnosti=idAktivnosti;
+        this.idProfesora=String.valueOf(idUloge);
+        this.tjedanNastve=tjedanNastave;
+    }
+
+    @Override
+    public ArrayList<Dolazak> getData() {
+        return prisutniStudenti;
     }
 
     class detectTask extends  AsyncTask<InputStream,String,Face[]> {
@@ -232,7 +258,9 @@ public class CheckingAttendance extends Fragment {
         @Override
         protected void onPostExecute(Person person) {
             mDialog.dismiss();
-
+            Dolazak prisutanStudent = new Dolazak();
+            prisutanStudent.setIdStudenta(Integer.parseInt(person.name));
+            prisutniStudenti.add(prisutanStudent);
         }
 
         @Override
