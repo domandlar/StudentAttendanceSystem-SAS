@@ -30,7 +30,7 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfAttendanceAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;

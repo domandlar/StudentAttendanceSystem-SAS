@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.ScheduleAdapterStudent;
-import com.foi.air.studentattendancesystem.password.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
 
 import java.util.ArrayList;
 

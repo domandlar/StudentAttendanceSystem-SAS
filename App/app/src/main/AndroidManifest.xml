@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".password.ModuleActivity"></activity>
+        <activity android:name=".attendance.ModuleActivity"></activity>
         <activity android:name=".uiprofesor.CheckAttendance" />
         <activity android:name=".uiprofesor.ListOfSeminars" />
         <activity android:name=".SplashScreen">
@@ -47,7 +47,7 @@
         <activity android:name=".uistudent.LabsBooking" />
         <activity android:name=".uistudent.Attendance" />
         <activity android:name=".uistudent.AttendanceList" />
-        <activity android:name=".password.PasswordActivity" />
+        <activity android:name=".attendance.PasswordActivity" />
     </application>
 
 </manifest>

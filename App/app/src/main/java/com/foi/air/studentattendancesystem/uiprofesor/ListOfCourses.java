@@ -24,7 +24,7 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfCoursesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.password.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

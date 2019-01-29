@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.password;
+package com.foi.air.studentattendancesystem.attendance;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -148,15 +148,6 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
 
     }
 
-    private void startMainModule(String role) {
-        NavigationManager.getInstance().startMainModule(role);
-    }
-
-    private void initializeNavigationManager() {
-        NavigationManager nm = NavigationManager.getInstance();
-        nm.setDrawerDependencies(this);
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
@@ -229,5 +220,5 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
     public boolean getData() {
         return false;
     }
-    
+
 }

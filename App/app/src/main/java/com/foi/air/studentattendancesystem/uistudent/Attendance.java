@@ -22,7 +22,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
-import com.foi.air.studentattendancesystem.password.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import java.util.ArrayList;
