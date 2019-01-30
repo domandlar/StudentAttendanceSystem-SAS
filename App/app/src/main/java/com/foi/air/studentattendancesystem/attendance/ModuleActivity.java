@@ -3,7 +3,6 @@ package com.foi.air.studentattendancesystem.attendance;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -27,7 +26,6 @@ import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
 import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
-import com.foi.air.webservice.SasWebService;
 
 import java.util.ArrayList;
 
@@ -140,7 +138,7 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(this, PasswordActivity.class);
+                intent = new Intent(this, CheckActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
@@ -154,7 +152,7 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ModuleActivity.this, PasswordActivity.class);
+        Intent intent = new Intent(ModuleActivity.this, CheckActivity.class);
         startActivity(intent);
         this.finish();
     }

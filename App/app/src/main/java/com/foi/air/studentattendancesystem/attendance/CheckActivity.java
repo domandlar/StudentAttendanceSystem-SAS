@@ -40,7 +40,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class PasswordActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener, NavigationItem {
+public class CheckActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
 
     private Toolbar toolBar;
 
@@ -151,7 +151,7 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
 
             public void onClick(View v) {
                 if(modul != -1 && idAktivnosti != 0 && tjedanNastve != -1){
-                    Intent intent = new Intent (PasswordActivity.this, ModuleActivity.class);
+                    Intent intent = new Intent (CheckActivity.this, ModuleActivity.class);
                     intent.putExtra("uloga", uloga);
                     intent.putExtra("modul", modul);
                     intent.putExtra("idAktivnosti",idAktivnosti);
@@ -160,7 +160,7 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
                     intent.putExtra("tjedanNastave", tjedanNastve);
                     startActivity(intent);
                 }else{
-                    AlertDialog alertDialog = new AlertDialog.Builder(PasswordActivity.this).create();
+                    AlertDialog alertDialog = new AlertDialog.Builder(CheckActivity.this).create();
                     alertDialog.setTitle("Rezultat prijave");
                     alertDialog.setMessage("Niste odabrali sva polja!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -180,11 +180,11 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(PasswordActivity.this, ListOfSeminars.class);
+                Intent intent = new Intent(CheckActivity.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(PasswordActivity.this, ListOfLabs.class);
+                intent = new Intent(CheckActivity.this, ListOfLabs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
@@ -193,11 +193,11 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
                 //finish();
                 break;
             case R.id.nav_schedule:
-                intent = new Intent(PasswordActivity.this, ScheduleProfesor.class);
+                intent = new Intent(CheckActivity.this, ScheduleProfesor.class);
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(PasswordActivity.this, PasswordActivity.class);
+                intent = new Intent(CheckActivity.this, CheckActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
@@ -261,21 +261,6 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
             }
         }
 
-    }
-
-    @Override
-    public Fragment getFragment() {
-        return null;
-    }
-
-    @Override
-    public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {
-
-    }
-
-    @Override
-    public ArrayList<Dolazak> getData() {
-        return null;
     }
 
 

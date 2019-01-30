@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 
@@ -164,7 +164,7 @@ public class ChangeCourse extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ChangeCourse.this, PasswordActivity.class);
+                intent = new Intent(ChangeCourse.this, CheckActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;

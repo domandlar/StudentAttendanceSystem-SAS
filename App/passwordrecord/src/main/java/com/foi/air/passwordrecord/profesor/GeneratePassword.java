@@ -82,10 +82,6 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
 
         }
     }
-    @Override
-    public Fragment getFragment() {
-        return this;
-    }
 
     @Override
     public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {

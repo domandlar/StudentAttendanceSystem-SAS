@@ -25,7 +25,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import org.json.JSONArray;
@@ -158,7 +158,7 @@ public class AddCourseToStudent extends AppCompatActivity implements NavigationV
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(AddCourseToStudent.this, PasswordActivity.class);
+                intent = new Intent(AddCourseToStudent.this, CheckActivity.class);
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;

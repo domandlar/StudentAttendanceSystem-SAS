@@ -24,7 +24,7 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfLecturesAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,7 +105,7 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(LecturesList.this, PasswordActivity.class);
+                intent = new Intent(LecturesList.this, CheckActivity.class);
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;

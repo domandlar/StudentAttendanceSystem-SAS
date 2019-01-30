@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.ScheduleAdapterStudent;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import java.util.ArrayList;
 
@@ -99,7 +99,7 @@ public class ScheduleStudent extends AppCompatActivity implements NavigationView
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ScheduleStudent.this, PasswordActivity.class);
+                intent = new Intent(ScheduleStudent.this, CheckActivity.class);
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;

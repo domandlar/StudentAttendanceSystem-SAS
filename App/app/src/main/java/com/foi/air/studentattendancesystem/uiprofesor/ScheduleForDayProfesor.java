@@ -25,7 +25,7 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleForDayAdapter;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -122,7 +122,7 @@ public class ScheduleForDayProfesor extends AppCompatActivity implements Navigat
                 startActivity(intent);
                 break;
             case R.id.nav_generate_passwords:
-                intent = new Intent(ScheduleForDayProfesor.this, PasswordActivity.class);
+                intent = new Intent(ScheduleForDayProfesor.this, CheckActivity.class);
                 intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
