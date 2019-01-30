@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.foi.air.core.SasWsDataLoadedListener;
@@ -42,6 +45,8 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddSeminar;
+    Button btnPocetakSataPicker;
+    Button btnKrajSataPicker;
     EditText mEditPocetakSata;
     EditText mEditKrajSata;
     EditText mEditDozvoljenoIzostanaka;
@@ -63,6 +68,9 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
     String pocetakSata="";
     String krajStata="";
     int dozvoljenoIzostanaka=0;
+
+    int hour;
+    int minute_x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,9 +164,46 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
                 }
             }
         });
+        btnPocetakSataPicker = findViewById(R.id.btnPocetakSataPicker);
+        btnPocetakSataPicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(0);
+            }
+        });
+        btnKrajSataPicker = findViewById(R.id.btnKrajSataPicker);
+        btnKrajSataPicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(1);
+            }
+        });
 
     }
-
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if(id == 0){
+            return new TimePickerDialog(AddSeminar.this, pocetakTimePickerListener, hour, minute_x, true);
+        }else if(id == 1){
+            return new TimePickerDialog(AddSeminar.this, krajTimePickerListener, hour, minute_x, true);
+        }else return null;
+    }
+    protected TimePickerDialog.OnTimeSetListener pocetakTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            pocetakSata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditPocetakSata.setText(pocetakSata);
+        }
+    };
+    protected TimePickerDialog.OnTimeSetListener krajTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            krajStata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditKrajSata.setText(krajStata);
+        }
+    };
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
