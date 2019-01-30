@@ -1,11 +1,14 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -37,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static java.lang.Thread.sleep;
 
@@ -47,6 +52,10 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
     private Button btnAddLab;
     Button btnPocetakSataPicker;
     Button btnKrajSataPicker;
+    Button btnPocetakUpisaDatePicker;
+    Button btnKrajUpisaDatePicker;
+    Button btnPocetakUpisaTimePicker;
+    Button btnKrajUpisaTimePicker;
     EditText mEditPocetakSata;
     EditText mEditKrajSata;
     EditText mEditPocetakUpisa;
@@ -75,6 +84,12 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
 
     int hour;
     int minute_x;
+    int day, month, year;
+    String datePocetakUpisa, dateKrajUpisa;
+
+    DatePickerDialog.OnDateSetListener mDateSetListenerPocetak;
+    DatePickerDialog.OnDateSetListener mDateSetListenerKraj;
+
 
 
     @Override
@@ -109,6 +124,8 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
 
         mEditPocetakSata = findViewById(R.id.editTextPocetak);
         mEditKrajSata = findViewById(R.id.editTextKraj);
+        mEditPocetakUpisa = findViewById(R.id.editTextPocetakUpisa);
+        mEditKrajUpisa = findViewById(R.id.editTextKrajUpisa);
 
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
         spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
@@ -183,6 +200,64 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
                 showDialog(1);
             }
         });
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        datePocetakUpisa = String.format("%02d-%02d-%02d", year, month, day);
+        dateKrajUpisa = String.format("%02d-%02d-%02d", year, month, day);
+        btnPocetakUpisaDatePicker = findViewById(R.id.btnPocetakUpisaDatePicker);
+        btnPocetakUpisaDatePicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DatePickerDialog dialog = new DatePickerDialog(
+                        AddLab.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListenerPocetak,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListenerPocetak = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                month = month+1;
+                datePocetakUpisa = String.format("%02d-%02d-%02d", year, month, day);
+                mEditPocetakUpisa.setText(datePocetakUpisa);
+            }
+        };
+        btnKrajUpisaDatePicker = findViewById(R.id.btnKrajUpisaDatePicker);
+        btnKrajUpisaDatePicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DatePickerDialog dialog = new DatePickerDialog(
+                        AddLab.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListenerKraj,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListenerKraj = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                month = month+1;
+                dateKrajUpisa = String.format("%02d-%02d-%02d", year, month, day);
+                mEditKrajUpisa.setText(dateKrajUpisa);
+            }
+        };
+        btnPocetakUpisaTimePicker = findViewById(R.id.btnPocetakUpisaTimePicker);
+        btnPocetakUpisaTimePicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(2);
+            }
+        });
+        btnKrajUpisaTimePicker = findViewById(R.id.btnKrajUpisaTimePicker);
+        btnKrajUpisaTimePicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(3);
+            }
+        });
 
     }
     @Override
@@ -191,6 +266,10 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
             return new TimePickerDialog(AddLab.this, pocetakTimePickerListener, hour, minute_x, true);
         }else if(id == 1){
             return new TimePickerDialog(AddLab.this, krajTimePickerListener, hour, minute_x, true);
+        }else if(id == 2) {
+            return new TimePickerDialog(AddLab.this, pocetakUpisaTimePickerListener, hour, minute_x, true);
+        }else if(id == 3) {
+            return new TimePickerDialog(AddLab.this, krajUpisaTimePickerListener, hour, minute_x, true);
         }else return null;
     }
     protected TimePickerDialog.OnTimeSetListener pocetakTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
@@ -209,6 +288,24 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
             minute_x = minute;
             krajStata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
             mEditKrajSata.setText(krajStata);
+        }
+    };
+    protected TimePickerDialog.OnTimeSetListener pocetakUpisaTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            pocetakSata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditPocetakUpisa.setText(datePocetakUpisa + " " +pocetakSata);
+        }
+    };
+    protected TimePickerDialog.OnTimeSetListener krajUpisaTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            krajStata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditKrajUpisa.setText(dateKrajUpisa + " " + krajStata);
         }
     };
 
