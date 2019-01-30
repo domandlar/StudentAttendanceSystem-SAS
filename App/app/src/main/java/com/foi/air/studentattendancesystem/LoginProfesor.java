@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,17 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -134,7 +131,7 @@ public class LoginProfesor extends AppCompatActivity implements SasWsDataLoadedL
     }
 
     private void startNextActivity(){
-        Intent intent = new Intent(LoginProfesor.this, ListOfSeminars.class);
+        Intent intent = new Intent(LoginProfesor.this, ListOfCourses.class);
         progressBar.setVisibility(View.GONE);
         startActivity(intent);
     }
@@ -151,5 +148,12 @@ public class LoginProfesor extends AppCompatActivity implements SasWsDataLoadedL
     private boolean validateMail(String emailStr) {
         Matcher matcher = email_check.matcher(emailStr);
         return matcher.find();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginProfesor.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

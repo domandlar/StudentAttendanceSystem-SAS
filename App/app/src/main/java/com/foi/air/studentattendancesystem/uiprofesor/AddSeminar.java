@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,26 +12,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.studentattendancesystem.LoginStudent;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
@@ -41,8 +34,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -68,9 +59,9 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
 
     int idKolegija=0;
     int idDvorane=0;
-    String danOdrzavanja=null;
-    String pocetakSata=null;
-    String krajStata=null;
+    String danOdrzavanja="";
+    String pocetakSata="";
+    String krajStata="";
     int dozvoljenoIzostanaka=0;
 
     @Override
@@ -78,8 +69,6 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_seminar);
         setTitle("Dodaj Seminar");
-
-
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -135,16 +124,21 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+
+        mEditPocetakSata = findViewById(R.id.editTextPocetak);
+        mEditKrajSata = findViewById(R.id.editTextKraj);
+        mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
         btnAddSeminar = findViewById(R.id.buttonDodajSeminar);
         btnAddSeminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null && pocetakSata != null && krajStata != null && dozvoljenoIzostanaka !=0){
-                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
-                    pocetakSata = mEditPocetakSata.getText().toString();
-                    mEditKrajSata = findViewById(R.id.editTextKraj);
-                    krajStata = mEditKrajSata.getText().toString();
-                    mEditDozvoljenoIzostanaka = findViewById(R.id.editTextDozvoljenoIzostanaka);
+                pocetakSata = mEditPocetakSata.getText().toString();
+                krajStata = mEditKrajSata.getText().toString();
+                try{
                     dozvoljenoIzostanaka = Integer.parseInt(mEditDozvoljenoIzostanaka.getText().toString());
+                }catch(Exception e){
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG);
+                }
+                if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != "" && pocetakSata != "" && krajStata != "" && dozvoljenoIzostanaka != 0){
                     SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
                     sasWsDataLoader.dodajAktivnost(Integer.parseInt(idProfesora),idKolegija,dozvoljenoIzostanaka,pocetakSata,krajStata,danOdrzavanja,idDvorane,"Seminar");
                     Toast.makeText(getApplicationContext(),"Seminar je dodan!", Toast.LENGTH_SHORT).show();

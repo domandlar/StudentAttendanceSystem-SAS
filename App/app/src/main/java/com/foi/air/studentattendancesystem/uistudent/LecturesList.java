@@ -17,16 +17,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfLecturesAdapter;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.uiprofesor.AddLecture;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,6 +102,11 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(LecturesList.this, LecturesList.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(LecturesList.this, CheckActivity.class);
+                intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;
             case R.id.nav_logout:

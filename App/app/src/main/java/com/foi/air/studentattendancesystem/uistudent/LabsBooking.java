@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,16 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.BookedLab;
-import com.foi.air.core.entities.Dvorana;
 import com.foi.air.core.entities.Kolegij;
-import com.foi.air.core.entities.Lab;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.LabListAdapter;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 

@@ -1,1 +1,2 @@
-include ':app', ':webservice', ':webservice', ':webservice', ':webservice', ':core', ':facerecognition'
+include ':app', ':webservice', ':webservice', ':webservice', ':webservice', ':core', ':facerecognition', ':passwordrecord'
+

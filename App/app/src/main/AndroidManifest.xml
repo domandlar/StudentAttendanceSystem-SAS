@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".attendance.ModuleActivity" />
+        <activity android:name=".uiprofesor.CheckAttendance" />
         <activity android:name=".uiprofesor.ListOfSeminars" />
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -42,9 +44,11 @@
         <activity android:name=".uistudent.ListCourses" />
         <activity android:name=".uistudent.LecturesList" />
         <activity android:name=".uistudent.AddCourseToStudent" />
-        <activity android:name=".uistudent.ScheduleForDayStudent" />
         <activity android:name=".uistudent.LabsBooking" />
         <activity android:name=".face.FaceFragment"></activity>
+        <activity android:name=".uistudent.Attendance" />
+        <activity android:name=".uistudent.AttendanceList" />
+        <activity android:name=".attendance.CheckActivity" />
     </application>
 
 </manifest>

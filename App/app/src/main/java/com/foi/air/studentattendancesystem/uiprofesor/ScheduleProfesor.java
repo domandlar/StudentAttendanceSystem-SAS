@@ -8,24 +8,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridLayout;
 
-import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ScheduleAdapter;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ScheduleProfesor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -105,6 +100,11 @@ public class ScheduleProfesor extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.nav_lectures:
                 intent = new Intent(ScheduleProfesor.this, ListOfLectures.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ScheduleProfesor.this, CheckActivity.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
         }

@@ -45,6 +45,7 @@ dependencies {
     implementation project(':webservice')
     implementation project(':core')
     implementation project(':facerecognition')
+    implementation project(':passwordrecord')
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,11 +1,17 @@
 package com.foi.air.studentattendancesystem.loaders;
 
+import android.support.v4.os.IResultReceiver;
+
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.uistudent.LabsBooking;
+
+import com.foi.air.core.entities.TipAktivnosti;
+
 import com.foi.air.webservice.SasWebServiceCaller;
 import com.foi.air.webservice.SasWebServiceHandler;
 
@@ -93,6 +99,39 @@ public class SasWsDataLoader {
     public void ponistiOdabirLabosa(Student student, Aktivnost aktivnost, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForPonistiOdabirlabosa(student, aktivnost);
+    }
+
+    public void evidencijaStudent(Kolegij kolegij, Aktivnost aktivnost, Student student, SasWsDataLoadedListener sasWsDataLoadedListener) {
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForDohvatiEvidencijuStudneta(kolegij, aktivnost, student);
+    }
+    public void studentiForKolegiji(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForStudentiKolegij(kolegij.getId());
+    }
+    public void tipAktivnostiForKolegij(Kolegij kolegij, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForTipAktivnostiKolegij(kolegij.getId());
+    }
+    public void prisustvoStudenta(int idStudent, int idKolegija, int idTipAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForIzostanciStudenti(idStudent,idKolegija,idTipAktivnosti);
+    }
+    public void allAktivnostForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAllAktivnostiProfesora(profesor);
+    }
+    public void allAktivnostForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForAllAktivnostiStudenta(student);
+    }
+    public void zabiljeziPrisustvo(int student, int tjedanNastave, int idAktivnosti, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForZAbiljeziPrisustvo(student, tjedanNastave, idAktivnosti);
+    }
+    public void postaviPrisustvo(int idAktivnosti, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
+        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
+        Ws.CallWsForPostaviPrisustvo(idAktivnosti, tjedanNastave);
     }
 
         public SasWebServiceHandler responseHandler = new SasWebServiceHandler() {

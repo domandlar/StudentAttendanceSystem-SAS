@@ -1,6 +1,5 @@
 package com.foi.air.studentattendancesystem.uistudent;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -14,33 +13,26 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
-import com.foi.air.core.entities.Profesor;
-import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.adaptersStudent.SeminarListAdapter;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
-import com.foi.air.studentattendancesystem.uiprofesor.AddSeminar;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
-import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class SeminarList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SasWsDataLoadedListener {
@@ -125,6 +117,14 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(SeminarList.this, LecturesList.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(SeminarList.this, CheckActivity.class);
+                intent.putExtra("uloga","student");
+                startActivity(intent);
+                break;
+            case R.id.nav_attendance:
+                intent = new Intent(SeminarList.this, Attendance.class);
+                startActivity(intent);
         }
         return true;
     }
@@ -132,7 +132,7 @@ public class SeminarList extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.app_bar_menu, menu);
+        menuInflater.inflate(R.menu.app_bar_menu_seminari_student, menu);
 
         return true;
     }

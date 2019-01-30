@@ -1,6 +1,5 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -14,13 +13,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.facerecognition.uiprofesor.CheckingAttendance;
+import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Profesor;
 import com.foi.air.studentattendancesystem.MainActivity;
@@ -28,8 +28,9 @@ import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 
 import com.foi.air.studentattendancesystem.face.FaceFragment;
-import com.foi.air.studentattendancesystem.loaders.SasWsDataLoadedListener;
+
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
+import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,9 +95,11 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Intent intent;
+        Log.d("izbornik....: ", menuItem.toString() +  "    " + menuItem.getItemId() + "    " + R.id.nav_attendance);
         switch (menuItem.getItemId()){
             case R.id.nav_seminars:
-                Intent intent = new Intent(ListOfSeminars.this, ListOfSeminars.class);
+                intent = new Intent(ListOfSeminars.this, ListOfSeminars.class);
                 startActivity(intent);
                 break;
             case R.id.nav_courses:
@@ -104,21 +107,25 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_labs:
-                intent = new Intent(ListOfSeminars.this, ListOfLabs.class);
+                intent = new Intent(this, ListOfLabs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_lectures:
-                intent = new Intent(ListOfSeminars.this, ListOfLectures.class);
+                intent = new Intent(this, ListOfLectures.class);
                 startActivity(intent);
                 break;
 
             case R.id.nav_schedule:
-                intent = new Intent(ListOfSeminars.this, ScheduleProfesor.class);
+                intent = new Intent(this, ScheduleProfesor.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_attendance:
-                intent = new Intent(ListOfSeminars.this, FaceFragment.class);
-                //intent.putExtra("uloga","profesor");
+            case R.id.nav_attendance_preview:
+                intent = new Intent(this, CheckAttendance.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_generate_passwords:
+                intent = new Intent(ListOfSeminars.this, CheckActivity.class);
+                intent.putExtra("uloga","profesor");
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
