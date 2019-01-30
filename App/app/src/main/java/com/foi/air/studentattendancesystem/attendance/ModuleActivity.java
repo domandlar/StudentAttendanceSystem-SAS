@@ -3,6 +3,7 @@ package com.foi.air.studentattendancesystem.attendance;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.facerecognition.uiprofesor.CheckingAttendance;
+import com.foi.air.core.NavigationItem;
 import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Dolazak;
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
@@ -29,7 +32,7 @@ import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
 
 import java.util.ArrayList;
 
-public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SubmitAttendance.OnCallbackReceived, SasWsDataLoadedListener {
+public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationItem.OnCallbackReceived, SasWsDataLoadedListener {
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
@@ -40,7 +43,9 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
     int modul=0;
     String uloga="";
 
-    SubmitAttendance sa;
+    NavigationItem navigationItem;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,29 +75,36 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
             sasWsDataLoader.postaviPrisustvo(idAktivnosti, tjedanNastave, this);
             switch(modul){
                 case 0:
-                    GeneratePassword gp = new GeneratePassword();
-                    gp.setData(idAktivnosti,idUloge,tjedanNastave);
+                    navigationItem = new GeneratePassword();
+                    navigationItem.setData(idAktivnosti,idUloge,tjedanNastave);
 
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container,gp).addToBackStack(null);
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.fragment_container, (Fragment) navigationItem).addToBackStack(null);
                     fragmentTransaction.commit();
 
                     break;
                 case 1:
+                    navigationItem = new CheckingAttendance();
+                    navigationItem.setData(idAktivnosti,idUloge,tjedanNastave);
+
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.fragment_container, (Fragment) navigationItem).addToBackStack(null);
+                    fragmentTransaction.commit();
                     break;
             }
 
         }else{//student
             switch(modul){
                 case 0:
-                    sa = new SubmitAttendance();
-                    sa.setData(idAktivnosti,idUloge,tjedanNastave);
+                    navigationItem = new SubmitAttendance();
+                    navigationItem.setData(idAktivnosti,idUloge,tjedanNastave);
 
 
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.fragment_container,sa).addToBackStack(null);
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.fragment_container, (Fragment) navigationItem).addToBackStack(null);
                     fragmentTransaction.commit();
 
 
@@ -159,7 +171,7 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public void Update() {
-        ArrayList<Dolazak> dolazakList = sa.getData();
+        ArrayList<Dolazak> dolazakList = navigationItem.getData();
         if(dolazakList != null){
             if(dolazakList.get(0).isPrisustvo()){
                 for(int i=0;i<dolazakList.size();i++){

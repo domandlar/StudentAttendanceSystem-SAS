@@ -44,6 +44,7 @@ dependencies {
 
     implementation project(':webservice')
     implementation project(':core')
+    implementation project(':facerecognition')
     implementation project(':passwordrecord')
 }
 

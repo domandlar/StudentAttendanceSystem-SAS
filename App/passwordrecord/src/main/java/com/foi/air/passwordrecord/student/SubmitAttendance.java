@@ -145,9 +145,6 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
     public ArrayList<Dolazak> getData() {
         return dolazakList;
     }
-    public interface OnCallbackReceived {
-        public void Update();
-    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
