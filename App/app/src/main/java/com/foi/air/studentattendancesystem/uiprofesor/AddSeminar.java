@@ -178,8 +178,6 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         });
 
     }
-    public void showTimePickerDialog(){
-    }
     @Override
     protected Dialog onCreateDialog(int id){
         if(id == 0){

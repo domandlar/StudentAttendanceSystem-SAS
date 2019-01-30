@@ -1,6 +1,8 @@
 package com.foi.air.studentattendancesystem.uiprofesor;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.foi.air.core.SasWsDataLoadedListener;
@@ -42,6 +45,8 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
     private Toolbar toolBar;
     private DrawerLayout drawer;
     private Button btnAddLab;
+    Button btnPocetakSataPicker;
+    Button btnKrajSataPicker;
     EditText mEditPocetakSata;
     EditText mEditKrajSata;
     EditText mEditPocetakUpisa;
@@ -61,12 +66,15 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
 
     int idKolegija=0;
     int idDvorane=0;
-    String danOdrzavanja=null;
-    String pocetakSata=null;
-    String krajStata=null;
-    String pocetakUpisa=null;
-    String krajUpisa=null;
+    String danOdrzavanja="";
+    String pocetakSata="";
+    String krajStata="";
+    String pocetakUpisa="";
+    String krajUpisa="";
     int dozvoljenoIzostanaka=0;
+
+    int hour;
+    int minute_x;
 
 
     @Override
@@ -99,6 +107,8 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
         sasWsDataLoader.kolegijForProfesor(profesor,this);
         sasWsDataLoader.Dvorane("laboratorij");
 
+        mEditPocetakSata = findViewById(R.id.editTextPocetak);
+        mEditKrajSata = findViewById(R.id.editTextKraj);
 
         spinnerKolegiji = findViewById(R.id.spinnerKolegiji);
         spinnerAdapterKolegiji = new ArrayAdapter<Kolegij>(this, android.R.layout.simple_dropdown_item_1line, kolegijList);
@@ -136,9 +146,7 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
         btnAddLab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(idKolegija !=0 && idDvorane !=0 && danOdrzavanja != null){
-                    mEditPocetakSata = findViewById(R.id.editTextPocetak);
                     pocetakSata = mEditPocetakSata.getText().toString();
-                    mEditKrajSata = findViewById(R.id.editTextKraj);
                     krajStata = mEditKrajSata.getText().toString();
                     mEditPocetakUpisa = findViewById(R.id.editTextPocetakUpisa);
                     pocetakUpisa = mEditPocetakUpisa.getText().toString();
@@ -163,8 +171,46 @@ public class AddLab extends AppCompatActivity implements NavigationView.OnNaviga
                 }
             }
         });
+        btnPocetakSataPicker = findViewById(R.id.btnPocetakSataPicker);
+        btnPocetakSataPicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(0);
+            }
+        });
+        btnKrajSataPicker = findViewById(R.id.btnKrajSataPicker);
+        btnKrajSataPicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(1);
+            }
+        });
 
     }
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if(id == 0){
+            return new TimePickerDialog(AddLab.this, pocetakTimePickerListener, hour, minute_x, true);
+        }else if(id == 1){
+            return new TimePickerDialog(AddLab.this, krajTimePickerListener, hour, minute_x, true);
+        }else return null;
+    }
+    protected TimePickerDialog.OnTimeSetListener pocetakTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            pocetakSata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditPocetakSata.setText(pocetakSata);
+        }
+    };
+    protected TimePickerDialog.OnTimeSetListener krajTimePickerListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            hour = hourOfDay;
+            minute_x = minute;
+            krajStata = String.format("%02d:%02d:%02d", hour, minute_x, 0);
+            mEditKrajSata.setText(krajStata);
+        }
+    };
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

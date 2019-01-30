@@ -86,6 +86,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:editable="false"/>
+
+            <Button
+                android:id="@+id/btnPocetakSataPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Odaberi pocetak sata"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
 
             <TextView
@@ -101,6 +111,15 @@
                 android:id="@+id/editTextKraj"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:editable="false"/>
+            <Button
+                android:id="@+id/btnKrajSataPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Odaberi kraj sata"
+                android:layout_marginTop="25dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
 
