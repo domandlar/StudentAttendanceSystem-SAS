@@ -418,6 +418,7 @@ public class CheckingAttendance extends Fragment implements NavigationItem {
             prisutanStudent.setIdStudenta(Integer.parseInt(person.name));
             prisutanStudent.setPrisustvo(true);
             prisutanStudent.setIdAktivnosti(idAktivnosti);
+            prisutanStudent.setTjedanNastave(tjedanNastve);
             prisutniStudenti.add(prisutanStudent);
             brDohvacenihStudenta++;
             if(brDohvacenihStudenta==brPrepoznatihStudenta)
