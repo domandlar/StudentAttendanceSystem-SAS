@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface NavigationItem {
-    public Fragment getFragment();
     public void setData(int idAktivnosti, int idUloge, int tjedanNastave);
     public ArrayList<Dolazak> getData();
+    public interface OnCallbackReceived{
+        public void Update();
+    };
 }
