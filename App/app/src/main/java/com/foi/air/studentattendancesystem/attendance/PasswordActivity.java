@@ -1,4 +1,4 @@
-package com.foi.air.studentattendancesystem.attendance.profesor;
+package com.foi.air.studentattendancesystem.attendance;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,10 +22,12 @@ import android.widget.Button;
 import com.foi.air.core.NavigationItem;
 import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.AktivnostiProfesora;
+import com.foi.air.core.entities.AktivnostiStudenta;
+import com.foi.air.core.entities.Dolazak;
 import com.foi.air.core.entities.Profesor;
+import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.attendance.ModuleActivity;
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
@@ -47,16 +49,22 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
     BetterSpinner spinnerTjedanNastave;
     BetterSpinner spinnerModuli;
     Button btnOdaberi;
-    ArrayAdapter<AktivnostiProfesora> spinnerAdapterAktivnosti;
+    ArrayAdapter<AktivnostiProfesora> spinnerAdapterAktivnostiProfesora;
+    ArrayAdapter<AktivnostiStudenta> spinnerAdapterAktivnostiStudenta;
     ArrayAdapter<Integer> spinnerAdapterTjedni;
     ArrayAdapter<String> spinnerAdapterModuli;
 
     private String uloga;
     String idProfesora;
+    String idStudenta;
     int idAktivnosti=0;
     int tjedanNastve=-1;
     int modul=-1;
-    ArrayList<AktivnostiProfesora> aktivnostiList;
+    ArrayList<AktivnostiProfesora> aktivnostiProfesoraList;
+    ArrayList<AktivnostiStudenta> aktivnostiStudentaList;
+
+    Profesor profesor;
+    Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,23 +86,42 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
 
         uloga = getIntent().getStringExtra("uloga");
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        idProfesora = prefs.getString("idProfesora", "");
-        Profesor profesor = new Profesor(Integer.parseInt(idProfesora));
+        if(uloga.equals("profesor")){
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            idProfesora = prefs.getString("idProfesora", "");
+            profesor = new Profesor(Integer.parseInt(idProfesora));
 
-        SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
-        sasWsDataLoader.allAktivnostForProfesor(profesor,this);
+            SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+            sasWsDataLoader.allAktivnostForProfesor(profesor,this);
 
-        spinnerTipAktivnosti = (BetterSpinner) findViewById(com.foi.air.passwordrecord.R.id.spinnerTpAktivnosti);
-        spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiList);
-        spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnosti);
-        spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                AktivnostiProfesora aktivnostProfesora = (AktivnostiProfesora) parent.getItemAtPosition(position);
-                idAktivnosti = aktivnostProfesora.getIdAktivnosti();
-            }
-        });
+            spinnerTipAktivnosti = (BetterSpinner) findViewById(R.id.spinnerTpAktivnosti);
+            spinnerAdapterAktivnostiProfesora = new ArrayAdapter<AktivnostiProfesora>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiProfesoraList);
+            spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnostiProfesora);
+            spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                    AktivnostiProfesora aktivnostProfesora = (AktivnostiProfesora) parent.getItemAtPosition(position);
+                    idAktivnosti = aktivnostProfesora.getIdAktivnosti();
+                }
+            });
+        }else{
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            idStudenta = prefs.getString("idStudenta", "");
+            student = new Student(Integer.parseInt(idStudenta));
+            SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+            sasWsDataLoader.allAktivnostForStudent(student,this);
+
+            spinnerTipAktivnosti = (BetterSpinner) findViewById(R.id.spinnerTpAktivnosti);
+            spinnerAdapterAktivnostiStudenta = new ArrayAdapter<AktivnostiStudenta>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiStudentaList);
+            spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnostiStudenta);
+            spinnerTipAktivnosti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                    AktivnostiStudenta aktivnoststudenta = (AktivnostiStudenta) parent.getItemAtPosition(position);
+                    idAktivnosti = aktivnoststudenta.getIdAktivnosti();
+                }
+            });
+        }
 
 
         Integer[] weeks = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
@@ -128,7 +155,8 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
                     intent.putExtra("uloga", uloga);
                     intent.putExtra("modul", modul);
                     intent.putExtra("idAktivnosti",idAktivnosti);
-                    intent.putExtra("idUloge",Integer.parseInt(idProfesora) );
+                    if(uloga.equals("profesor"))  intent.putExtra("idUloge",Integer.parseInt(idProfesora) );
+                    else  intent.putExtra("idUloge",Integer.parseInt(idStudenta) );
                     intent.putExtra("tjedanNastave", tjedanNastve);
                     startActivity(intent);
                 }else{
@@ -179,31 +207,60 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
-        aktivnostiList = new ArrayList<AktivnostiProfesora>();
-        String dataString = String.valueOf(data);
-        try {
-            JSONArray array = new JSONArray(dataString);
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject row = array.getJSONObject(i);
-                AktivnostiProfesora aktivnostiProfesora= new AktivnostiProfesora(
-                        row.getInt("id"),
-                        row.getString("pocetak"),
-                        row.getString("kraj"),
-                        row.getString("dan_izvodenja") ,
-                        row.getString("dvorana"),
-                        row.getInt("id_tip_aktivnosti"),
-                        row.getString("tip_aktivnosti"),
-                        row.getString("kolegij"));
-                aktivnostiList.add(aktivnostiProfesora);
+        if(uloga.equals("profesor")){
+            aktivnostiProfesoraList = new ArrayList<AktivnostiProfesora>();
+            String dataString = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataString);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    AktivnostiProfesora aktivnostiProfesora= new AktivnostiProfesora(
+                            row.getInt("id"),
+                            row.getString("pocetak"),
+                            row.getString("kraj"),
+                            row.getString("dan_izvodenja") ,
+                            row.getString("dvorana"),
+                            row.getInt("id_tip_aktivnosti"),
+                            row.getString("tip_aktivnosti"),
+                            row.getString("kolegij"));
+                    aktivnostiProfesoraList.add(aktivnostiProfesora);
+                }
+
+                spinnerAdapterAktivnostiProfesora = new ArrayAdapter<AktivnostiProfesora>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiProfesoraList);
+                spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnostiProfesora);
+                spinnerAdapterAktivnostiProfesora.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+        }else{
+            aktivnostiStudentaList = new ArrayList<AktivnostiStudenta>();
+            String dataString = String.valueOf(data);
+            try {
+                JSONArray array = new JSONArray(dataString);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    AktivnostiStudenta aktivnostiStudenta= new AktivnostiStudenta(
+                            row.getInt("id"),
+                            row.getString("pocetak"),
+                            row.getString("kraj"),
+                            row.getString("dan_izvodenja") ,
+                            row.getString("dvorana"),
+                            row.getInt("id_tip_aktivnosti"),
+                            row.getString("tip_aktivnosti"),
+                            row.getString("kolegij"));
+                    aktivnostiStudentaList.add(aktivnostiStudenta);
+                }
 
-            spinnerAdapterAktivnosti = new ArrayAdapter<AktivnostiProfesora>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiList);
-            spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnosti);
-            spinnerAdapterAktivnosti.notifyDataSetChanged();
+                spinnerAdapterAktivnostiStudenta = new ArrayAdapter<AktivnostiStudenta>(getApplicationContext(), com.foi.air.passwordrecord.R.layout.multiline_spinner_dropdown_item, aktivnostiStudentaList);
+                spinnerTipAktivnosti.setAdapter(spinnerAdapterAktivnostiStudenta);
+                spinnerAdapterAktivnostiStudenta.notifyDataSetChanged();
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Override
@@ -217,8 +274,9 @@ public class PasswordActivity extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public boolean getData() {
-        return false;
+    public ArrayList<Dolazak> getData() {
+        return null;
     }
+
 
 }

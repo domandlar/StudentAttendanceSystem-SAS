@@ -1075,7 +1075,6 @@ id fill
 id filled
 id fixed
 id forever
-id fragment_container
 id ghost_view
 id group_divider
 id home
@@ -1155,8 +1154,6 @@ id smallLabel
 id snackbar_action
 id snackbar_text
 id spacer
-id spinnerTjedanNastave
-id spinnerTpAktivnosti
 id split_action_bar
 id src_atop
 id src_in
@@ -1176,10 +1173,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textViewClassroom
 id textViewDay
-id textViewNazivSeminara
 id textViewTime
 id textViewTitle
-id textViewTjedanNastave
 id text_input_password_toggle
 id textinput_counter
 id textinput_error

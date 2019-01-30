@@ -91,7 +91,12 @@ public interface SasWebService {
     Call<SasWebServiceResponse> getAllAktivnostForStudent (@Path("uloga") String uloga, @Path("idUloge") int idUloge);
 
     @FormUrlEncoded
-    @POST("evidentiraj/zabiljeziLozinkom/")
-    Call<SasWebServiceResponse> zabiljeziPrisustvoLozinkom (@Field("student") int idStudenta, @Field("lozinka") String lozinka, @Field ("tjedanNastave") int tjedanNastave, @Field("aktivnost") int idAktivnosti);
+    @POST("evidentiraj/zabiljezi/")
+    Call<SasWebServiceResponse> zabiljeziPrisustvo (@Field("student") int idStudenta, @Field ("tjedanNastave") int tjedanNastave, @Field("aktivnost") int idAktivnosti);
+
+    @FormUrlEncoded
+    @POST("evidentiraj/postaviPrisustvo/")
+    Call<SasWebServiceResponse> postaviPrisustvo (@Field("aktivnost") int idAktivnosti, @Field ("tjedanNastave") int tjedanNastave);
+
 
 }

@@ -1,20 +1,15 @@
-package com.foi.air.webservice;
+package com.foi.air.passwordrecord;
 
 import android.util.Log;
 
 import com.foi.air.core.entities.Aktivnost;
 import com.foi.air.core.entities.Kolegij;
 import com.foi.air.core.entities.Profesor;
-import com.foi.air.core.entities.Seminar;
 import com.foi.air.core.entities.Student;
-import com.foi.air.core.entities.TipAktivnosti;
-import com.foi.air.webservice.responses.SasWebServiceResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.foi.air.passwordrecord.responses.SasWebServiceResponse;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Protocol;
 
-import java.lang.reflect.Type;
 import java.util.Arrays;
 
 import retrofit.Call;
@@ -169,14 +164,9 @@ public class SasWebServiceCaller {
         call = webService.getAllAktivnostForStudent("student", student.getIdStudenta());
         HandleResponseFromCall("dohvacanje_aktivnosti_all");
     }
-    public void CallWsForZAbiljeziPrisustvo(int student, int tjedanNastave, int idAktivnosti) {
+    public void CallWsForProvjeriLozinku(Student student, String lozinka, int tjedanNastave) {
         SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.zabiljeziPrisustvo(student, tjedanNastave, idAktivnosti);
-        HandleResponseFromCall("zabiljezi_prisustvo_lozinkom");
-    }
-    public void CallWsForPostaviPrisustvo(int idAktivnosti, int tjedanNastave ) {
-        SasWebService webService = retrofit.create(SasWebService.class);
-        call = webService.postaviPrisustvo(idAktivnosti,tjedanNastave);
+        call = webService.provjeraLozinke(student.getIdStudenta(), lozinka, tjedanNastave);
         HandleResponseFromCall("zabiljezi_prisustvo_lozinkom");
     }
 

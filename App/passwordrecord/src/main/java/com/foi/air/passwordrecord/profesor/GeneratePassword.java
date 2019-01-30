@@ -13,8 +13,11 @@ import android.widget.Toast;
 
 import com.foi.air.core.NavigationItem;
 import com.foi.air.core.SasWsDataLoadedListener;
+import com.foi.air.core.entities.Dolazak;
 import com.foi.air.passwordrecord.R;
 import com.foi.air.passwordrecord.loaders.SasWsDataLoader;
+
+import java.util.ArrayList;
 
 public class GeneratePassword extends Fragment implements SasWsDataLoadedListener, NavigationItem {
     TextView txtCountDown;
@@ -92,7 +95,9 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
     }
 
     @Override
-    public boolean getData() {
-        return false;
+    public ArrayList<Dolazak> getData() {
+        return null;
     }
+
+
 }

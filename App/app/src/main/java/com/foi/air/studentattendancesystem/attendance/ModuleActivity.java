@@ -3,6 +3,7 @@ package com.foi.air.studentattendancesystem.attendance;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -11,20 +12,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.foi.air.core.SasWsDataLoadedListener;
+import com.foi.air.core.entities.Dolazak;
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
 import com.foi.air.passwordrecord.student.SubmitAttendance;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
-import com.foi.air.studentattendancesystem.attendance.profesor.PasswordActivity;
+import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.uiprofesor.CheckAttendance;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfCourses;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLabs;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfLectures;
 import com.foi.air.studentattendancesystem.uiprofesor.ListOfSeminars;
 import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
+import com.foi.air.webservice.SasWebService;
 
-public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+
+public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SubmitAttendance.OnCallbackReceived, SasWsDataLoadedListener {
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
@@ -34,6 +41,8 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
     int tjedanNastave=0;
     int modul=0;
     String uloga="";
+
+    SubmitAttendance sa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +68,8 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
         uloga = extras.getString("uloga");
 
         if(uloga.equals("profesor")){
+            SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+            sasWsDataLoader.postaviPrisustvo(idAktivnosti, tjedanNastave, this);
             switch(modul){
                 case 0:
                     GeneratePassword gp = new GeneratePassword();
@@ -77,13 +88,19 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
         }else{//student
             switch(modul){
                 case 0:
-                    SubmitAttendance sa = new SubmitAttendance();
+                    sa = new SubmitAttendance();
                     sa.setData(idAktivnosti,idUloge,tjedanNastave);
+
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.add(R.id.fragment_container,sa).addToBackStack(null);
                     fragmentTransaction.commit();
+
+
+                    //ArrayList<Dolazak> dolazakList = sa.getData();
+                    //Toast.makeText(getApplicationContext(),String.valueOf(dolazakList.get(0).isPrisustvo()),Toast.LENGTH_LONG).show();
+
 
                     break;
                 case 1:
@@ -140,5 +157,25 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
         Intent intent = new Intent(ModuleActivity.this, PasswordActivity.class);
         startActivity(intent);
         this.finish();
+    }
+
+    @Override
+    public void Update() {
+        ArrayList<Dolazak> dolazakList = sa.getData();
+        if(dolazakList != null){
+            if(dolazakList.get(0).isPrisustvo()){
+                for(int i=0;i<dolazakList.size();i++){
+                    SasWsDataLoader sasWsDataLoader = new SasWsDataLoader();
+                    sasWsDataLoader.zabiljeziPrisustvo(dolazakList.get(i).getIdStudenta(),dolazakList.get(i).getTjedanNastave(),dolazakList.get(i).getIdAktivnosti(),this);
+                    Toast.makeText(getApplicationContext(),"Prisustvo je zabilježeno!",Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onWsDataLoaded(Object message, String status, Object data) {
+
     }
 }

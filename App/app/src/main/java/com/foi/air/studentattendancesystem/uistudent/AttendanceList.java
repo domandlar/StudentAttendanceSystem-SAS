@@ -22,7 +22,7 @@ import com.foi.air.core.entities.Student;
 import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersStudent.AttendanceListAdapter;
-import com.foi.air.studentattendancesystem.attendance.profesor.PasswordActivity;
+import com.foi.air.studentattendancesystem.attendance.PasswordActivity;
 
 import java.util.List;
 

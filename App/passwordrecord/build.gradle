@@ -33,7 +33,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.weiwangcn.betterspinner:library:1.1.0'
+    implementation 'com.google.code.gson:gson:2.4'
+    implementation 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    implementation 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    implementation 'com.squareup.okhttp:okhttp:2.7.0'
 
     implementation project(':core')
-    implementation project(path: ':webservice')
+
 }
