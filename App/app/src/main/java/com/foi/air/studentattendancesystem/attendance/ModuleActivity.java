@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.foi.air.core.NavigationItem;
 import com.foi.air.core.SasWsDataLoadedListener;
 import com.foi.air.core.entities.Dolazak;
 import com.foi.air.passwordrecord.profesor.GeneratePassword;
@@ -29,7 +30,7 @@ import com.foi.air.studentattendancesystem.uiprofesor.ScheduleProfesor;
 
 import java.util.ArrayList;
 
-public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SubmitAttendance.OnCallbackReceived, SasWsDataLoadedListener {
+public class ModuleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationItem.OnCallbackReceived, SasWsDataLoadedListener {
     private Toolbar toolBar;
 
     private DrawerLayout drawer;
@@ -80,6 +81,7 @@ public class ModuleActivity extends AppCompatActivity implements NavigationView.
 
                     break;
                 case 1:
+
                     break;
             }
 

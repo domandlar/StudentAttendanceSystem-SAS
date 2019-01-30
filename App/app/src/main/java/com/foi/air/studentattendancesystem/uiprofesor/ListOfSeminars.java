@@ -27,8 +27,6 @@ import com.foi.air.studentattendancesystem.MainActivity;
 import com.foi.air.studentattendancesystem.R;
 import com.foi.air.studentattendancesystem.adaptersprofesor.ListOfActivitiesAdapter;
 
-import com.foi.air.studentattendancesystem.face.FaceFragment;
-
 import com.foi.air.studentattendancesystem.loaders.SasWsDataLoader;
 import com.foi.air.studentattendancesystem.attendance.CheckActivity;
 
