@@ -205,6 +205,12 @@ public class CheckActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
+    /**
+     *
+     * @param message poruka vraćena sa web servisa
+     * @param status status vraćen sa web servisa
+     * @param data podaci vraćeni sa web servisa
+     */
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(uloga.equals("profesor")){

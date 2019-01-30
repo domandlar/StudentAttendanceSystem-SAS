@@ -142,6 +142,7 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -162,6 +163,12 @@ public class ListOfSeminars extends AppCompatActivity implements NavigationView.
         }
     }
 
+    /**
+     *
+     * @param message poruka vraćena sa web servisa
+     * @param status status vraćen sa web servisa
+     * @param data podaci vraćeni sa web servisa
+     */
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         progressBar.setVisibility(View.GONE);

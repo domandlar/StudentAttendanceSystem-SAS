@@ -190,6 +190,12 @@ public class AddSeminar extends AppCompatActivity implements NavigationView.OnNa
         return true;
     }
 
+    /**
+     *
+     * @param message poruka vraćena sa web servisa
+     * @param status status vraćen sa web servisa
+     * @param data podaci vraćeni sa web servisa
+     */
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK") && message.equals("Pronađeni kolegiji.")){

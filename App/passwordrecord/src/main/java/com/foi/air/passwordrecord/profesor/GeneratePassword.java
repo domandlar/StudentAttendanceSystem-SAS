@@ -60,6 +60,13 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
 
         txtCountDown.setText(timeLeftText);
     }
+
+    /**
+     *
+     * @param message poruka vraćena sa web servisa
+     * @param status status vraćen sa web servisa
+     * @param data podaci vraćeni sa web servisa
+     */
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK")){
@@ -83,6 +90,12 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         }
     }
 
+    /**
+     *
+     * @param idAktivnosti generiranje lozinke za tu aktivnost
+     * @param idUloge generiranje lozinke za tu ulogu
+     * @param tjedanNastave generiranje lozinke za taj tjedan
+     */
     @Override
     public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {
         this.idAktivnosti=idAktivnosti;
@@ -90,6 +103,10 @@ public class GeneratePassword extends Fragment implements SasWsDataLoadedListene
         this.tjedanNastve=tjedanNastave;
     }
 
+    /**
+     *
+     * @return vraćeni podaci
+     */
     @Override
     public ArrayList<Dolazak> getData() {
         return null;

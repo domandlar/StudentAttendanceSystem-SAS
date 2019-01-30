@@ -88,6 +88,12 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
         return rootView;
     }
 
+    /**
+     *
+     * @param message poruka vraćena sa web servisa
+     * @param status status vraćen sa web servisa
+     * @param data podaci vraćeni sa web servisa
+     */
     @Override
     public void onWsDataLoaded(Object message, String status, Object data) {
         if(status.equals("OK")){
@@ -118,6 +124,12 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
     }
 
 
+    /**
+     *
+     * @param idAktivnosti generiranje lozinke za taj id aktivnosti
+     * @param idUloge generiranje lozinke za taj id uloge
+     * @param tjedanNastave generiranje lozinke za taj tjedan
+     */
     @Override
     public void setData(int idAktivnosti, int idUloge, int tjedanNastave) {
         this.idAktivnosti=idAktivnosti;
@@ -125,6 +137,10 @@ public class SubmitAttendance extends Fragment implements SasWsDataLoadedListene
         this.tjedanNastve=tjedanNastave;
     }
 
+    /**
+     *
+     * @return vraćena lista dolazak
+     */
     @Override
     public ArrayList<Dolazak> getData() {
         return dolazakList;
