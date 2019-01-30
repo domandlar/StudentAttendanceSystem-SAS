@@ -18,18 +18,9 @@ public class SasWsDataLoader {
     }
 
 
-    public void kolegijForProfesor(Profesor profesor, SasWsDataLoadedListener sasWsDataLoadedListener){
-        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForKolegijiProfesora(profesor);
-    }
-
     public void generatePassword(int idAktivnosti, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
         Ws.CallWsForGeneratePassword(idAktivnosti,tjedanNastave);
-    }
-    public void allAktivnostForStudent(Student student, SasWsDataLoadedListener sasWsDataLoadedListener){
-        this.sasWsDataLoadedListener = sasWsDataLoadedListener;
-        Ws.CallWsForAllAktivnostiStudenta(student);
     }
     public void provjeriLozinku(Student student,String lozinka, int tjedanNastave, SasWsDataLoadedListener sasWsDataLoadedListener){
         this.sasWsDataLoadedListener = sasWsDataLoadedListener;
