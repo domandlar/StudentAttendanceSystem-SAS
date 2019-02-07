@@ -47,7 +47,6 @@
         <activity android:name=".uistudent.LabsBooking" />
         <activity android:name=".face.FaceFragment"></activity>
         <activity android:name=".uistudent.Attendance" />
-        <activity android:name=".uistudent.AttendanceList" />
         <activity android:name=".attendance.CheckActivity" />
     </application>
 

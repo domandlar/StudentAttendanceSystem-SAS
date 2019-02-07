@@ -104,6 +104,10 @@ public class LecturesList extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(LecturesList.this, LecturesList.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(LecturesList.this, Attendance.class);
+                startActivity(intent);
+                break;
             case R.id.nav_generate_passwords:
                 intent = new Intent(LecturesList.this, CheckActivity.class);
                 intent.putExtra("uloga","student");

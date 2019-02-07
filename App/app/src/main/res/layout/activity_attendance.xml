@@ -54,6 +54,7 @@
                 android:id="@+id/spinnerAktivnosti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:hint="Odaberi aktivnost:"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -68,6 +69,11 @@
                 android:layout_marginLeft="100dp"
                 android:layout_marginRight="100dp"
                 android:text="Provjeri prisutnost"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerAttendance"
+                android:layout_width="match_parent"
+                android:layout_height="359dp" />
 
             <FrameLayout
                 android:id="@+id/fragment_container"

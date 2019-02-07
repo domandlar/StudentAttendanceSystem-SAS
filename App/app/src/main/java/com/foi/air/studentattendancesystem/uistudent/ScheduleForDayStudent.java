@@ -115,6 +115,10 @@ public class ScheduleForDayStudent extends AppCompatActivity implements Navigati
                 intent = new Intent(ScheduleForDayStudent.this, ScheduleStudent.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(ScheduleForDayStudent.this, Attendance.class);
+                startActivity(intent);
+                break;
             case R.id.nav_courses:
                 intent = new Intent(ScheduleForDayStudent.this, ListCourses.class);
                 startActivity(intent);

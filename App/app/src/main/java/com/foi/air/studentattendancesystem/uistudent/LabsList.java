@@ -105,6 +105,10 @@ public class LabsList extends AppCompatActivity implements NavigationView.OnNavi
                 intent = new Intent(LabsList.this, ListCourses.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(LabsList.this, Attendance.class);
+                startActivity(intent);
+                break;
             case R.id.nav_generate_passwords:
                 intent = new Intent(LabsList.this, CheckActivity.class);
                 intent.putExtra("uloga","student");

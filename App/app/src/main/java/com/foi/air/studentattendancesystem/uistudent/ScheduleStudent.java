@@ -98,6 +98,10 @@ public class ScheduleStudent extends AppCompatActivity implements NavigationView
                 intent = new Intent(ScheduleStudent.this, ListCourses.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(ScheduleStudent.this, Attendance.class);
+                startActivity(intent);
+                break;
             case R.id.nav_generate_passwords:
                 intent = new Intent(ScheduleStudent.this, CheckActivity.class);
                 intent.putExtra("uloga","student");

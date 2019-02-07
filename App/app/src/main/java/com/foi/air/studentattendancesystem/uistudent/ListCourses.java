@@ -109,6 +109,10 @@ public class ListCourses extends AppCompatActivity implements NavigationView.OnN
                 intent.putExtra("uloga","student");
                 startActivity(intent);
                 break;
+            case R.id.nav_attendance:
+                intent = new Intent(ListCourses.this, Attendance.class);
+                startActivity(intent);
+                break;
             case R.id.nav_logout:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

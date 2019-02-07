@@ -1,17 +1,15 @@
 package com.foi.air.studentattendancesystem.adaptersStudent;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.foi.air.core.entities.Aktivnost;
-import com.foi.air.core.entities.Kolegij;
+import com.foi.air.core.entities.Dolazak;
 import com.foi.air.studentattendancesystem.R;
 
 import java.util.List;
@@ -19,52 +17,44 @@ import java.util.List;
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.AttendanceViewHolder> {
 
     private Context mCtx;
-    private List<Kolegij> courseList;
-    private List<Aktivnost> aktivnostList;
+    private List<Dolazak> listaDolazaka;
 
-    public AttendanceListAdapter(Context mCtx,List<Kolegij> courseList, List<Aktivnost> aktivnostList){
+    public AttendanceListAdapter(Context mCtx, List<Dolazak> listaDolazaka) {
         this.mCtx = mCtx;
-        this.courseList = courseList;
-        this.aktivnostList = aktivnostList;
+        this.listaDolazaka = listaDolazaka;
     }
-
-
 
     @NonNull
     @Override
-    public AttendanceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
+    public AttendanceListAdapter.AttendanceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        LayoutInflater inflater =LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.activity_attendance_list_adapter, null);
-        AttendanceViewHolder holder = new AttendanceViewHolder(view);
+        AttendanceListAdapter.AttendanceViewHolder holder = new AttendanceListAdapter.AttendanceViewHolder(view);
 
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull AttendanceViewHolder attendanceViewHolder, int i) {
-        final Kolegij kolegij = courseList.get(i);
-        final Aktivnost aktivnost = aktivnostList.get(i);
+        final Dolazak dolazak = listaDolazaka.get(i);
 
-        //attendanceViewHolder.title(kolegij.getNaziv());
-        //attendanceViewHolder.activity(aktivnost.getTipAktivnosti());
-
+        attendanceViewHolder.numberOfWeek.setText(toString().valueOf(dolazak.getTjedanNastave())+". tjedan nastave " );
+        attendanceViewHolder.attendace.setText(dolazak.isPrisustvo() ? "Prisutan" : "Odsutan");
     }
 
     @Override
     public int getItemCount() {
-        return courseList.size();
+        return listaDolazaka.size();
     }
 
-    class AttendanceViewHolder extends RecyclerView.ViewHolder{
-        TextView title, activity, day, week, attendance;
+    class AttendanceViewHolder extends RecyclerView.ViewHolder {
+        TextView numberOfWeek, attendace;
+
         public AttendanceViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.textViewTitle);
-            activity = itemView.findViewById(R.id.textViewActivity);
-            day = itemView.findViewById(R.id.textViewDay);
-            week = itemView.findViewById(R.id.textViewWeek);
-            attendance = itemView.findViewById(R.id.textViewAttendance);
-        }
+            numberOfWeek = itemView.findViewById(R.id.textViewTjedanNastave);
+            attendace = itemView.findViewById(R.id.textViewPrisustvo);
 
+        }
     }
 }
